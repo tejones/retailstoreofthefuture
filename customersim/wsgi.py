@@ -1,5 +1,5 @@
 from flask import Flask
-import random, time, datetime, uuid, json, ConfigParser, os
+import random, time, datetime, uuid, json, configparser, os
 import paho.mqtt.client as mqtt
 import csv
 application = Flask(__name__)
