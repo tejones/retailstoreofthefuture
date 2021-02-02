@@ -17,7 +17,7 @@ application = Flask(__name__)
 #    }
 #
 # 2. customer/move
-#
+#   
 #    { 
 #      id: --ID representing customer--,
 #      ts: --timestamp of the move, in seconds since epoch--,
@@ -92,7 +92,7 @@ class Customer:
 def main():
   
    # configuration information
-   config = ConfigParser.ConfigParser()
+   config = configparser.ConfigParser()
    config.read('config.cfg')
    mqttHost = config.get('MQTT', 'host')
    mqttPort = config.get('MQTT', 'port')
