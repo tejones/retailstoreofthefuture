@@ -1,2 +1,4 @@
 fastapi==0.63.0
+pandas==1.1.5
+sklearn==0.24.1
 uvicorn[standard]==0.13.4
