@@ -1,0 +1,32 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "Message sent when a customer enters the store.",
+	"type": "object",
+	"properties": {
+		"event_type": {
+			"const": "prediction result"
+		},
+		"event_timestamp": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"payload": {
+			"properties": {
+				"customer_id": {
+					"type": "integer"
+				},
+				"coupon_id": {
+					"type": "integer"
+				},
+				"prediction": {
+					"type": "number"
+				}
+			},
+			"required": [
+				"customer_id",
+				"coupon_id",
+				"prediction"
+			]
+		}
+	}
+}

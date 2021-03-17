@@ -1,0 +1,40 @@
+import os
+import sys
+
+from app.utils import logger
+
+
+def validate_and_crash(variable, message):
+    if not variable:
+        logger.error(message)
+        sys.exit(message)
+
+
+logger.info("Reading environment variables...")
+
+BOOTSTRAP_SERVERS = os.getenv('BOOTSTRAP_SERVERS', '127.0.0.1:9092')
+BOOTSTRAP_SERVERS = [x.strip() for x in BOOTSTRAP_SERVERS.split(',')]
+
+CLIENT_ID = os.getenv('CLIENT_ID', 'kafkaClients')
+
+# XXX TODO make these parameters required again for production!
+GROUP_ID = os.getenv('GROUP_ID')
+ENTRY_EVENT_TOPIC_NAME = os.getenv('ENTRY_EVENT_TOPIC_NAME')
+FOCUS_EVENT_TOPIC_NAME = os.getenv('FOCUS_EVENT_TOPIC_NAME')
+COUPON_PREDICTION_TOPIC_NAME = os.getenv('COUPON_PREDICTION_TOPIC_NAME')
+
+AUTO_OFFSET_RESET = os.getenv('AUTO_OFFSET_RESET', 'latest')
+POLL_TIMEOUT = int(os.getenv('POLL_TIMEOUT', 100))
+
+# XXX TODO add to required parameters
+COUPON_SCORER_URL = os.getenv('COUPON_SCORER_URL', '127.0.0.1:8001')
+CLIENT_CONTEXT_URL = os.getenv('CLIENT_CONTEXT_URL', 'http://XXX')
+
+
+REQUIRED_PARAM_MESSAGE = "Cannot read {} env variable. Please, make sure it is set before starting the service."
+
+validate_and_crash(BOOTSTRAP_SERVERS, REQUIRED_PARAM_MESSAGE.format('BOOTSTRAP_SERVERS'))
+validate_and_crash(ENTRY_EVENT_TOPIC_NAME, REQUIRED_PARAM_MESSAGE.format('ENTRY_EVENT_TOPIC_NAME'))
+validate_and_crash(FOCUS_EVENT_TOPIC_NAME, REQUIRED_PARAM_MESSAGE.format('FOCUS_EVENT_TOPIC_NAME'))
+validate_and_crash(COUPON_PREDICTION_TOPIC_NAME, REQUIRED_PARAM_MESSAGE.format('COUPON_PREDICTION_TOPIC_NAME'))
+validate_and_crash(COUPON_SCORER_URL, REQUIRED_PARAM_MESSAGE.format('COUPON_SCORER_URL'))

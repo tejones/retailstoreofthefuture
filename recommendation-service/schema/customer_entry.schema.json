@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "Message sent when a customer enters the store.",
+	"type": "object",
+	"properties": {
+		"event_type": {
+			"const": "customer entry"
+		},
+		"event_timestamp": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"payload": {
+			"properties": {
+				"customer_id": {
+					"type": "integer"
+				}
+			},
+			"required": [
+				"customer_id"
+			]
+		}
+	}
+}
