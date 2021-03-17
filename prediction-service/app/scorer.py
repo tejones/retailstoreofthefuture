@@ -1,3 +1,4 @@
+import os
 import pickle
 
 import pandas
@@ -17,6 +18,9 @@ class Scorer:
 
 
 def get_scorer():
+    print("------------------------- get scorer")
+    print(os.path)
+    print(os.getcwd())
     model_path = 'app/model_store/scikit_classifier'
     with open(model_path, 'rb') as f:
         return Scorer(pickle.load(f))

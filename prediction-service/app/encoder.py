@@ -1,6 +1,7 @@
 import pandas
 
-from .model import PredictionInput
+# from .model import PredictionInput
+from app.model import PredictionInput
 
 
 class DataEncoder:

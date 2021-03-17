@@ -3,18 +3,37 @@
 REST application which outputs coupon redemption predictions
 
 
-## Install
 
+## Development
+
+### Dependencies
+Dependencies of the project are contained in requirements.txt file. All the packages are publicly available.
+
+All the packages can be installed with: 
+```
+pip install -f requirements.txt
+```
+
+For development purposes creating a dedicated virtual environment is helpful (Python 3.8, all the dependencies installed there):
 ```
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Run
+### Service configuration
+**TBD**
+
+### Running the service
+The code reads configuration information (tokens, secrets) from environment variables. They need to be set accordingly in
+advance.
+`.environment.variables.sh` can be used for that purpose. Then, in order to run the service the following commands can be
+used:
 
 ```
-uvicorn --host <host, e.g. 0.0.0.0> --port <port, e.g. 8001> app.main:app --reload
+$ . .environment.variables.sh
+$ . .venv/bin/activate
+(venv)$ uvicorn app.main:app --host 0.0.0.0 --reload
 ```
 
 ## Prediction example
@@ -76,4 +95,22 @@ Example response:
 ]
 ```
 
+## Docker image
+The docker image for the service is [Dockerfile](Dockerfile).
+It is based on FastAPI "official" image. 
+See https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker 
+for detail on configuring the container (http port, log level, etc.)
 
+In order to build the image use:
+```
+docker build -t prediction-service:0.0.1 .
+```
+
+> Set image name (`prediction-service`) and tag (`0.0.1`) according to
+> your needs.
+
+To run the service as a Docker container run:
+```
+docker run -d -p 8000:80 -e LOG_LEVEL="warning" prediction-service:0.0.1
+
+```
