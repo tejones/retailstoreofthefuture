@@ -161,3 +161,22 @@ where
 * `ENTRY_EVENT` is the topic name
 * `localhost:9092` is the broker's URL
 
+## Docker image
+The docker image for the service is [Dockerfile](Dockerfile).
+It is based on FastAPI "official" image. 
+See https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker 
+for detail on configuring the container (http port, log level, etc.)
+
+In order to build the image use:
+```
+docker build -t recommendation-service:0.0.1 .
+```
+
+> Set image name (`recommendation-service`) and tag (`0.0.1`) according to
+> your needs.
+
+To run the service as a Docker container run:
+```
+docker run -d -e LOG_LEVEL="warning"  --name recommendaition-service recommendation-service:0.0.1
+
+```
