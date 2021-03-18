@@ -85,12 +85,12 @@ Example response:
   {
     "coupon_id": 1111,
     "customer_id": 4444,
-    "prediction": 1
+    "prediction": 0.85
   },
   {
     "coupon_id": 2323,
     "customer_id": 4444,
-    "prediction": 1
+    "prediction": 0.8
   }
 ]
 ```
