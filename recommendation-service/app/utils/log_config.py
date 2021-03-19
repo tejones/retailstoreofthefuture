@@ -1,5 +1,5 @@
 import logging
-print('-------------------------------------------------------')
+
 LOG_FILENAME = "messages.log"
 # logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(level=logging.INFO)

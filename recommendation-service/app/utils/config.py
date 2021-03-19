@@ -27,8 +27,19 @@ AUTO_OFFSET_RESET = os.getenv('AUTO_OFFSET_RESET', 'latest')
 POLL_TIMEOUT = int(os.getenv('POLL_TIMEOUT', 100))
 
 # XXX TODO add to required parameters
-COUPON_SCORER_URL = os.getenv('COUPON_SCORER_URL', '127.0.0.1:8001')
+COUPON_SCORER_URL = os.getenv('COUPON_SCORER_URL', 'http://127.0.0.1:8001/score')
 CLIENT_CONTEXT_URL = os.getenv('CLIENT_CONTEXT_URL', 'http://XXX')
+
+TESTING_NO_KAFKA = os.getenv('TESTING_NO_KAFKA', 'false')
+TESTING_NO_KAFKA = TESTING_NO_KAFKA.lower() in ['1', 'yes', 'true']
+
+DEPARTMENTS = ['Women', 'Boys', 'Sport', 'Girls', 'Men']
+
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
 
 
 REQUIRED_PARAM_MESSAGE = "Cannot read {} env variable. Please, make sure it is set before starting the service."

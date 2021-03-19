@@ -1,4 +1,3 @@
-
 # Functionality 
 This service creates Kafka consumers to listen to "entry event" and "focus event".
 
@@ -13,6 +12,24 @@ This service's responsibility is to:
   receives *entry event*
 * invoke/call prediction service to decide if the customer is willing to use promotion coupons from given department,
   when the service receives *focus event* and send prediction result to a dedicated Kafka topic.
+
+## Table of contents
+
+* [Functionality](#functionality)
+  * [Event payloads](#event-payloads)
+    * [Entry Event](#entry-event)
+    * [Focus Event](#focus-event)
+    * [Prediction Results Message](#prediction-results-message)
+  * [Prediction request](#prediction-request)
+* [Development](#development)
+  * [Dependencies](#dependencies)
+  * [Service configuration](#service-configuration)
+  * [Running the service](#running-the-service)
+  * [Testing with Kafka in docker-compose](#testing-with-kafka-in-docker-compose)
+  * [Testing without Kafka](#testing-without-kafka)
+  * [Docker image](#docker-image)
+  * [Mock event endpoints](#mock-event-endpoints)
+  * [Cache - DB](#cache---db)
 
 ## Event payloads
 
@@ -90,7 +107,7 @@ All the packages can be installed with:
 
 ## Service configuration
 
-*TODO: explain the following parameters*
+The service reads the following **environment variables**:
 
 | Variable               | Description                             |  Default      |
 |------------------------|-----------------------------------------|--------------:|
@@ -98,11 +115,16 @@ All the packages can be installed with:
 | CLIENT_ID              | optional identifier of a Kafka consumer | kafkaClients  |
 | GROUP_ID               | consumer group name 					   | None 		   |
 | POLL_TIMEOUT           | time spent waiting for messages in in poll (ms) |   100 |
-| AUTO_OFFSET_RESET      | see: auto.offset.reset setting in Kafka | 	  latest |
+| AUTO_OFFSET_RESET      | see: auto.offset.reset setting in Kafka | 	  latest   |
 | ENTRY_EVENT_TOPIC_NAME | topic for entry events              	   |    		 - |
 | FOCUS_EVENT_TOPIC_NAME | topic for focus events              	   |    		 - |
 | COUPON_PREDICTION_TOPIC_NAME | topic for sending prediction results |   		 - |
 | COUPON_SCORER_URL      | URL of the scorer service               |   			 - |
+
+(Parameters with `-` in "Default" column are required.)
+
+Use [log_config.py](./app/utils/log_config.py) to **configure logging behaviour**. 
+By default, console and file handlers are used. The file appender writes to `messages.log`.
 
 
 ## Running the service
@@ -118,8 +140,9 @@ used:
 ```
 $ . .environment.variables.sh
 $ . venv/bin/activate
-(venv)$ uvicorn app.main:app --host 0.0.0.0
+(venv)$ uvicorn app.main:app --host 0.0.0.0 --reload --reload-dir app
 ```
+> Please, note `reload-dir` switch. Without it the realoader goes into inifinte loop because it detects log file changes (messages.log).
 
 ## Testing with Kafka in docker-compose
 
@@ -161,6 +184,45 @@ where
 * `ENTRY_EVENT` is the topic name
 * `localhost:9092` is the broker's URL
 
+## Testing without Kafka
+For testing purposes, there are two endpoints that simulate events ("entry event", "focus event"),
+as if they would appear on a dedicated Kafka topic.
+
+In order for the service not to create real Kafka consumers and producers,
+set `TESTING_NO_KAFKA` environment variable to "true".
+
+This way, event processing logic can be tested without Kafka, for example:
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:8000/mock_entry' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "event_type": "entry event",
+  "event_timestamp": "2021-03-18T08:29:02.160Z",
+  "payload": {
+    "customer_id": 3
+  }
+}'
+```
+
+or:
+
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:8000/mock_focus' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "event_type": "focus event",
+  "event_timestamp": "2021-03-18T08:29:02.160Z",
+  "payload": {
+    "customer_id": 0,
+    "department_id": 0
+  }
+}'
+```
+
 ## Docker image
 The docker image for the service is [Dockerfile](Dockerfile).
 It is based on FastAPI "official" image. 
@@ -180,3 +242,89 @@ To run the service as a Docker container run:
 docker run -d -e LOG_LEVEL="warning"  --name recommendaition-service recommendation-service:0.0.1
 
 ```
+
+## Mock event endpoints
+For testing purposes, there are two endpoints that simulate events ("entry event", "focus event"),
+as if they would appear on dedicated Kafka topic.
+
+This way, event processing logic can be tested without Kafka, for example:
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:8000/mock_entry' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "event_type": "entry event",
+  "event_timestamp": "2021-03-18T08:29:02.160Z",
+  "payload": {
+    "customer_id": 3
+  }
+}'
+```
+or:
+```
+curl -X 'POST' \
+  'http://127.0.0.1:8000/mock_focus' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "event_type": "focus event",
+  "event_timestamp": "2021-03-18T08:29:02.160Z",
+  "payload": {
+    "customer_id": 0,
+    "department_id": 0
+  }
+}'
+```
+
+## Cache - DB
+
+This component uses PostgreSQL as a cache. It stores coupons and customer data.
+
+DB tables:
+
+```sql
+CREATE TABLE coupon_categories (
+  id SERIAL,
+  coupon_id INT,
+  item_id INT,
+  category VARCHAR(50),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE coupon_info (
+  coupon_id INT,
+  mean_coupon_discount FLOAT,
+  mean_item_price FLOAT,
+  PRIMARY KEY (coupon_id)
+);
+
+CREATE TABLE customer_info (
+  customer_id INT,
+  age_range VARCHAR(6),
+  marital_status VARCHAR(10),
+  family_size INT,
+  no_of_children INT,
+  income_bracket INT,
+  gender VARCHAR(1),
+  mean_discount_used_by_cust FLOAT,
+  unique_items_bought_by_cust INT,
+  mean_selling_price_paid_by_cust FLOAT,
+  mean_quantity_bought_by_cust FLOAT,
+  total_discount_used_by_cust FLOAT,
+  total_coupons_used_by_cust INT,
+  total_price_paid_by_cust FLOAT,
+  total_quantity_bought_by_cust INT,
+  PRIMARY KEY (customer_id)
+);
+```
+
+How to fill DB with data:
+
+```sql
+COPY coupon_categories(coupon_id, item_id, category) FROM '<<DATA_PATH>>/coupon_categories.csv' DELIMITER ',' CSV HEADER;
+COPY coupon_info FROM '<<DATA_PATH>>/coupon_info.csv' DELIMITER ',' CSV HEADER;
+COPY customer_info FROM '<<DATA_PATH>>/customer_info.csv' DELIMITER ',' CSV HEADER;
+```
+
+CSV files are available in the [../data-mining/coupon-based/csv_4_db/](../data-mining/coupon-based/csv_4_db/) path

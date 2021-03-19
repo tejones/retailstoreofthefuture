@@ -15,6 +15,9 @@ class EventConsumer:
         self.topic = topic_name
         self.consumer.subscribe([topic_name])
 
+        self.process_args = []
+        self.process_kwargs = {}
+
     @staticmethod
     def __create_kafka_consumer(bootstrap_servers=BOOTSTRAP_SERVERS, group_id=GROUP_ID,
                                 client_id=CLIENT_ID, auto_offset_reset=AUTO_OFFSET_RESET):
@@ -30,14 +33,14 @@ class EventConsumer:
 
         return _consumer
 
-    async def process(self, message: str):
+    async def process(self, message: str, *args, **kwargs):
         logger.warning('Not implemented.')
 
     async def consume_messages_blocking(self):
         logger.info(f'Starting messages consumption for {self.topic}')
         for message in self.consumer:
             logger.debug(f'Received {message}')
-            await self.process(message)
+            await self.process(message, *self.process_args, **self.process_kwargs)
 
     async def consume_messages(self):
         logger.info(f'Starting messages consumption for {self.topic}')
@@ -48,6 +51,11 @@ class EventConsumer:
                 for message in messages:
                     # TODO XXX change level to debug
                     logger.info(f"{tp.topic}:{tp.partition}:{message.offset} key={message.key}, value={message.value}")
-                    await self.process(message.value.decode('utf-8'))
+                    await self.process(message.value.decode('utf-8'), *self.process_args, **self.process_kwargs)
                 await asyncio.sleep(0)
             await asyncio.sleep(1)
+
+
+
+
+
