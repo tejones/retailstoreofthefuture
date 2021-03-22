@@ -36,4 +36,4 @@ class PredictionInput(BaseModel):
 class PredictionOutput(BaseModel):
     coupon_id: int
     customer_id: int
-    prediction: conint(ge=0, le=1)
+    prediction: confloat(ge=0, le=1)
