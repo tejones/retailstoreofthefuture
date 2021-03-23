@@ -1,20 +1,24 @@
 import logging
+import os
 
 LOG_FILENAME = "messages.log"
-# logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(level=logging.INFO)
+LOG_FORMAT = "%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]\t%(message)s"
+LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO').upper()
 
-# XXX TODO hardcoded logger name
+assert LOG_LEVEL in ['DEBUG', 'INFO', 'WARNING', 'ERROR']
+
+logging.basicConfig(format=LOG_FORMAT, level=LOG_LEVEL)
+
+# Basic console logger
 logger = logging.getLogger("app.utils")
 
-logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
-# rootLogger = logging.getLogger()
+# File logger
+logFormatter = logging.Formatter(LOG_FORMAT)
+
 fileHandler = logging.FileHandler(LOG_FILENAME, encoding='UTF-8')
 fileHandler.setFormatter(logFormatter)
+
 logger.addHandler(fileHandler)
-consoleHandler = logging.StreamHandler()
-consoleHandler.setFormatter(logFormatter)
-logger.addHandler(consoleHandler)
 
-
-logger.info("Logger configured...")
+# Configuration done
+logger.debug("Logger configured...")

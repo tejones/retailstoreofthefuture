@@ -4,7 +4,7 @@ from app.utils.config import CLIENT_CONTEXT_URL
 scorer_url = f'{CLIENT_CONTEXT_URL}/get_context'
 
 
-async def call_get_client_context(message: str):
+async def call_get_client_context(message: str, pool):
     # XXX TODO unmarshall values
     customer_id = 1
     logger.info(f'calling Get Client Context service with {customer_id}')

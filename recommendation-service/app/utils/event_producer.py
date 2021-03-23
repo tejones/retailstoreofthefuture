@@ -25,7 +25,7 @@ class EventProducer:
         return _producer
 
     def publish_message(self, value: str, key: str = None):
-        logger.info(f'publish_message to topic {self.topic} with key {key}')
+        logger.debug(f'publish_message to topic {self.topic} with key {key}')
         logger.debug(value)
         try:
             # XXX TODO think about defining serializers for the producer

@@ -36,11 +36,13 @@ async def process_prediction_request(message: str, db_pool) -> float:
     # Emmit prediction result event
     timestamp = datetime.datetime.utcnow()
 
+    logger.info(f'Publishing messages with results')
     for p in prediction_output:
         payload = PredictionResultPayload(customer_id=p.customer_id, coupon_id=p.coupon_id, prediction=p.prediction)
         event = PredictionResultEvent(event_timestamp=timestamp, payload=payload)
 
         prediction_producer.publish_message(event.json())
+    logger.info(str(len(prediction_output)) + ' messages has been published')
 
     # TODO construct response
     return "Done"
