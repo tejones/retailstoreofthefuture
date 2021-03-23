@@ -37,5 +37,5 @@ class EventProducer:
             logger.debug(f'Message {value} published.')
         except Exception as ex:
             logger.error(f'Exception in publishing message: {type(ex)} {ex}')
-            # TODO XXX propagate the exception?
+            # TODO propagate the exception?
             # raise

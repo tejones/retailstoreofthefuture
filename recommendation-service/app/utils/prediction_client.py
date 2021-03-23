@@ -3,22 +3,21 @@ import json
 import httpx
 
 from app.utils import logger
-from app.utils.config import COUPON_SCORER_URL, DEPARTMENTS
+from app.utils.config import COUPON_SCORER_URL
 from app.utils.kafka_clients import prediction_producer
 
 from app.utils.model import PredictionResultEvent, PredictionResultPayload
-from app.utils.prediction_model import Customer, Coupon, PredictionInput, PredictionOutput
+from app.utils.prediction_model import PredictionInput, PredictionOutput
 from app.cache.read_cache import ReadCache
 
 
 async def process_prediction_request(message: str, db_pool) -> float:
     logger.info('process_prediction_request')
 
-    # Extract customer and departament id
+    # Extract customer and departament category
     json_object = json.loads(message)
     customer_id: int = json_object.get('payload')['customer_id']
-    department_id: int = json_object.get('payload')['department_id']
-    category: str = DEPARTMENTS[department_id]
+    category: str = json_object.get('payload')['category']
 
     rc = ReadCache(db_pool)
     # Get customer context
@@ -31,13 +30,11 @@ async def process_prediction_request(message: str, db_pool) -> float:
     payload = PredictionInput(customer=customer, coupons=coupons)
 
     # Make the request
-    logger.info(f'Calling Score Coupons service with {customer_id}, {department_id}')
-    # TODO XXX make a real call
-    logger.warn(f'not implemented -- should invoke {COUPON_SCORER_URL}')
+    logger.info(f'Calling Score Coupons service with {customer_id}, {category}')
     prediction_output = await get_prediction(payload)
 
     # Emmit prediction result event
-    timestamp = datetime.datetime.utcnow()  # .isoformat()
+    timestamp = datetime.datetime.utcnow()
 
     for p in prediction_output:
         payload = PredictionResultPayload(customer_id=p.customer_id, coupon_id=p.coupon_id, prediction=p.prediction)

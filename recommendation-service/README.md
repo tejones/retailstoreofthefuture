@@ -66,10 +66,12 @@ In this case, the example message looks like this:
     "event_timestamp": "2001-12-17T09:30:47.0",
     "payload": {
         "customer_id": 1,
-        "department_id": 1
+        "category": "Boys"
     }
 }
 ```
+
+ATTOW, supported categories are 'Boys', 'Girls', 'Men', 'Sports', 'Women'.
 
 ### Prediction Results Message
 The schema for prediction result message is:
@@ -142,7 +144,7 @@ $ . .environment.variables.sh
 $ . venv/bin/activate
 (venv)$ uvicorn app.main:app --host 0.0.0.0 --reload --reload-dir app
 ```
-> Please, note `reload-dir` switch. Without it the realoader goes into inifinte loop because it detects log file changes (messages.log).
+> Please, note `reload-dir` switch. Without it the reloader goes into an infinite loop because it detects log file changes (messages.log).
 
 ## Testing with Kafka in docker-compose
 
@@ -217,8 +219,8 @@ curl -X 'POST' \
   "event_type": "focus event",
   "event_timestamp": "2021-03-18T08:29:02.160Z",
   "payload": {
-    "customer_id": 0,
-    "department_id": 0
+    "customer_id": 7,
+    "category": "Sports"
   }
 }'
 ```
@@ -271,8 +273,8 @@ curl -X 'POST' \
   "event_type": "focus event",
   "event_timestamp": "2021-03-18T08:29:02.160Z",
   "payload": {
-    "customer_id": 0,
-    "department_id": 0
+    "customer_id": 8,
+    "category": "Women" 
   }
 }'
 ```

@@ -1,6 +1,6 @@
 from typing import List
 
-from pydantic import BaseModel, conint
+from pydantic import BaseModel, confloat
 
 
 class Coupon(BaseModel):

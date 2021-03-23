@@ -26,7 +26,6 @@ class DummyProducer:
         logger.info(f'pretending to publish_message to topic {self.topic} with key {key}')
         logger.info(value)
         try:
-            # XXX TODO think about defining serializers for the producer
             if key:
                 key = key.encode('utf-8')
             if value:

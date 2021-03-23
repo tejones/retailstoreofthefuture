@@ -5,7 +5,7 @@ from pydantic import BaseModel, condecimal
 
 class FocusEventPayload(BaseModel):
     customer_id: int
-    department_id: int
+    category: str
 
 
 class FocusEvent(BaseModel):

@@ -14,13 +14,14 @@
 				"customer_id": {
 					"type": "integer"
 				},
-				"department_id": {
-					"type": "integer"
+				"category": {
+					"type": "string",
+					"enum": ["Boys", "Girls", "Men", "Sports", "Women"]
 				}
 			},
 			"required": [
 				"customer_id",
-				"department_id"
+				"category"
 			]
 		}
 	}
