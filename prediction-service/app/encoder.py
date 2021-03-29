@@ -31,8 +31,8 @@ class DataEncoder:
                 'total_quantity_per_cust': input.customer.total_quantity_bought,
                 'total_selling_price_per_cust': input.customer.total_price_paid,
                 'coupon_id': coupon.coupon_id,
-                # TODO coupon_discount: coupon.coupon_discount
-                # TODO item_selling_price: coupon.item_selling_price
+                'coupon_discount': coupon.coupon_discount,
+                'item_selling_price': coupon.item_selling_price
             }
             row.update(cls._encode_category(coupon.item_category))
             rows.append(row)

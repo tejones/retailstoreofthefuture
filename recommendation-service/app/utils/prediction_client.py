@@ -3,7 +3,7 @@ import json
 import httpx
 
 from app.utils import logger
-from app.utils.config import COUPON_SCORER_URL
+from app.utils.config import COUPON_SCORER_URL, MAX_COUPONS_PER_CALL, PREDICTION_THRESHOLD
 from app.utils.kafka_clients import prediction_producer
 
 from app.utils.model import PredictionResultEvent, PredictionResultPayload
@@ -32,6 +32,10 @@ async def process_prediction_request(message: str, db_pool) -> float:
     # Make the request
     logger.info(f'Calling Score Coupons service with {customer_id}, {category}')
     prediction_output = await get_prediction(payload)
+
+    # Filter
+    prediction_output = list(sorted(prediction_output, key=lambda p: -p.prediction))[:MAX_COUPONS_PER_CALL]
+    prediction_output = list(filter(lambda p: p.prediction > PREDICTION_THRESHOLD, prediction_output))
 
     # Emmit prediction result event
     timestamp = datetime.datetime.utcnow()

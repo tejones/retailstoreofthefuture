@@ -13,7 +13,7 @@ class Scorer:
         output_df = pandas.DataFrame(input_df[['customer_id', 'coupon_id']])
         input_df.drop(['customer_id', 'coupon_id'], axis=1, inplace=True)
         probs = self._model.predict_proba(input_df)[:, 1]
-        output_df['prediction'] = probs.round(decimals=2)
+        output_df['prediction'] = probs.round(decimals=10)
         output_df.sort_values(by='prediction', ascending=False)
         return output_df
 
