@@ -1,21 +1,41 @@
-import asyncio
 import aiopg
 import psycopg2
 
-from app.utils.config import DEPARTMENTS
 from app.utils import logger
-
+from app.utils.config import DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT
+from app.utils.config import DEPARTMENTS
 from app.utils.prediction_model import Customer, Coupon
 
 
+class DBPool:
+    @classmethod
+    async def create(cls, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT):
+        self = DBPool()
+        self.dsn = f'dbname={dbname} user={user} password={password} host={host} port={port}'
+        self.pool = await aiopg.create_pool(self.dsn)
+        return self
+
+    def get_pool(self):
+        return self.pool
+
+
 class ReadCache:
-    def __init__(self, db_pool):
-        self.pool = db_pool
+    pool = None
+
+    def __init__(self):
+        pass
+
+    async def initialize(self):
+        logger.info('Initializing the pool.')
+        if not ReadCache.pool:
+            logger.info('Creating new db pool.')
+            ReadCache.pool = await DBPool.create()
+        else:
+            logger.info('Reusing existing db pool.')
 
     async def read_customer(self, id: int):
-        assert type(id) == int
-        conn = await self.pool.acquire()
-        cur = await conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
+        logger.info(f'read customer {id}')
+
         query = f'''
                 SELECT
                     customer_id,
@@ -37,14 +57,16 @@ class ReadCache:
                     WHERE customer_id = {id}
                 '''
 
-        await cur.execute(query)
-        customer = dict(await cur.fetchone())
+        assert type(id) == int
+        async with ReadCache.pool.get_pool().acquire() as conn:
+            async with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+                await cur.execute(query)
+                customer = dict(await cur.fetchone())
         return Customer(**customer)
 
     async def read_coupons(self, category: str):
         assert category in DEPARTMENTS
-        conn = await self.pool.acquire()
-        cur = await conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
+
         query = f'''
                 SELECT DISTINCT
                     cc.coupon_id,
@@ -55,5 +77,9 @@ class ReadCache:
                     ON cc.coupon_id = ci.coupon_id
                     WHERE cc.category='{category}'
                 '''
-        await cur.execute(query)
-        return [Coupon(**c) for c in await cur.fetchall()]
+
+        async with ReadCache.pool.get_pool().acquire() as conn:
+            async with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+                await cur.execute(query)
+                return [Coupon(**c) for c in await cur.fetchall()]
+        return None

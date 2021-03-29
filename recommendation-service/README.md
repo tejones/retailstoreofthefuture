@@ -176,8 +176,13 @@ where
 To **produce some testing messages**, one can issue the following command:
 
 ```
-docker-compose exec broker  \
+docker-compose exec broker \
   bash -c "seq 10 | kafka-console-producer --request-required-acks 1 --broker-list localhost:9092 --topic ENTRY_EVENT && echo 'Produced 10 messages.'"
+```
+or   
+``` 
+docker-compose exec broker \
+  bash -c "echo '{\"event_type\":\"customer focus\",\"event_timestamp\":\"2001-12-17T09:30:47.0\",\"payload\":{\"customer_id\":3,\"category\":\"Boys\"}}' | kafka-console-producer --request-required-acks 1 --broker-list localhost:9092 --topic FOCUS_EVENTS && echo 'Message produced.'"
 ```
 
 where
@@ -220,7 +225,7 @@ curl -X 'POST' \
   "event_timestamp": "2021-03-18T08:29:02.160Z",
   "payload": {
     "customer_id": 7,
-    "category": "Sports"
+    "category": "Sport"
   }
 }'
 ```

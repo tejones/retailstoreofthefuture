@@ -49,8 +49,7 @@ class EventConsumer:
             msg_pack = self.consumer.poll(POLL_TIMEOUT)
             for tp, messages in msg_pack.items():
                 for message in messages:
-                    # TODO XXX change level to debug
-                    logger.info(f"{tp.topic}:{tp.partition}:{message.offset} key={message.key}, value={message.value}")
+                    logger.debug(f"{tp.topic}:{tp.partition}:{message.offset} key={message.key}, value={message.value}")
                     await self.process(message.value.decode('utf-8'), *self.process_args, **self.process_kwargs)
                 await asyncio.sleep(0)
             await asyncio.sleep(1)

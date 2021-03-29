@@ -10,7 +10,7 @@ def validate_and_crash(variable, message):
         sys.exit(message)
 
 
-logger.info("Reading environment variables...")
+logger.info('Reading environment variables...')
 
 BOOTSTRAP_SERVERS = os.getenv('BOOTSTRAP_SERVERS', '127.0.0.1:9092')
 BOOTSTRAP_SERVERS = [x.strip() for x in BOOTSTRAP_SERVERS.split(',')]
@@ -32,6 +32,8 @@ CLIENT_CONTEXT_URL = os.getenv('CLIENT_CONTEXT_URL', 'http://XXX')
 
 TESTING_NO_KAFKA = os.getenv('TESTING_NO_KAFKA', 'false')
 TESTING_NO_KAFKA = TESTING_NO_KAFKA.lower() in ['1', 'yes', 'true']
+TESTING_NO_POSTGRES = os.getenv('TESTING_NO_POSTGRES', 'false')
+TESTING_NO_POSTGRES = TESTING_NO_POSTGRES.lower() in ['1', 'yes', 'true']
 
 DEPARTMENTS = ['Women', 'Boys', 'Sport', 'Girls', 'Men']
 
@@ -42,7 +44,7 @@ DB_HOST = os.getenv('DB_HOST')
 DB_PORT = os.getenv('DB_PORT')
 
 
-REQUIRED_PARAM_MESSAGE = "Cannot read {} env variable. Please, make sure it is set before starting the service."
+REQUIRED_PARAM_MESSAGE = 'Cannot read {} env variable. Please, make sure it is set before starting the service.'
 
 validate_and_crash(BOOTSTRAP_SERVERS, REQUIRED_PARAM_MESSAGE.format('BOOTSTRAP_SERVERS'))
 validate_and_crash(ENTRY_EVENT_TOPIC_NAME, REQUIRED_PARAM_MESSAGE.format('ENTRY_EVENT_TOPIC_NAME'))

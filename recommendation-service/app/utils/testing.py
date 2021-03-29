@@ -1,5 +1,6 @@
 from app.utils import logger
-from app.utils.config import CLIENT_ID, AUTO_OFFSET_RESET, BOOTSTRAP_SERVERS, GROUP_ID
+from app.utils.config import CLIENT_ID, AUTO_OFFSET_RESET, BOOTSTRAP_SERVERS, GROUP_ID, DEPARTMENTS
+from app.utils.prediction_model import Customer, Coupon
 
 
 class DummyConsumer:
@@ -33,3 +34,34 @@ class DummyProducer:
             logger.debug(f'Message {value} published.')
         except Exception as ex:
             logger.error(f'Exception in publishing message: {type(ex)} {ex}')
+
+
+class DummyReadCache:
+    def __init__(self):
+        logger.info('Creating dummy ReadCache object.')
+        pass
+
+    async def read_customer(self, id: int):
+        assert type(id) == int
+        return Customer(
+            customer_id=1,
+            age_range='70+',
+            marital_status='Married',
+            family_size=2,
+            no_of_children=0,
+            income_bracket=4,
+            gender='M',
+            mean_discount_used=-1.75,
+            total_discount_used=99.22,
+            total_unique_items_bought=463,
+            total_quantity_bought=99.22,
+            mean_quantity_bought=463,
+            mean_selling_price_paid=99.22,
+            total_coupons_redeemed=1.0,
+            total_price_paid=-1832.94,
+        )
+
+    async def read_coupons(self, category: str):
+        assert category in DEPARTMENTS
+        coupon = Coupon(coupon_id=1, coupon_discount=-1.04, item_selling_price=102.22, item_category='Boys')
+        return [coupon]

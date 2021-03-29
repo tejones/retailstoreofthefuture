@@ -1,39 +1,28 @@
 import asyncio
-
-from pydantic import json
 from typing import Optional
-
-from app.utils import log_config
 
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 
 from app.utils import logger
-from app.utils.kafka_clients import entry_consumer, focus_consumer
-from app.utils.context_client import call_get_client_context
+from app.utils.db_client import create_cache_reader
+from app.utils.kafka_clients import create_kafka_clients
 from app.utils.model import EntryEvent, FocusEvent
-from app.utils.prediction_client import process_prediction_request
-from app.cache.db_pool import DBPool
-
 
 app = FastAPI()
-db = DBPool()
 
 
 @app.on_event("startup")
 async def startup_event():
-    await db.create_pool()
+    app.state.cache_reader = await create_cache_reader()
+
+    entry_consumer, focus_consumer, prediction_producer = create_kafka_clients(app.state.cache_reader)
+    app.state.entry_consumer = entry_consumer
+    app.state.focus_consumer = focus_consumer
+    app.state.prediction_producer = prediction_producer
 
     ####################
     # background tasks
-
-    # Implement event processing logic in call_get_client_context and call_score_coupons
-    setattr(entry_consumer, 'process', call_get_client_context)
-    setattr(entry_consumer, 'process_kwargs', {'db_pool': db.get_pool()})
-    
-    setattr(focus_consumer, 'process', process_prediction_request)
-    setattr(focus_consumer, 'process_kwargs', {'db_pool': db.get_pool()})
-
     asyncio.create_task(entry_consumer.consume_messages())
     asyncio.create_task(focus_consumer.consume_messages())
 
@@ -65,8 +54,10 @@ async def mock_entry_event(event: EntryEvent) -> Optional[str]:
     """
     logger.info('mock_entry_event')
     logger.debug(event)
+
     message = event.json()
-    result = await call_get_client_context(message, db.get_pool())
+    
+    result = await app.state.entry_consumer.process(message)
     return PlainTextResponse(str(result))
 
 
@@ -79,7 +70,6 @@ async def mock_focus_event(event: FocusEvent) -> Optional[str]:
     logger.debug(event)
 
     message = event.json()
-    logger.warn(f'message: {message}')
 
-    result = await process_prediction_request(message, db.get_pool())
+    result = await app.state.focus_consumer.process(message)
     return PlainTextResponse(str(result))

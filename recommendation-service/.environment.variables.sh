@@ -4,6 +4,7 @@ export COUPON_PREDICTION_TOPIC_NAME='PREDICTION_RESULTS'
 export COUPON_SCORER_URL='http://127.0.0.1:8001/score'
 
 export TESTING_NO_KAFKA=false
+export TESTING_NO_POSTGRES=false
 
 export DB_NAME='recommendation_cache'
 export DB_USER='postgres'
