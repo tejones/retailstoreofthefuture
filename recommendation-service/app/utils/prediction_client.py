@@ -42,9 +42,6 @@ class FocusEventProcessor(EventConsumer):
         logger.info(f'Calling Score Coupons service with {customer_id}, {category}')
         prediction_output = await self.get_prediction(payload)
 
-        # Emmit prediction result event
-        timestamp = datetime.datetime.utcnow()
-
         # Filter
         prediction_output = list(sorted(prediction_output, key=lambda p: -p.prediction))[:MAX_COUPONS_PER_CALL]
         prediction_output = list(filter(lambda p: p.prediction > PREDICTION_THRESHOLD, prediction_output))
@@ -57,7 +54,7 @@ class FocusEventProcessor(EventConsumer):
             event = PredictionResultEvent(event_timestamp=timestamp, payload=payload)
 
             self.prediction_producer.publish_message(event.json())
-        logger.info(str(len(prediction_output)) + ' messages has been published')
+        logger.info(f'{len(prediction_output)} messages has been published')
 
         # TODO construct response
         return "Done"

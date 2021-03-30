@@ -56,7 +56,7 @@ async def mock_entry_event(event: EntryEvent) -> Optional[str]:
     logger.debug(event)
 
     message = event.json()
-    
+
     result = await app.state.entry_consumer.process(message)
     return PlainTextResponse(str(result))
 

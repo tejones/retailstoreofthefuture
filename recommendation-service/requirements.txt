@@ -3,6 +3,6 @@ fastapi==0.63
 requests~=2.25.1
 setuptools~=39.2.0
 uvicorn[standard]==0.13.4
-kafka-python~=2.0.2
 aiopg==1.1.0
 httpx==0.17.1
+confluent-kafka==1.6.1

@@ -116,7 +116,7 @@ The service reads the following **environment variables**:
 | BOOTSTRAP_SERVERS      | comma-separated list of Kafka brokers   | 127.0.0.1:9092|
 | CLIENT_ID              | optional identifier of a Kafka consumer | kafkaClients  |
 | GROUP_ID               | consumer group name 					   | None 		   |
-| POLL_TIMEOUT           | time spent waiting for messages in in poll (ms) |   100 |
+| POLL_TIMEOUT           | time spent waiting for messages in in poll (s) |   0.1  |
 | AUTO_OFFSET_RESET      | see: auto.offset.reset setting in Kafka | 	  latest   |
 | ENTRY_EVENT_TOPIC_NAME | topic for entry events              	   |    		 - |
 | FOCUS_EVENT_TOPIC_NAME | topic for focus events              	   |    		 - |
