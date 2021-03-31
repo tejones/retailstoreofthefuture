@@ -47,19 +47,23 @@ class EventConsumer:
 
         running = True
         while running:
-            message = self.consumer.poll(POLL_TIMEOUT)
+            try:
+                message = self.consumer.poll(POLL_TIMEOUT)
 
-            if message is None:
-                # logger.debug("no messages")
-                pass
-            elif message.error():
-                logger.error('Consumer error: {}'.format(message.error()))
-            else:
-                logger.debug(
-                    f'{message.topic()}:{message.partition()}:{message.offset()} key={message.key()}, value={message.value()}')
-                await self.process(message.value().decode('utf-8'), *self.process_args, **self.process_kwargs)
-                await asyncio.sleep(0)
+                if message is None:
+                    # logger.debug("no messages")
+                    pass
+                elif message.error():
+                    logger.error('Consumer error: {}'.format(message.error()))
+                else:
+                    logger.debug(
+                        f'{message.topic()}:{message.partition()}:{message.offset()} key={message.key()}, value={message.value()}')
+                    await self.process(message.value().decode('utf-8'), *self.process_args, **self.process_kwargs)
+                    await asyncio.sleep(0)
 
-            await asyncio.sleep(1)
+                await asyncio.sleep(1)
+            except Exception as e:
+                logger.error('Error while handling kafka message:')
+                logger.error(e)
 
         self.consumer.close()
