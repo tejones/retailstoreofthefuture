@@ -1,3 +1,5 @@
-gunicorn
-Flask
-paho-mqtt
+paho-mqtt~=1.5.1
+fastapi==0.63
+setuptools~=39.2.0
+uvicorn[standard]==0.13.4
+pydantic~=1.8.1
