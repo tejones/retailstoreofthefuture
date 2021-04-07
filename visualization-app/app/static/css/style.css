@@ -1,0 +1,115 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css");
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+html, body {
+  font-family: 'Nunito', sans-serif;
+}
+
+.float-right {
+  display: block;
+  float: right;
+}
+
+.pin-btn {
+  width: calc(50% - 4px);
+}
+
+.pin-btn i {
+  font-size: 2em;
+}
+
+.pin-btn i.move {
+  color: #78d400;
+}
+
+.pin-btn i.focus {
+  color: #d67a1d;
+}
+
+#templates {
+  display: none;
+}
+
+header .row .center {
+  font-size: 2em;
+}
+
+header img {
+  height: 35px;
+}
+
+.nav-tabs {
+  margin-top: 20px;
+}
+
+.nav-tabs button:first-of-type {
+  margin-left: 3%;
+}
+
+.nav-tabs button {
+  width: 47%;
+}
+
+#nav-tabSimContent .tab-pane {
+  margin: -5px;
+  margin-top: 20px;
+}
+
+#nav-tabSimContent ul.list-group {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+#nav-tabSimContent ul.list-group li.list-group-item {
+  margin-left: 14px;
+}
+
+main .tab-content .tab-pane > * {
+  float: left;
+}
+
+main section.left .plan-container {
+  width: 100%;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+main section.left .plan-container .proportions {
+  margin-top: 73%;
+}
+
+main section.left .plan-container .store-plan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("/static/images/store-plan-new.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+main aside {
+  padding-top: 20px;
+}
+
+#nav-phone div#phone {
+  width: 250px;
+  float: right;
+  border-style: solid;
+  border-color: black;
+  border-top-width: 30px;
+  border-bottom-width: 40px;
+  padding: 0;
+  border-radius: 30px;
+  background-color: black;
+}
+
+#nav-phone div#phone iframe {
+  width: 100%;
+  height: 350px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.customer-speed .label {
+  text-align: right;
+}
+/*# sourceMappingURL=style.css.map */

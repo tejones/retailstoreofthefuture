@@ -1,0 +1,126 @@
+$app-gray: rgb(92, 92, 92);
+$boys-color: rgb(63, 184, 175);
+$girls-color: rgb(255, 61, 127);
+$mens-color: rgb(127, 199, 175);
+$womens-color: rgb(255, 158, 157);
+$sport-color: rgb(218, 202, 167);
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&display=swap');
+
+html {
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+}
+
+.alert {
+    position: fixed;
+    top: -35px;
+    width: 100%;
+    padding: 4px;
+    font-size: 14px;
+    transition: top 0.5s;
+}
+
+header#phone-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    background-color: rgb(36, 35, 35);
+
+    .left, .right {
+        width: 50%;
+        float: left;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+
+    .right {
+        text-align: right;
+    }
+}
+
+nav#app-header {
+    font-size: 1.7em;
+    margin-top: 20px;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px $app-gray solid;
+    box-shadow: 0 0 5px $app-gray;
+
+    a {
+        color: black;
+    }
+
+    .extra {
+        display: block;
+        font-family: 'Lobster Two', cursive;
+        font-size: 0.8em;
+        margin-top: -9px;
+        margin-left: 50px;
+        color: $app-gray;
+        margin-bottom: -2em;
+    }
+
+    button {
+        border: 0;
+        margin: 0;
+        margin-top: 13px;
+        padding: 0;
+        float: right;
+    }
+
+    ul {
+        font-size: 0.7em;
+        margin-top: 0.7em;
+
+        li {
+            border-top: 1px solid $app-gray;
+        }
+    }
+}
+
+#categories {
+    .row {
+        margin: 0;
+        margin-top: 10px;
+        max-width: 100%;
+    }
+
+    .category {
+        box-sizing: border-box;
+        padding: 20px;
+        font-weight: bold;
+        width: calc(50% - 10px);
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 3px solid;
+
+        &.boys {
+            border-color: $boys-color;
+        }
+
+        &.girls {
+            border-color: $girls-color;
+        }
+
+        &.mens {
+            border-color: $mens-color;
+        }
+
+        &.womens {
+            border-color: $womens-color;
+        }
+
+        &.sport {
+            border-color: $sport-color;
+        }
+    }
+}

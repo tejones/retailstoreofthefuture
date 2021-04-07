@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&display=swap");
+html {
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+}
+
+.alert {
+  position: fixed;
+  top: -35px;
+  width: 100%;
+  padding: 4px;
+  font-size: 14px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+header#phone-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  background-color: #242323;
+}
+
+header#phone-header .left, header#phone-header .right {
+  width: 50%;
+  float: left;
+  padding: 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header#phone-header .right {
+  text-align: right;
+}
+
+nav#app-header {
+  font-size: 1.7em;
+  margin-top: 20px;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px #5c5c5c solid;
+  -webkit-box-shadow: 0 0 5px #5c5c5c;
+          box-shadow: 0 0 5px #5c5c5c;
+}
+
+nav#app-header a {
+  color: black;
+}
+
+nav#app-header .extra {
+  display: block;
+  font-family: 'Lobster Two', cursive;
+  font-size: 0.8em;
+  margin-top: -9px;
+  margin-left: 50px;
+  color: #5c5c5c;
+  margin-bottom: -2em;
+}
+
+nav#app-header button {
+  border: 0;
+  margin: 0;
+  margin-top: 13px;
+  padding: 0;
+  float: right;
+}
+
+nav#app-header ul {
+  font-size: 0.7em;
+  margin-top: 0.7em;
+}
+
+nav#app-header ul li {
+  border-top: 1px solid #5c5c5c;
+}
+
+#categories .row {
+  margin: 0;
+  margin-top: 10px;
+  max-width: 100%;
+}
+
+#categories .category {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20px;
+  font-weight: bold;
+  width: calc(50% - 10px);
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 3px solid;
+}
+
+#categories .category.boys {
+  border-color: #3fb8af;
+}
+
+#categories .category.girls {
+  border-color: #ff3d7f;
+}
+
+#categories .category.mens {
+  border-color: #7fc7af;
+}
+
+#categories .category.womens {
+  border-color: #ff9e9d;
+}
+
+#categories .category.sport {
+  border-color: #dacaa7;
+}
+/*# sourceMappingURL=phone-style.css.map */
