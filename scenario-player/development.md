@@ -1,16 +1,12 @@
 # Functionality 
-This service generates messages that simulate customer behaviour in a reatail shop:
+This service generates messages that simulate customer behaviour in a retail shop:
 * customer entering the store
 * customer movement 
 * customer exiting the store
 
 
-## Table of contents
+# Table of contents
 * [Functionality](#functionality)
-* [Event payloads](#event-payloads)
-    * [customer/enter](#customerenter)
-    * [customer/move](#customermove)
-    * [customer/exit](#customerexit)
 
 * [Development](#development)
   * [Dependencies](#dependencies)
@@ -23,44 +19,7 @@ This service generates messages that simulate customer behaviour in a reatail sh
 * [Deployment](#deployment)
   * [Docker image](#docker-image)
   * [Connecting to a secured broker](#connecting-to-a-secured-broker)
-
-
-
-## Event payloads
-The service assumes the following data will be provided with given event types.
-
-This script generates the following MQTT messages
-
-### customer/enter
-
-```
-{ 
-  id: --ID representing customer--, 
-  ts: --timestamp of the entrance, in seconds since epoch-- 
-}
-```
-
-### customer/move
-
-```
-{ 
- id: --ID representing customer--,
- ts: --timestamp of the move, in seconds since epoch--,
-  x: --x coordinate of location sensor that fired--,
-  y: --y coordinate of location sensor that fired--
-}
-```
-
-### customer/exit
-
-```
-{ 
- id: --ID representing customer--,
- ts: --timestamp of the exit, in seconds since epoch--
-}
-```
-
-
+  
 
 # Development
 
