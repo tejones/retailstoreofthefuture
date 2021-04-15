@@ -4,6 +4,10 @@
 
 ![Solution basic diagram](documentation/images/basic_diagram.png)
 
+### Training
+
+The training part is made in the jupyter notebooks using Intel DAAL libraries.
+
 ### Prediction service
 
 Prediction service handles the model.
@@ -23,3 +27,11 @@ The result of the prediction is pushed to Kafka.
 
 Check [Recommendation service README](recommendation-service/README.md) for details.
 Kafka topics description and schema can also be found there.
+
+### Visualization app
+
+The application was made for demo purposes. [More details int app's README](visualization-app/README.md).
+
+### Customers simulator
+
+This simulator was made for demo purposes. See more details in the [README file](scenario-player/README.md)
