@@ -15,11 +15,6 @@ app = FastAPI(
 )
 
 
-@app.get('/')
-async def root():
-    return {'message': 'Hello World'}
-
-
 @app.post('/score', response_model=List[PredictionOutput])
 def score_coupon(
     input_data: PredictionInput,

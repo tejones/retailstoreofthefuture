@@ -5,28 +5,24 @@ from pydantic import BaseModel, confloat
 
 class Coupon(BaseModel):
     coupon_id: int
-    item_selling_price: float
+    mean_item_selling_price: float
     coupon_discount: float
-    item_category: str  # TODO Enum
+    category: str  # TODO this is not used (for now)
+    how_many_products: int
+    coupon_type: str
+    days_valid: int
 
 
 class Customer(BaseModel):
     customer_id: int
-    age_range: str  # TODO Enum
-    marital_status: str # TODO Enum
-    family_size: int
-    no_of_children: int
-    income_bracket: int
+    age: str  # TODO Enum
+    credit: int
     gender: str  # TODO Enum
+    mean_product_price: float
+    unique_coupons_used: int
     mean_discount_used: float
-    total_discount_used: float
-    total_unique_items_bought: int
-    total_quantity_bought: int
-    mean_quantity_bought: float
-    mean_selling_price_paid: float
-    total_coupons_redeemed: int
-    total_price_paid: float
-
+    unique_items_bought: int
+    total_items_bought: int
 
 class PredictionInput(BaseModel):
     customer: Customer

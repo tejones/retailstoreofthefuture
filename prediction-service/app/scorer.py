@@ -14,11 +14,11 @@ class Scorer:
         input_df.drop(['customer_id', 'coupon_id'], axis=1, inplace=True)
         probs = self._model.predict_proba(input_df)[:, 1]
         output_df['prediction'] = probs.round(decimals=10)
-        output_df.sort_values(by='prediction', ascending=False)
+        output_df.sort_values(by='prediction', ascending=False, inplace=True)
         return output_df
 
 
 def get_scorer():
-    model_path = 'app/model_store/scikit_classifier'
+    model_path = 'app/model_store/pickled_model_gbm_no_balancing'
     with open(model_path, 'rb') as f:
         return Scorer(pickle.load(f))

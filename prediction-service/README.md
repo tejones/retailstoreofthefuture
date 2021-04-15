@@ -45,34 +45,34 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{
   "customer": {
-    "customer_id": 4444,
-    "age_range": "46-55",
-    "marital_status": "Married",
-    "family_size": 5,
-    "no_of_children": 3,
-    "income_bracket": 3,
-    "gender": "M",
-    "mean_discount_used": -1.83,
-    "total_discount_used": -7548.79,
-    "total_unique_items_bought": 2040,
-    "total_quantity_bought": 4314,
-    "mean_quantity_bought": 1.04,
-    "mean_selling_price_paid": 61.27,
-    "total_coupons_redeemed": 220,
-    "total_price_paid": 253295.6
+    "customer_id": 54,
+    "age": "old",
+    "credit": 1,
+    "gender": "F",
+    "mean_product_price": 13.63,
+    "unique_coupons_used": 369,
+    "mean_discount_used": 11.93,
+    "unique_items_bought": 1934,
+    "total_items_bought": 42265
   },
   "coupons": [
     {
-      "coupon_id": 1111,
-      "item_selling_price": 70.88,
-      "coupon_discount": -35.62,
-      "item_category": "Men"
+      "coupon_id": 1,
+      "mean_item_selling_price": 7.06,
+      "coupon_discount": 50,
+      "category": "",
+      "how_many_products": 2,
+      "coupon_type": "buy_more",
+      "days_valid": 24
     },
     {
-      "coupon_id": 2323,
-      "item_selling_price": 75.51,
-      "coupon_discount": -26.71,
-      "item_category": "Sport"
+      "coupon_id": 2,
+      "mean_item_selling_price": 7.06,
+      "coupon_discount": 3.78,
+      "category": "",
+      "how_many_products": 2,
+      "coupon_type": "buy_all",
+      "days_valid": 20
     }
   ]
 }'
@@ -83,14 +83,14 @@ Example response:
 ```
 [
   {
-    "coupon_id": 1111,
-    "customer_id": 4444,
-    "prediction": 0.85
+    "coupon_id": 2,
+    "customer_id": 54,
+    "prediction": 0.0409353164
   },
   {
-    "coupon_id": 2323,
-    "customer_id": 4444,
-    "prediction": 0.8
+    "coupon_id": 1,
+    "customer_id": 54,
+    "prediction": 0.0311633506
   }
 ]
 ```
