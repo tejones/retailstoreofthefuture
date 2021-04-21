@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request, WebSocket
 from fastapi.responses import PlainTextResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi_mqtt import MQQTConfig, FastMQTT
+from fastapi_mqtt import MQTTConfig, FastMQTT
 from websockets.exceptions import ConnectionClosedOK
 
 from app import logger
@@ -16,7 +16,7 @@ from app.data_models import Scenario, Location, CustomerDescription, CustomerEve
 from app.events_model import CustomerMoveEvent, CustomerEnterEvent, CustomerExitEvent
 from app.log_config import configure_logger
 from app.config import SCENARIO_PLAYER_SCENARIO_ENDPOINT, CUSTOMERS_LIST_FILE, CUSTOMER_ENTER_TOPIC,\
-    CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC
+    CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, MQTT_HOST, MQTT_PORT
 
 # from app.store_initializer import init_c
 configure_logger()
@@ -26,7 +26,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
-mqtt_config = MQQTConfig()
+mqtt_config = MQTTConfig(host=MQTT_HOST, port=MQTT_PORT)
 
 fast_mqtt = FastMQTT(
     config=mqtt_config
