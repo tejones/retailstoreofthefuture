@@ -1,6 +1,6 @@
 const svgns = "http://www.w3.org/2000/svg";
-const ws_movement_endpoint = 'ws://localhost:8003/ws/movement';
-const ws_coupons_endpoint = 'ws://localhost:8003/ws/coupons';
+const ws_movement_endpoint = 'ws://' + window.location.host + '/ws/movement';
+const ws_coupons_endpoint = 'ws://' + window.location.host + '/ws/coupons';
 const new_scenario_endpoint = '/api/new_scenario';
 const customers_endpoint = '/api/customers';
 
