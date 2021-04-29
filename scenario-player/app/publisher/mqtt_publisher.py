@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from fastapi_mqtt import FastMQTT, MQTTConfig
+import ssl
+from gmqtt.mqtt.constants import MQTTv311
 
 from app import logger
-from app.config import TESTING_MOCK_MQTT, MQTT_HOST, MQTT_PORT, MQTT_NAME, CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, \
-    CUSTOMER_ENTER_TOPIC
+from app.config import TESTING_MOCK_MQTT, MQTT_HOST, MQTT_PORT, MQTT_NAME, MQTT_USERNAME, MQTT_PASSWORD,\
+    CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, CUSTOMER_ENTER_TOPIC, MQTT_BROKER_CERT_FILE
 from app.publisher.base import BaseEventPublisher
 from app.publisher.mqtt_model import CustomerMoveEvent, CustomerEnterEvent, CustomerExitEvent
 from app.scenario.scenario_model import CustomerState, STEP_TYPE_ENTER, STEP_TYPE_MOVE, STEP_TYPE_EXIT
@@ -36,8 +38,16 @@ else:
             self.mqtt_port = mqtt_port
             self.app = app
 
+            # SSL
+            context = False
+
+            if MQTT_BROKER_CERT_FILE is not None:
+                context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+                context.load_verify_locations(MQTT_BROKER_CERT_FILE)
+
             # TODO XXX there is now way to pass client name...
-            mqtt_config = MQTTConfig(host=self.mqtt_host, port=self.mqtt_port)
+            mqtt_config = MQTTConfig(host=self.mqtt_host, port=self.mqtt_port,
+                                     username=MQTT_USERNAME, password=MQTT_PASSWORD, version=MQTTv311, ssl=context)
             self.fast_mqtt = FastMQTT(config=mqtt_config)
 
         def publish(self, topic, message):
