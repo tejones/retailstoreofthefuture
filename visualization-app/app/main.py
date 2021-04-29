@@ -3,6 +3,9 @@ import uuid
 import json
 import random
 import requests
+import ssl
+
+from gmqtt.mqtt.constants import MQTTv311
 
 from fastapi import FastAPI, Request, WebSocket
 from fastapi.responses import PlainTextResponse, HTMLResponse, JSONResponse
@@ -16,7 +19,7 @@ from app.data_models import Scenario, Location, CustomerDescription, CustomerEve
 from app.events_model import CustomerMoveEvent, CustomerEnterEvent, CustomerExitEvent
 from app.log_config import configure_logger
 from app.config import SCENARIO_PLAYER_SCENARIO_ENDPOINT, CUSTOMERS_LIST_FILE, CUSTOMER_ENTER_TOPIC,\
-    CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, MQTT_HOST, MQTT_PORT
+    CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, MQTT_HOST, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD, MQTT_BROKER_CERT_FILE
 
 # from app.store_initializer import init_c
 configure_logger()
@@ -26,7 +29,15 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
-mqtt_config = MQTTConfig(host=MQTT_HOST, port=MQTT_PORT)
+logger.debug(f'MQTT host: {MQTT_HOST}:{MQTT_PORT} | user: {MQTT_USERNAME}')
+
+context = False
+
+if MQTT_BROKER_CERT_FILE is not None:
+    context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+    context.load_verify_locations(MQTT_BROKER_CERT_FILE)
+
+mqtt_config = MQTTConfig(host=MQTT_HOST, port=MQTT_PORT, username=MQTT_USERNAME, password=MQTT_PASSWORD, version=MQTTv311, ssl=context)
 
 fast_mqtt = FastMQTT(
     config=mqtt_config

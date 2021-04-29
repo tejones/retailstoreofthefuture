@@ -17,6 +17,9 @@ CUSTOMERS_LIST_FILE = os.getenv('CUSTOMERS_LIST_FILE', 'app/resources/customers.
 MQTT_HOST = os.getenv('MQTT_HOST')
 MQTT_PORT = int(os.getenv('MQTT_PORT', 1883))
 MQTT_NAME = os.getenv('MQTT_NAME', 'demoVisClient')
+MQTT_USERNAME = os.getenv('MQTT_USERNAME', None)
+MQTT_PASSWORD = os.getenv('MQTT_PASSWORD', None)
+MQTT_BROKER_CERT_FILE = os.getenv('MQTT_BROKER_CERT_FILE', None)
 
 CUSTOMER_ENTER_TOPIC = os.getenv('ENTER_TOPIC', 'customer/enter')
 CUSTOMER_EXIT_TOPIC = os.getenv('EXIT_TOPIC', 'customer/exit')
