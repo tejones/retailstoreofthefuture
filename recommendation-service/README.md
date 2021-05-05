@@ -1,5 +1,5 @@
 # Functionality 
-This service creates Kafka consumers to listen to "entry event" and "focus event".
+This service creates MQTT consumers to listen to "entry event" and "focus event".
 
 **Entry event** is generated (externally), whenever a customer enters the store.
 
@@ -11,7 +11,7 @@ This service's responsibility is to:
 * fetch customer context (purchase history, demographics, etc.) from "the central" (datacenter), when the service
   receives *entry event*
 * invoke/call prediction service to decide if the customer is willing to use promotion coupons from given department,
-  when the service receives *focus event* and send prediction result to a dedicated Kafka topic.
+  when the service receives *focus event* and send prediction result to a dedicated MQTT topic.
 
 ## Table of contents
 
@@ -25,71 +25,144 @@ This service's responsibility is to:
   * [Dependencies](#dependencies)
   * [Service configuration](#service-configuration)
   * [Running the service](#running-the-service)
-  * [Testing with Kafka in docker-compose](#testing-with-kafka-in-docker-compose)
-  * [Testing without Kafka](#testing-without-kafka)
+  * [Testing without MQTT](#testing-without-mqtt)
   * [Docker image](#docker-image)
   * [Mock event endpoints](#mock-event-endpoints)
   * [Cache - DB](#cache---db)
 
 ## Event payloads
 
-The service assumes the following data will be provided with given event types.
+The service assumes the following data will be provided with given event types (using MQTT).
 
 ### Entry Event
-The schema for entry event payload is
-![customer_entry schema](schema/customer_entry.png)
 
-(See: [customer_entry.schema.json](schema/customer_entry.schema.json))
+The service listens for MQTT messages.
 
-In this case, the example message looks like this:
+Topic: configurable - `ENTRY_EVENT_TOPIC_NAME` environment variable
+
+Payload:
+
+```
+JSON
+
+{
+  "id": string,
+  "ts": int
+}
+```
+
+Example payload:
 ```json
 {
-    "event_type": "customer entry",
-    "event_timestamp": "2001-12-17T09:30:47.0",
-    "payload": {
-        "customer_id": 1
-    }
+  "id": "127",
+  "ts": 192322800
 }
 ```
 
 ### Focus Event
-The schema for focus event payload is:
-![customer_focus schema](schema/customer_focus.png)
 
-(See: [customer_focus.schema.json](schema/customer_focus.schema.json))
+The service listens for MQTT messages.
 
-In this case, the example message looks like this:
+Topic: configurable - `FOCUS_EVENT_TOPIC_NAME` environment variable
+
+Payload:
+
+```
+JSON
+
+{
+  "id": string,             # Customer ID
+  "ts": int,                # Timestamp (unix time)
+  "dep": string,            # Department name
+  "x": Optional[int],       # X coordinate of the event; optional
+  "y": Optional[int]        # Y coodrinate of the event; optional
+}
+```
+
+Payload example:
 
 ```json
 {
-    "event_type": "customer focus",
-    "event_timestamp": "2001-12-17T09:30:47.0",
-    "payload": {
-        "customer_id": 1,
-        "category": "Boys"
-    }
+  "id": "127",
+  "ts": 192322800,
+  "dep": "Boys"
 }
 ```
 
 ATTOW, supported categories are 'Boys', 'Girls', 'Men', 'Sports', 'Women'.
 
 ### Prediction Results Message
-The schema for prediction result message is:
-![prediction_result schema](schema/prediction_result.png)
 
-(See: [prediction_result.schema.json](schema/prediction_result.schema.json))
+The service produces MQTT messages with the prediction.
 
-In this case, the example message looks like this:
+Topic: configurable - `COUPON_PREDICTION_TOPIC_NAME` environment variable
+
+Payload:
+
+```
+JSON
 
 {
-    "event_type": "prediction result",
-    "event_timestamp": "2001-12-17T09:30:47.0",
-    "payload": {
-        "customer_id": 1,
-        "coupon_id": 1,
-        "prediction": 0.9
-    }
+  "customer": {
+    "id": string            # Customer ID
+  },
+  "coupon": {
+    "id": string,           # Coupon ID
+    "type": string,         # Coupon type (one of: "buy_more", "buy_all", "just_discount", "department")
+    "department": string,   # Department name (supported categories are: 'Boys', 'Girls', 'Men', 'Sports', 'Women')
+    "discount": float,      # Coupon discount in percentage
+    "how_many": int,        # How many items must be bought to recieve a discount, depents on the type
+                            #   buy_more: how many items of the same product must be bought
+                            #   buy_all: the number of products to buy - all from the list must be bought
+                            #   just_discount: always 1
+                            #   department: always -1
+    "start_date": string,   # Coupon valid from date
+    "end_date": string,     # Coupon valid to date
+    "products": [{          # List of products covered by the coupon
+      "id": string,         # Product id
+      "name": string,       # Product name
+      "category": string,   # Product category
+      "sizes": string,      # Available sizes
+      "vendor": string,     # Vendor
+      "description": str,   # Item description
+      "buy_price": fload,   # Regular item price
+      "department": str     # Product department
+    }]
+  },
+  "ts": int,                # Timestamp (unix time)
 }
+```
+
+Payload example:
+
+```json
+{
+  "customer": {
+    "id": "11"
+  },
+  "coupon": {
+    "id": "22",
+    "type": "buy_more",
+    "department": "Men",
+    "discount": 14.0,
+    "how_many": 3,
+    "start_date": "2010-01-01",
+    "end_date": "2010-01-01",
+    "products": [{
+      "id": "33",
+      "name": "NGESNEALAND - Deep taupe Denim cut-offs for Women",
+      "category": "Denim cut-offs",
+      "sizes": "S-XL",
+      "vendor": "TinyCottons",
+      "description": "NGESNEALAND - Deep...",
+      "buy_price": 7.12,
+      "department": "Women"
+    }]
+  },
+  "ts": 192322800
+}
+```
+
 ## Prediction request 
 In order to do the actual prediction, a REST call is made.
 
@@ -113,15 +186,12 @@ The service reads the following **environment variables**:
 
 | Variable               | Description                             |  Default      |
 |------------------------|-----------------------------------------|--------------:|
-| BOOTSTRAP_SERVERS      | comma-separated list of Kafka brokers   | 127.0.0.1:9092|
-| CLIENT_ID              | optional identifier of a Kafka consumer | kafkaClients  |
-| GROUP_ID               | consumer group name 					   | None 		   |
-| POLL_TIMEOUT           | time spent waiting for messages in in poll (s) |   0.1  |
-| AUTO_OFFSET_RESET      | see: auto.offset.reset setting in Kafka | 	  latest   |
-| ENTRY_EVENT_TOPIC_NAME | topic for entry events              	   |    		 - |
-| FOCUS_EVENT_TOPIC_NAME | topic for focus events              	   |    		 - |
-| COUPON_PREDICTION_TOPIC_NAME | topic for sending prediction results |   		 - |
-| COUPON_SCORER_URL      | URL of the scorer service               |   			 - |
+| MQTT_HOST              | comma-separated list of MQTT brokers    | 127.0.0.1:1883|
+| CLIENT_ID              | optional identifier of a MQTT consumer  | MQTTClient    |
+| ENTRY_EVENT_TOPIC_NAME | topic for entry events              	   |    	    	 - |
+| FOCUS_EVENT_TOPIC_NAME | topic for focus events              	   |    	    	 - |
+| COUPON_PREDICTION_TOPIC_NAME | topic for sending prediction results |   	   	 - |
+| COUPON_SCORER_URL      | URL of the scorer service               |   			     - |
 
 (Parameters with `-` in "Default" column are required.)
 
@@ -146,71 +216,21 @@ $ . venv/bin/activate
 ```
 > Please, note `reload-dir` switch. Without it the reloader goes into an infinite loop because it detects log file changes (messages.log).
 
-## Testing with Kafka in docker-compose
 
-In my case, the quickest way to set up Kafka cluster for development purposes was to use Docker containers.
-
-The procedure to **set up the cluster** boils down to:
-
-```
-curl --silent --output docker-compose.yml \
-  https://raw.githubusercontent.com/confluentinc/cp-all-in-one/6.1.0-post/cp-all-in-one/docker-compose.yml
-
-docker-compose up -d
-```
-
-See https://docs.confluent.io/platform/current/quickstart/ce-docker-quickstart.html for the details.
-
-To **create a topic**:
-
-```
-docker-compose exec broker kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic ENTRY_EVENT
-```
-
-where
-
-* `broker` is the name of the container hosting Kafka broker instance
-* `localhost:9092` is the broker's URL
-* `ENTRY_EVENT` is the topic name
-
-To **produce some testing messages**, one can issue the following command:
-
-```
-docker-compose exec broker \
-  bash -c "seq 10 | kafka-console-producer --request-required-acks 1 --broker-list localhost:9092 --topic ENTRY_EVENT && echo 'Produced 10 messages.'"
-```
-or   
-``` 
-docker-compose exec broker \
-  bash -c "echo '{\"event_type\":\"customer focus\",\"event_timestamp\":\"2001-12-17T09:30:47.0\",\"payload\":{\"customer_id\":3,\"category\":\"Boys\"}}' | kafka-console-producer --request-required-acks 1 --broker-list localhost:9092 --topic FOCUS_EVENTS && echo 'Message produced.'"
-```
-
-where
-
-* `broker` is the name of the container hosting Kafka broker instance
-* `ENTRY_EVENT` is the topic name
-* `localhost:9092` is the broker's URL
-
-## Testing without Kafka
+## Testing without MQTT
 For testing purposes, there are two endpoints that simulate events ("entry event", "focus event"),
-as if they would appear on a dedicated Kafka topic.
+as if they would appear on a dedicated MQTT topic.
 
-In order for the service not to create real Kafka consumers and producers,
-set `TESTING_NO_KAFKA` environment variable to "true".
+In order for the service not to create real MQTT consumers and producers,
+set `TESTING_NO_MQTT` environment variable to "true".
 
-This way, event processing logic can be tested without Kafka, for example:
+This way, event processing logic can be tested without MQTT, for example:
 ```bash
 curl -X 'POST' \
   'http://127.0.0.1:8000/mock_entry' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "event_type": "entry event",
-  "event_timestamp": "2021-03-18T08:29:02.160Z",
-  "payload": {
-    "customer_id": 3
-  }
-}'
+  -d '{"id": "127", "ts": 192322800}'
 ```
 
 or:
@@ -220,14 +240,7 @@ curl -X 'POST' \
   'http://127.0.0.1:8000/mock_focus' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "event_type": "focus event",
-  "event_timestamp": "2021-03-18T08:29:02.160Z",
-  "payload": {
-    "customer_id": 7,
-    "category": "Sport"
-  }
-}'
+  -d '{"id": "127", "ts": 192322800, "dep": "Boys"}'
 ```
 
 ## Docker image
@@ -252,9 +265,9 @@ docker run -d -e LOG_LEVEL="warning"  --name recommendaition-service recommendat
 
 ## Mock event endpoints
 For testing purposes, there are two endpoints that simulate events ("entry event", "focus event"),
-as if they would appear on dedicated Kafka topic.
+as if they would appear on dedicated MQTT topic.
 
-This way, event processing logic can be tested without Kafka, for example:
+This way, event processing logic can be tested without MQTT, for example:
 ```bash
 curl -X 'POST' \
   'http://127.0.0.1:8000/mock_entry' \
