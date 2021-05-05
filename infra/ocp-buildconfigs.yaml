@@ -1,0 +1,147 @@
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: recommendation-service
+spec:
+  source:
+    type: Git
+    sourceSecret:
+      name: retail-git-ssh-key
+    git:
+      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
+      ref: develop-pl
+    contextDir: recommendation-service/
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'recommendation-service:latest'
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: recommendation-service
+spec:
+  lookupPolicy:
+    local: false
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: prediction-service
+spec:
+  source:
+    type: Git
+    sourceSecret:
+      name: retail-git-ssh-key
+    git:
+      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
+      ref: develop-pl
+    contextDir: prediction-service/
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'prediction-service:latest'
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: prediction-service
+spec:
+  lookupPolicy:
+    local: false
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: visualization-service
+spec:
+  source:
+    type: Git
+    sourceSecret:
+      name: retail-git-ssh-key
+    git:
+      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
+      ref: develop-pl
+    contextDir: visualization-app/
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'visualization-service:latest'
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: visualization-service
+spec:
+  lookupPolicy:
+    local: false
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: customer-simulation-service
+spec:
+  source:
+    type: Git
+    sourceSecret:
+      name: retail-git-ssh-key
+    git:
+      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
+      ref: develop-pl
+    contextDir: scenario-player/
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'customer-simulation-service:latest'
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: customer-simulation-service
+spec:
+  lookupPolicy:
+    local: false
+
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: kafka2mqtt-bridge 
+spec:
+  source:
+    type: Git
+    sourceSecret:
+      name: retail-git-ssh-key
+    git:
+      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
+      ref: kafka-mqtt-bridge # temporary
+    contextDir: kafka-mqtt-bridge/
+  strategy:
+    type: Docker 
+    dockerStrategy:
+      dockerfilePath: src/main/docker/Dockerfile.multistage
+      env:
+      - name: "DOCKER_BUILDKIT"
+        value: "1"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'kafka2mqtt-bridge:latest'
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: kafka2mqtt-bridge
+spec:
+  lookupPolicy:
+    local: false
+
