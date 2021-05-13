@@ -20,7 +20,7 @@ spec:
         image: {{ .Values.visualization.image }}
         env:
         - name: SCENARIO_PLAYER_SCENARIO_ENDPOINT
-        value: "http://{{  include "customerSimulation.serviceName" . }}:{{include "customerSimulation.servicePort" . }}/scenario"
+          value: "http://{{  include "customerSimulation.serviceName" . }}:{{include "customerSimulation.servicePort" . }}/scenario"
         {{- if .Values.globalInfra.mqtt.brokerServer }}
         - name: MQTT_HOST
           value: {{  .Values.globalInfra.mqtt.brokerServer | quote }}
