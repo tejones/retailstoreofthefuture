@@ -112,36 +112,4 @@ spec:
     local: false
 
 ---
-apiVersion: build.openshift.io/v1
-kind: BuildConfig
-metadata:
-  name: kafka2mqtt-bridge 
-spec:
-  source:
-    type: Git
-    sourceSecret:
-      name: retail-git-ssh-key
-    git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: kafka-mqtt-bridge # temporary
-    contextDir: kafka-mqtt-bridge/
-  strategy:
-    type: Docker 
-    dockerStrategy:
-      dockerfilePath: src/main/docker/Dockerfile.multistage
-      env:
-      - name: "DOCKER_BUILDKIT"
-        value: "1"
-  output:
-    to:
-      kind: ImageStreamTag
-      name: 'kafka2mqtt-bridge:latest'
----
-apiVersion: image.openshift.io/v1
-kind: ImageStream
-metadata:
-  name: kafka2mqtt-bridge
-spec:
-  lookupPolicy:
-    local: false
 

@@ -28,7 +28,7 @@ globalInfra:
     # sslBrokerCaCertPath: "files/broker.pem"
 
     # set to true if MQTT requires username, password authentication, default: false
-    authenticationEnabled: true
+    authenticationEnabled: false
     
     # MQTT client username
     user: admin
@@ -36,10 +36,10 @@ globalInfra:
     password: password
 
     # name or IP address of the MQTT broker 
-    brokerServer: ex-aao-mqtt-1-svc.retail-infra.svc.cluster.local
+    brokerServer: ex-aao-mqtt-notls-0-svc.retail-infra.svc.cluster.local
     
     # port that MQTT broker is listening on, default: 1883
-    brokerPort: 8883
+    brokerPort: 1883
 
     # MQTT topic for entering events
     enterTopic: "retail/mqttEntryTopic"
@@ -81,7 +81,7 @@ postgres:
 
 recommendationService:
   # recommendation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/retail-helm/recommendation-service:latest
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/recommendation-service:latest
   
   # number of recommendation service replicas
   replicas: 2
@@ -123,7 +123,7 @@ recommendationService:
 
 predictionService:
   # prediction service docker image
-  image: image-registry.openshift-image-registry.svc:5000/retail-helm/prediction-service:latest
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/prediction-service:latest
   
   # number of prediction service replicas
   replicas: 2
@@ -153,7 +153,7 @@ predictionService:
 
 customerSimulationService:
   # customer simulation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/retail-helm/customer-simulation-service:latest
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/customer-simulation-service:latest
   
   # number of customer simulations service replicas
   replicas: 1
@@ -180,7 +180,7 @@ customerSimulationService:
 
 visualization:
   # visualization simulation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/retail-helm/visualization-service:latest
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/visualization-service:latest
   
   # visualization service type, default: ClusterIP
   # serviceType: ClusterIP
@@ -188,16 +188,6 @@ visualization:
   # visualization service port. default: 80
   # servicePort: 8080
 
-  serviceAccount:
-    # create separate service account for customer simulation service
-    create: true
-    # additional service account annotations
-    annotations: {}
-
-kafka2mqttBridge:
-  # visualization simulation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/retail-helm/kafka2mqtt-bridge:latest
-  
   serviceAccount:
     # create separate service account for customer simulation service
     create: true

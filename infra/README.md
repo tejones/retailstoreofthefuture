@@ -2,34 +2,42 @@
 
 If you require a private repository access you must create a secret containing Github Deploy Key
 ```
-oc create secret generic retail-git-ssh-key --from-file=ssh-privatekey=<path_to_private_key>--type=kubernetes.io/ssh-auth
+oc create secret generic retail-git-ssh-key --from-file=ssh-privatekey=<path_to_private_key> --type=kubernetes.io/ssh-auth
 ```
 Create BuildConfigs and ImageTags: 
 ```
-$ oc apply -f ocp-buildconfigs.yaml
+oc apply -f ocp-buildconfigs.yaml
 ```
 Verify build configs have been created:
 ```
-$ oc get buildconfigs
+oc get buildconfigs
+```
+```
 NAME                           TYPE     FROM             LATEST
 prediction-service-build       Docker   Git@develop-pl   0
 recommendation-service-build   Docker   Git@develop-pl   0
 ```
 Verify ImageTags have been created in your project:
+```bash
+oc get is
 ```
-$ oc get is
+```
 NAME                     IMAGE REPOSITORY                                                                                TAGS     UPDATED
 prediction-service       default-route-openshift-image-registry.apps.red.ocp.public/retail/prediction-service          
 recommendation-service   default-route-openshift-image-registry.apps.red.ocp.public/retail/recommendation-service      
 ```
 Manually trigger the images builds:
-```
-$ oc start-build prediction-service-build
-$ oc start-build recommendation-service-build
+```bash
+oc start-build customer-simulation-service
+oc start-build prediction-service
+oc start-build recommendation-service
+oc start-build visualization-service
 ```
 Wait for the builds to complete:
+```bash
+oc get builds --watch
 ```
-$ oc get builds --watch
+```
 NAME                             TYPE     FROM             STATUS    STARTED               DURATION
 prediction-service-build-1       Docker   Git@develop-pl   Running   5 seconds ago   
 prediction-service-build-1       Docker   Git@72d19cf      Running   12 seconds ago   
@@ -44,8 +52,10 @@ prediction-service-build-1       Docker   Git@72d19cf      Complete   About a mi
 ```
 
 See if the ImageTags have been updated:
+```bash
+oc get is
 ```
-$ oc get is
+```
 NAME                     IMAGE REPOSITORY                                                                           TAGS     UPDATED
 prediction-service       default-route-openshift-image-registry.apps.red.ocp.public/retail/prediction-service       latest   1 minutes ago
 recommendation-service   default-route-openshift-image-registry.apps.red.ocp.public/retail/recommendation-service   latest   1 minutes ago
@@ -53,12 +63,14 @@ recommendation-service   default-route-openshift-image-registry.apps.red.ocp.pub
 
 ### Deploy the solution using Helm Charts
 Edit the `values.yaml` file and configure your workload parameters:
-```
-$ vim retail-helm-charts/values.yaml
+```bash
+vim retail-helm-chart/values.yaml
 ```
 Install the Chart with Helm: 
+```bash
+helm install retail retail-helm-chart/
 ```
-helm install retail retail-helm-charts/
+```
 NAME: retail
 LAST DEPLOYED: 2021-04-07 14:52:49.839391 +0000 UTC m=+0.078141486
 NAMESPACE: retail
@@ -66,8 +78,10 @@ STATUS: deployed
 ```
 
 Verify all pods are Running and in a Ready:
+```bash
+oc get all
 ```
-$ oc get all
+```
 NAME                                       READY   STATUS      RESTARTS   AGE
 pod/postgres-5f549f5798-9qz72              1/1     Running     0          68s
 pod/prediction-6d8d96776c-fpcjn            1/1     Running     0          67s
