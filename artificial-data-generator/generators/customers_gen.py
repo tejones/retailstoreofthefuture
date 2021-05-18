@@ -6,9 +6,8 @@ from generators.random_data_gen import RandomDataGen
 
 
 class CustomersGen(Generator):
-    def __init__(self, number_of_customers, number_of_stores):
+    def __init__(self, number_of_customers):
         self.number_of_customers = number_of_customers
-        self.number_of_stores = number_of_stores
         super().__init__()
 
     def generate(self):

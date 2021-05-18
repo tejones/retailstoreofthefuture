@@ -4,7 +4,8 @@ import logging
 
 class CsvExp:
     @staticmethod
-    def export(path, filename='csv.csv', data=None):
+    def export(path, filename='csv', data=None):
+        filename += '.csv'
         logger = logging.getLogger('datagen')
         logger.debug(f"Exporting data to CSV {filename}")
         if data is None or len(data) == 0:

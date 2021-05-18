@@ -55,7 +55,22 @@ class RandomDataGen(Generator):
         return rdata['description'] + self.generate_name_like_string()
 
     def generate_name_like_string(self):
-        return ''.join(random.choices(string.ascii_letters+string.digits, k=random.randint(5, 20)))
+        syllables = [
+            'AL', 'AL', 'AN', 'AN', 'AR', 'AR', 'AS', 'AS', 'AT', 'AT', 'EA', 'EA', 'ED', 'ED', 'EN', 'EN', 'ER',
+            'ER', 'ES', 'ES', 'HA', 'HA', 'HE', 'HE', 'HI', 'HI', 'IN', 'IN', 'IS', 'IS', 'IT', 'IT', 'LE', 'LE',
+            'ME', 'ME', 'ND', 'ND', 'NE', 'NE', 'NG', 'NG', 'NT', 'NT', 'ON', 'ON', 'OR', 'OR', 'OU', 'OU',
+            'RE', 'RE', 'SE', 'SE', 'ST', 'ST', 'TE', 'TE', 'TH', 'TH', 'TI', 'TI', 'TO', 'TO', 'VE', 'VE',
+            'WA', 'WA', 'ALL', 'ALL', 'AND', 'AND', 'ARE', 'ARE', 'BUT', 'BUT', 'ENT', 'ENT', 'ERA', 'ERA', 'ERE',
+            'ERE', 'EVE', 'EVE', 'FOR', 'FOR', 'HAD', 'HAD', 'HAT', 'HAT', 'HEN', 'HEN', 'HER', 'HER', 'HIN', 'HIN',
+            'HIS', 'HIS', 'ING', 'ING', 'ION', 'ION', 'ITH', 'ITH', 'NOT', 'NOT', 'OME', 'OME', 'OUL', 'OUL', 'OUR',
+            'OUR', 'SHO', 'SHO', 'TED', 'TED', 'TER', 'TER', 'THA', 'THA', 'THE', 'THE', 'THI', 'THI', 'TIO', 'TIO',
+            'ULD', 'ULD', 'VER', 'VER', 'WAS', 'WAS', 'WIT', 'WIT', 'YOU', 'YOU', 'TH', 'TH', 'HE', 'HE', 'AN', 'AN',
+            'ER', 'ER', 'IN', 'IN', 'RE', 'RE', 'ND', 'ND', 'OU', 'OU', 'EN', 'EN', 'ON', 'ON', 'ED', 'ED', 'TO', 'TO',
+            'IT', 'IT', 'AT', 'AT', 'HA', 'HA', 'VE', 'VE', 'AS', 'AS', 'OR', 'OR', 'HI', 'HI', 'AR', 'AR', 'TE', 'TE',
+            'ES', 'ES', 'NG', 'NG', 'IS', 'IS', 'ST', 'ST', 'LE', 'LE', 'AL', 'AL', 'TI', 'TI', 'SE', 'SE', 'EA', 'EA',
+            'WA', 'WA', 'ME', 'ME', 'NT', 'NT', 'NE', 'NE'
+        ]
+        return ''.join(random.choices(syllables, k=random.randint(2, 5)))
 
     def generate(self):
         return {
