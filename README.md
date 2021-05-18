@@ -1,4 +1,6 @@
-# retailstoreofthefuture
+# Retail Store of the Future
+
+Disclaimer! This solution was created for demo purposes only. It contains simplifications and must not be used for production purposes!
 
 ## Solution diagram and components description
 
