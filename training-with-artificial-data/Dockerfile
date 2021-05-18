@@ -1,5 +1,7 @@
 FROM ubuntu:18.04
 
+ARG DATA_DIR=data-dir
+
 RUN apt update && \
     apt install -y software-properties-common && \
     apt install -y default-jre && \
@@ -7,11 +9,11 @@ RUN apt update && \
 
 RUN mkdir data-mining
 
-COPY data_0408_0 data-mining/data_0408_0
-COPY *.ipynb data-mining/
 COPY requirements.txt data-mining/
-
 RUN pip3 install -r /data-mining/requirements.txt
+
+COPY $DATA_DIR/* data-mining/data_dir/
+COPY *.ipynb data-mining/
 
 WORKDIR /data-mining
 

@@ -1,4 +1,3 @@
-import os
 import pickle
 
 import pandas
@@ -19,6 +18,6 @@ class Scorer:
 
 
 def get_scorer():
-    model_path = 'app/model_store/pickled_model_gbm_no_balancing'
+    model_path = 'app/model_store/pickled_model_gbm_smote'
     with open(model_path, 'rb') as f:
         return Scorer(pickle.load(f))

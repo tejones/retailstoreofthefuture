@@ -1,41 +1,37 @@
-import asyncio
 from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 
-from app.utils import logger
-from app.utils.db_client import create_cache_reader
-from app.utils.kafka_clients import create_kafka_clients
-from app.utils.model import EntryEvent, FocusEvent
+from app import logger
+from app.config import config
+from app.cache.cache_reader import create_cache_reader
+from app.context_service_client.client import create_context_service_client
+from app.event_processors.entry_event_processor import EntryEventProcessor
+from app.event_processors.focus_event_processor import FocusEventProcessor
+from app.event_processors.model import EntryEvent, FocusEvent
+from app.event_emitters.prediction_producer import PredictionProducer
+from app.mqtt.mqtt import initialize_mqtt
+from app.prediction_service_client.client import create_prediction_service_client
+
 
 app = FastAPI()
+mqtt = initialize_mqtt(app)
 
 
-@app.on_event("startup")
+@app.on_event('startup')
 async def startup_event():
-    app.state.cache_reader = await create_cache_reader()
-
-    entry_consumer, focus_consumer, prediction_producer = create_kafka_clients(app.state.cache_reader)
-    app.state.entry_consumer = entry_consumer
-    app.state.focus_consumer = focus_consumer
-    app.state.prediction_producer = prediction_producer
-
-    ####################
-    # background tasks
-    asyncio.create_task(entry_consumer.consume_messages())
-    asyncio.create_task(focus_consumer.consume_messages())
+    cache_reader = await create_cache_reader()
+    prediction_service_client = create_prediction_service_client()
+    context_service_client = create_context_service_client()
+    prediction_producer = PredictionProducer(mqtt)
+    app.state.entry_event_processor = EntryEventProcessor(cache_reader, context_service_client)
+    app.state.focus_event_processor = FocusEventProcessor(cache_reader, prediction_service_client, prediction_producer)
 
 
 ####################
 # web handlers
 logger.info('Defining web service handlers...')
-
-
-@app.get('/')
-async def root():
-    logger.debug('/')
-    return {'message': 'Hello World'}
 
 
 @app.get('/healthcheck')
@@ -55,9 +51,8 @@ async def mock_entry_event(event: EntryEvent) -> Optional[str]:
     logger.info('mock_entry_event')
     logger.debug(event)
 
-    message = event.json()
+    result = await customer_enters(None, config.ENTRY_EVENT_TOPIC_NAME, event.json().encode(), None, None)
 
-    result = await app.state.entry_consumer.process(message)
     return PlainTextResponse(str(result))
 
 
@@ -69,7 +64,22 @@ async def mock_focus_event(event: FocusEvent) -> Optional[str]:
     logger.info('mock_entry_event')
     logger.debug(event)
 
-    message = event.json()
+    result = await customer_focuses(None, config.FOCUS_EVENT_TOPIC_NAME, event.json().encode(), None, None)
 
-    result = await app.state.focus_consumer.process(message)
     return PlainTextResponse(str(result))
+
+
+####################
+# mqtt handlers
+
+
+@mqtt.subscribe(config.ENTRY_EVENT_TOPIC_NAME)
+async def customer_enters(client, topic, payload, qos, properties):
+    logger.warning(f'Received message: {topic}, {payload.decode()}')
+    await app.state.entry_event_processor.process(payload.decode())
+
+
+@mqtt.subscribe(config.FOCUS_EVENT_TOPIC_NAME)
+async def customer_focuses(client, topic, payload, qos, properties):
+    logger.warning(f'Received message: {topic}, {payload.decode()}')
+    await app.state.focus_event_processor.process(payload.decode())

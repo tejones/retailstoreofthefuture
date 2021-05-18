@@ -3,9 +3,6 @@ from typing import List, Optional
 from fastapi import Depends, FastAPI
 from fastapi.responses import PlainTextResponse
 
-# from .encoder import DataEncoder
-# from .model import PredictionInput, PredictionOutput
-# from .scorer import Scorer, get_scorer
 from app.encoder import DataEncoder
 from app.model import PredictionInput, PredictionOutput
 from app.scorer import Scorer, get_scorer

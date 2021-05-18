@@ -1,0 +1,16 @@
+coupon_id,coupon_type,coupon_dpt,coupon_discount,coupon_how_many,coupon_mean_prod_price,coupon_prods_avail
+85.0,buy_all,Men,46,5,8.62,5
+112.0,buy_all,Sport,28,4,95.44,4
+120.0,buy_all,Sport,57,5,11.9,5
+139.0,buy_all,Sport,10,5,9.01,5
+145.0,buy_more,Women,10,4,12.73,1
+374.0,buy_all,Boys,51,5,10.01,5
+415.0,buy_all,Men,67,5,7.87,5
+427.0,buy_all,Boys,61,4,11.22,4
+429.0,buy_all,Boys,6,4,6.34,4
+440.0,buy_all,Men,60,5,8.92,5
+602.0,buy_more,Women,35,5,67.42,1
+694.0,department,Girls,28,1,15.29,604
+769.0,department,Girls,46,1,15.29,604
+781.0,buy_more,Girls,36,3,147.98,1
+784.0,just_discount,Women,23,1,6.59,1

@@ -107,7 +107,7 @@ JSON
     "id": string            # Customer ID
   },
   "coupon": {
-    "id": string,           # Coupon ID
+    "id": int   ,           # Coupon ID
     "type": string,         # Coupon type (one of: "buy_more", "buy_all", "just_discount", "department")
     "department": string,   # Department name (supported categories are: 'Boys', 'Girls', 'Men', 'Sports', 'Women')
     "discount": float,      # Coupon discount in percentage
@@ -119,17 +119,17 @@ JSON
     "start_date": string,   # Coupon valid from date
     "end_date": string,     # Coupon valid to date
     "products": [{          # List of products covered by the coupon
-      "id": string,         # Product id
+      "id": int,            # Product id
       "name": string,       # Product name
       "category": string,   # Product category
       "sizes": string,      # Available sizes
       "vendor": string,     # Vendor
       "description": str,   # Item description
-      "buy_price": fload,   # Regular item price
+      "buy_price": float,   # Regular item price
       "department": str     # Product department
     }]
   },
-  "ts": int,                # Timestamp (unix time)
+  "ts": int                 # Timestamp (unix time)
 }
 ```
 
@@ -178,7 +178,7 @@ Dependencies of the project are contained in [requirements.txt](requirements.txt
 available.
 
 All the packages can be installed with:
-`pip install -f requirements.txt`
+`pip install -r requirements.txt`
 
 ## Service configuration
 
@@ -186,12 +186,14 @@ The service reads the following **environment variables**:
 
 | Variable               | Description                             |  Default      |
 |------------------------|-----------------------------------------|--------------:|
-| MQTT_HOST              | comma-separated list of MQTT brokers    | 127.0.0.1:1883|
-| CLIENT_ID              | optional identifier of a MQTT consumer  | MQTTClient    |
+| MQTT_HOST              | comma-separated list of MQTT brokers    |    	    	 - |
+| MQTT_PORT              | MQTT brokers' port                      |    	    	 - |
+| MQTT_USERNAME          | MQTT user username                      | None              |
+| MQTT_PASSWORD          | MQTT user password                      | None              |
+| MQTT_BROKER_CERT_FILE  | path to MQTT ssl cert file              | None              |
 | ENTRY_EVENT_TOPIC_NAME | topic for entry events              	   |    	    	 - |
 | FOCUS_EVENT_TOPIC_NAME | topic for focus events              	   |    	    	 - |
 | COUPON_PREDICTION_TOPIC_NAME | topic for sending prediction results |   	   	 - |
-| COUPON_SCORER_URL      | URL of the scorer service               |   			     - |
 
 (Parameters with `-` in "Default" column are required.)
 
@@ -206,7 +208,7 @@ there).
 
 The code reads sensitive information (tokens, secrets) from environment variables. They need to be set accordingly in
 advance.
-`environment.variables.sh` can be used for that purpose. Then, in order to run the service the following commands can be
+`.environment.variables.sh` can be used for that purpose. Then, in order to run the service the following commands can be
 used:
 
 ```
@@ -304,47 +306,60 @@ This component uses PostgreSQL as a cache. It stores coupons and customer data.
 DB tables:
 
 ```sql
-CREATE TABLE coupon_categories (
-  id SERIAL,
-  coupon_id INT,
-  item_id INT,
-  category VARCHAR(50),
-  PRIMARY KEY (id)
-);
 
 CREATE TABLE coupon_info (
   coupon_id INT,
-  mean_coupon_discount FLOAT,
-  mean_item_price FLOAT,
+  coupon_type VARCHAR(16),
+  department VARCHAR(10),
+  discount INT,
+  how_many_products_required INT,
+  start_date VARCHAR(10),
+  end_date VARCHAR(10),
+  product_mean_price REAL,
+  products_available INT,
   PRIMARY KEY (coupon_id)
 );
 
+CREATE_TABLE product_info (
+    product_id INT,
+    name VARCHAR(256),
+    category VARCHAR(50),
+    sizes VARCHAR(50),
+    vendor VARCHAR(50),
+    description VARCHAR(256), 
+    buy_price REAL,
+    department VARCHAR(10),
+    PRIMARY KEY (product_id)
+);
+
+CREATE_TABLE coupon_product (
+    coupon_id INT,
+    product_id INT,
+    FOREIGN KEY (coupon_id) REFERENCES coupon_info(coupon_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+)
+
 CREATE TABLE customer_info (
-  customer_id INT,
-  age_range VARCHAR(6),
-  marital_status VARCHAR(10),
-  family_size INT,
-  no_of_children INT,
-  income_bracket INT,
+  ustomer_id INT,
   gender VARCHAR(1),
-  mean_discount_used_by_cust FLOAT,
-  unique_items_bought_by_cust INT,
-  mean_selling_price_paid_by_cust FLOAT,
-  mean_quantity_bought_by_cust FLOAT,
-  total_discount_used_by_cust FLOAT,
-  total_coupons_used_by_cust INT,
-  total_price_paid_by_cust FLOAT,
-  total_quantity_bought_by_cust INT,
-  PRIMARY KEY (customer_id)
+  age INT,
+  mean_buy_price REAL,
+  total_coupons_used: INT,
+  mean_discount_received: REAL,
+  unique_products_bought INT,
+  unique_products_bought_with_coupons: INT,
+  total_items_bought:
+  INT, PRIMARY KEY (customer_id)
 );
 ```
 
 How to fill DB with data:
 
 ```sql
-COPY coupon_categories(coupon_id, item_id, category) FROM '<<DATA_PATH>>/coupon_categories.csv' DELIMITER ',' CSV HEADER;
 COPY coupon_info FROM '<<DATA_PATH>>/coupon_info.csv' DELIMITER ',' CSV HEADER;
+COPY product_info FROM '<<DATA_PATH>>/products.csv' DELIMITER ',' CSV HEADER;
+COPY coupon_product FROM '<<DATA_PATH>>/coupon_product.csv' DELIMITER ',' CSV HEADER;
 COPY customer_info FROM '<<DATA_PATH>>/customer_info.csv' DELIMITER ',' CSV HEADER;
 ```
 
-CSV files are available in the [../data-mining/coupon-based/csv_4_db/](../data-mining/coupon-based/csv_4_db/) path
+CSV files are available in the [../training-with-artificial-data/data_0409_0/data4db/](../training-with-artificial-data/data_0409_0/data4db/) path
