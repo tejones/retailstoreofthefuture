@@ -1,0 +1,141 @@
+body, html {
+  background: #eeeeee;
+  background: linear-gradient(95deg, #eeeeee 0%, white 73%, #c6f5ff 75%, #ebfbff 100%);
+  height: 100vh;
+}
+
+#left, #right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+#left h1, #right h1 {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#left {
+  width: 75%;
+}
+
+#left #browser {
+  width: 90%;
+  border: 2px solid #88888888;
+  background-color: #EEEEEE;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+  height: 88vh;
+  -webkit-box-shadow: 10px 10px 15px #88888834;
+          box-shadow: 10px 10px 15px #88888834;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+#left #browser iframe {
+  margin-top: 30px;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 1px solid #88888888;
+}
+
+#left #browser #bar {
+  position: absolute;
+  padding-left: 5px;
+  padding-top: 6px;
+}
+
+#left #browser .dot {
+  margin-left: 5px;
+  height: 17px;
+  width: 17px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #686868;
+}
+
+#left #browser .dot.red {
+  background-color: #e2645e;
+  border-color: #cc433c;
+}
+
+#left #browser .dot.yellow {
+  background-color: #fcc245;
+  border-color: #e6a732;
+}
+
+#left #browser .dot.green {
+  background-color: #2fc042;
+  border-color: #148824;
+}
+
+#right {
+  right: 0;
+  width: 25%;
+}
+
+#right #phone {
+  border-top: 40px;
+  border-right: 3px;
+  border-bottom: 40px;
+  border-left: 3px;
+  border-style: solid;
+  border-radius: 40px;
+  border-color: black;
+  width: 70%;
+  height: 55vh;
+  margin: 15vh auto;
+  margin-bottom: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#right #phone header#phone-header {
+  position: absolute;
+  font-size: 12px;
+  width: calc(70% - 6px);
+  color: white;
+  background-color: #242323;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#right #phone header#phone-header .left, #right #phone header#phone-header .right {
+  width: 50%;
+  float: left;
+  padding: 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#right #phone header#phone-header .right {
+  text-align: right;
+}
+
+#right #phone iframe {
+  margin-top: 24px;
+  width: 100%;
+}
+
+#right select {
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=index-style.css.map */

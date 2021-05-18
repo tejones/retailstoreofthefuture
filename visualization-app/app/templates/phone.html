@@ -16,19 +16,10 @@
         const customer_id = {{ customer_id }};
     </script>
 
-    <header id="phone-header">
-        <section class="left">
-            8:42 <i class="bi bi-envelope"></i>
-        </section>
-        <section class="right">
-            <i class="bi bi-wifi"></i>
-            <i class="bi bi-bar-chart-fill"></i>
-            <i class="bi bi-battery-full"></i> 100%
-        </section>
-    </header>
-
-    <div class="alert alert-light" role="alert">
-        <i class="bi bi-emoji-sunglasses"></i> New coupons available!
+    <div class="alert alert-dark" role="alert" id="alert">
+        <i class="bi bi-emoji-sunglasses"></i> Check coupon recommended for you!
+        Save up to <span id="alert-percentage"></span>% by buying products from <span id="alert-department"></span>
+        department!
     </div>
 
     <nav id="app-header">
@@ -39,42 +30,70 @@
         <a href="#" class="navbar-brand">Retail store <span class="extra">of the future</span></a>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"><i class="bi bi-house-door"></i> Home</a>
+            <ul class="nav navbar-nav mr-auto" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a role="button" class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                        aria-controls="home" aria-selected="true">
+                        <i class="bi bi-house-door"></i> Home
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="bi bi-files"></i> Coupons</a>
+                <li class="nav-item" role="presentation">
+                    <a role="button" class="nav-link" id="coupons-tab" data-bs-toggle="tab" data-bs-target="#coupons"
+                        aria-controls="coupons" aria-selected="false">
+                        <i class="bi bi-files"></i> Coupons
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="bi bi-person"></i> Personal data</a>
+                <li class="nav-item" role="presentation">
+                    <a role="button" class="nav-link" id="personal-info-tab" data-bs-toggle="tab"
+                        data-bs-target="#personal-info" aria-controls="personal-info" aria-selected="false">
+                        <i class="bi bi-person"></i> Personal data
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <section id="categories">
-        <div class="row">
-            <div class="col-6 category boys">
-                Boy's
-            </div>
-            <div class="col-6 category girls">
-                Girl's
-            </div>
-            <div class="col-6 category mens">
-                Men's
-            </div>
-            <div class="col-6 category womens">
-                Women's
-            </div>
-            <div class="col-6 category sport">
-                Sport
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h4>Welcome to the retail store in <span id="city-name">New Orleans</span>!</h4>
+
+            <hr>
+            <p>Opening hours:</p>
+            <ul>
+                <li>Monday - Friday: 9 AM - 5 PM</li>
+                <li>Saturday: 9 AM - 3 PM</li>
+            </ul>
+
+            <hr>
+            <p>
+                Need help?<br>
+                <button type="button" id="assistance-needed" class="btn btn-outline-primary">
+                    <i class="bi bi-bell"></i> Ask for assistance remotely!</button>
+            </p>
+            <p>
+                or make a phone call:<br>
+                <a role="button" class="btn btn-outline-primary">
+                    <i class="bi bi-telephone"></i> 888 888 888</a>
+            </p>
+        </div>
+
+        <div class="tab-pane fade" id="coupons" role="tabpanel" aria-labelledby="coupons-tab">
+            <h4>Check our newest coupons!</h4>
+            <div class="row accordion" id="coupons-accordion">
+                <div class="col-12 category" id="coupons-recommendations">
+                    <h1>Recommended for you</h1>
+                </div>
             </div>
         </div>
-    </section>
+
+        <div class="tab-pane fade" id="personal-info" role="tabpanel" aria-labelledby="personal-info-tab">
+
+        </div>
+    </div>
 
     <script src="/static/js/jquery-3.6.0.min.js"></script>
     <script src="/static/bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/phone.js"></script>
 </body>
 
 </html>

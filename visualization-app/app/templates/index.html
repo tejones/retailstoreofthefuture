@@ -5,169 +5,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Retail store of the future RedHat/Intel/SAP</title>
     <link href="/static/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/index-style.css">
 </head>
 
 <body>
-    <div class="container">
-        <header class="blog-header py-3">
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-sm pt-1">
-                    <img src="/static/images/redhat_logo.svg" alt="RedHat">
-                </div>
-                <div class="col-sm text-center center">
-                    Retail store of the future
-                </div>
-                <div class="col-sm d-flex justify-content-end align-items-center">
-                    <img src="/static/images/intel_logo.svg" alt="Intel">
-                </div>
+    <div id="left">
+        <h1>Store simulation</h1>
+        <div id="browser">
+            <div id="bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
             </div>
-        </header>
-        <main>
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-store-tab" data-bs-toggle="tab" data-bs-target="#nav-store"
-                        type="button" role="tab" aria-controls="nav-store" aria-selected="true">Store preview</button>
-                    <button class="nav-link" id="nav-new-scenario-tab" data-bs-toggle="tab"
-                        data-bs-target="#nav-new-scenario" type="button" role="tab" aria-controls="nav-new-scenario"
-                        aria-selected="false">Create customer scenario</button>
-                </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active row" id="nav-store" role="tabpanel"
-                    aria-labelledby="nav-store-tab">
-                    <section class="col-9 left">
-                        <div class="plan-container">
-                            <div class="proportions"></div>
-                            <svg class="store-plan" id="store-plan-preview" height="100%" width="100%"
-                                viewBox="0 0 1808 1315" preserveAspectRatio="none">
-                            </svg>
-                        </div>
-                    </section>
-                    <aside class="col-3 right">
-                        <h2>Store preview</h2>
-                        <p>...</p>
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-phone-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-phone" type="button" role="tab" aria-controls="nav-store"
-                                    aria-selected="true">Mobile app</button>
-                                <button class="nav-link" id="nav-log-tab" data-bs-toggle="tab" data-bs-target="#nav-log"
-                                    type="button" role="tab" aria-controls="nav-log" aria-selected="false">Events
-                                    log</button>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabSimContent">
-                            <div class="tab-pane fade show active row" id="nav-phone" role="tabpanel"
-                                aria-labelledby="nav-phone-tab">
-                                <div class="col-12">
-                                    <h4>Observe customer:</h4>
-                                    <p>
-                                        <select id="customer-selector-simulator" class="form-select"
-                                            aria-label="Default select example">
-                                        </select>
-                                    </p>
-                                </div>
-                                <div id="phone">
-                                    <iframe id="phoneIframe" title="Phone" src="/phone/1">
-                                    </iframe>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade show row" id="nav-log" role="tabpanel"
-                                aria-labelledby="nav-log-tab">
-                                <ul class="list-group" id="event-log"></ul>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-                <div class="tab-pane fade row" id="nav-new-scenario" role="tabpanel"
-                    aria-labelledby="nav-new-scenario-tab">
-                    <section class="col-9 left">
-                        <div class="plan-container">
-                            <div class="proportions"></div>
-                            <svg class="store-plan" id="store-plan-scenario" height="100%" width="100%"
-                                viewBox="0 0 1808 1315" preserveAspectRatio="none">
-                            </svg>
-                        </div>
-                    </section>
-                    <aside class="col-3 right">
-                        <h2>Simulate a customer</h2>
-                        <p>Here you can create a customer scenario. At first select the customer, for who
-                            the path will be created and simulated. Then, click on a plan to select places
-                            where the customer should go. You can also simulate his/her focus - just put
-                            a "focus" pin on the plan.</p>
-
-                        <h4>Customer:</h4>
-                        <p>
-                            <select class="form-select" id="customer-selector-scenario"
-                                aria-label="Default select example">
-                            </select>
-                        </p>
-
-                        <h4>Pin type:</h4>
-                        <p>
-                            <input type="radio" class="btn-check" name="pin-type" id="movement-outlined"
-                                autocomplete="off" checked value="MOVE">
-                            <label class="btn btn-outline-secondary pin-btn" for="movement-outlined">
-                                <i class="bi bi-geo-alt move"></i><br>
-                                Movement
-                            </label>
-
-                            <input type="radio" class="btn-check" name="pin-type" id="focus-outlined" autocomplete="off"
-                                value="FOCUS">
-                            <label class="btn btn-outline-secondary pin-btn" for="focus-outlined">
-                                <i class="bi bi-geo-alt-fill focus"></i><br>
-                                Focus
-                            </label>
-                        </p>
-
-                        <h4>Customer step time:</h4>
-                        <div class="row customer-speed">
-                            <div class="col-8">
-                                <input type="range" class="form-range" min="5" max="15" step="1"
-                                    id="customer-speed-slider" value="5">
-                            </div>
-                            <div class="col-4 label">
-                                <span id="slider-label">5</span> s/step
-                            </div>
-                        </div>
-
-                        <h4>Actions:</h4>
-                        <span class="d-inline-block" data-bs-placement="top" tabindex="0" data-bs-toggle="popover"
-                            data-bs-trigger="hover" data-bs-content="Undo">
-                            <button type="button" id="undo-btn" class="btn btn-outline-secondary"><i
-                                    class="bi bi-reply-fill"></i></button>
-                        </span>
-                        <span class="d-inline-block" data-bs-placement="top" tabindex="0" data-bs-toggle="popover"
-                            data-bs-trigger="hover" data-bs-content="Remove the entire path">
-                            <button type="button" id="remove-entire-btn" class="btn btn-outline-secondary"><i
-                                    class="bi bi-trash"></i></button>
-                        </span>
-                        <button type="button" id="start-sim-btn" class="float-right btn btn-success">
-                            Start simulation</button>
-                    </aside>
-                </div>
-            </div>
-        </main>
+            <iframe src="/store" frameborder="0"></iframe>
+        </div>
+    </div>
+    <div id="right">
+        <h1>Customer's phone simulation</h1>
+        <div id="phone">
+            <header id="phone-header">
+                <section class="left">
+                    7:02 AM <i class="bi bi-envelope"></i>
+                </section>
+                <section class="right">
+                    <i class="bi bi-wifi"></i>
+                    <i class="bi bi-bar-chart-fill"></i>
+                    <i class="bi bi-battery-full"></i> 100%
+                </section>
+            </header>
+            <iframe id="phone-iframe" src="/phone/1" seamless frameborder="0"></iframe>
+        </div>
+        <select class="form-select" aria-label="Customer selection" id="customer-select">
+        </select>
     </div>
 
     <script src="/static/js/jquery-3.6.0.min.js"></script>
-    <script src="/static/bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-            return new bootstrap.Popover(popoverTriggerEl);
-        });
-    </script>
-
-    <script src="/static/js/utils.js"></script>
     <script src="/static/js/details.js"></script>
-    <script src="/static/js/draw_shapes.js"></script>
-    <script src="/static/js/simulation.js"></script>
-    <script src="/static/js/scenario.js"></script>
-    <script src="/static/js/main.js"></script>
+    <script src="/static/js/index.js"></script>
 </body>
 
 </html>

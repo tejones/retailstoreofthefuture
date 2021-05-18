@@ -132,8 +132,6 @@ function new_scenario() {
         let step_type = step.type == FOCUS_STR ? MOVEMENT_STR : step.type;
         let steps_number = step.type == FOCUS_STR ? 5 : 1;  // TODO: let the user configure it
 
-        console.log(step, step_type, steps_number);
-
         for (var i = 0; i < steps_number; i++) {
             t1 += speed; // TODO: let the user configure speed
 
@@ -147,18 +145,6 @@ function new_scenario() {
             });
         }
     });
-
-    // let path = $.map(scenario, function (step) {
-    //     t1 += speed; // TODO: step speed; depend on distance
-    //     return {
-    //         type: step.type,
-    //         location: {
-    //             x: step.x,
-    //             y: step.y
-    //         },
-    //         timestamp: t1
-    //     }
-    // });
 
     // exit
     path.push({
@@ -176,8 +162,6 @@ function new_scenario() {
         },
         path: path
     };
-
-    change_observed_customer(cid);
 
     send_scenario(payload, function () {
         $('#nav-store-tab').tab('show');

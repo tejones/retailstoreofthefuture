@@ -13,6 +13,7 @@ def validate_and_crash(variable, message):
 logger.info('Reading environment variables...')
 
 CUSTOMERS_LIST_FILE = os.getenv('CUSTOMERS_LIST_FILE', 'app/resources/customers.json')
+COUPONS_LIST_FILE = os.getenv('CUSTOMERS_LIST_FILE', 'app/resources/coupons.json')
 
 MQTT_HOST = os.getenv('MQTT_HOST')
 MQTT_PORT = int(os.getenv('MQTT_PORT', 1883))
@@ -24,6 +25,8 @@ MQTT_BROKER_CERT_FILE = os.getenv('MQTT_BROKER_CERT_FILE', None)
 CUSTOMER_ENTER_TOPIC = os.getenv('ENTER_TOPIC', 'customer/enter')
 CUSTOMER_EXIT_TOPIC = os.getenv('EXIT_TOPIC', 'customer/exit')
 CUSTOMER_MOVE_TOPIC = os.getenv('MOVE_TOPIC', 'customer/move')
+CUSTOMER_BROWSING_TOPIC = os.getenv('CUSTOMER_BROWSING_TOPIC', 'customer/browsing')
+COUPON_PREDICTION_TOPIC_NAME = os.getenv('COUPON_PREDICTION_TOPIC_NAME', 'customer/prediction')
 
 SCENARIO_PLAYER_SCENARIO_ENDPOINT = os.getenv('SCENARIO_PLAYER_SCENARIO_ENDPOINT')
 

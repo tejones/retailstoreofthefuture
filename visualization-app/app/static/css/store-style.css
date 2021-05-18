@@ -106,10 +106,14 @@ main aside {
   width: 100%;
   height: 350px;
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .customer-speed .label {
   text-align: right;
 }
-/*# sourceMappingURL=style.css.map */
+
+.assistance-alert button {
+  float: right;
+  margin-top: 10px;
+}
+/*# sourceMappingURL=store-style.css.map */
