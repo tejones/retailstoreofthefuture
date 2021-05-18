@@ -1,0 +1,196 @@
+# Default values for retail-store.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# deployment on openshift container platform
+openshift: true
+
+globalInfra:
+  kafka:
+    bootstrapServers:
+    - retail-kafka-kafka-bootstrap.retail-infra.svc.cluster.local:9092
+    
+    # Kafka topic name for entry events
+    entryEventTopic: "entryTopic"
+
+    # Kafka topic name for focus events
+    focusEventTopic: "focusTopic"
+  
+    # Kafka topic name for prediction results
+    couponPredictionTopic: "predictionTopic"
+  
+  mqtt:
+    # set to true if your MQTT broker uses SSL, default: false
+    sslEnabled: false
+
+    # path to the file containing broker CA certificate in PEM format 
+    # NOTE: files must be in the Chart directory. e.g. in files/ directory
+    # sslBrokerCaCertPath: "files/broker.pem"
+
+    # set to true if MQTT requires username, password authentication, default: false
+    authenticationEnabled: false
+    
+    # MQTT client username
+    user: admin
+    # MQTT client password
+    password: password
+
+    # name or IP address of the MQTT broker 
+    brokerServer: ex-aao-mqtt-notls-0-svc.retail-infra.svc.cluster.local
+    
+    # port that MQTT broker is listening on, default: 1883
+    brokerPort: 1883
+
+    # MQTT topic for entering events
+    enterTopic: "retail/mqttEntryTopic"
+    
+    # MQTT topic for movement events
+    moveTopic: "retail/mqttMovementTopic"
+    
+    # MQTT topic for exit events
+    exitTopic: "retail/mqttExitTopic"
+
+
+postgres:
+  # postgres image used for cache 
+  image: quay.io/bitnami/postgresql:latest
+
+  # postgresql database user  
+  postgresUser: dupa
+
+  # postgresql user's password
+  postgresPassword: dupaStrongPass
+  
+  # postgresql database name
+  postgresDB: dupa-db
+
+  # postgresql service type, default: ClusterIP
+  # serviceType: ClusterIP
+
+  # postgresql service port, default: 5432 
+  # servicePort: 5432 
+
+  serviceAccount:
+    # create separate service account for postgres
+    create: true
+    # additional service account annotations
+    annotations: {}
+
+  # specify limits and requests for the postgresql
+  resources: {}
+
+recommendationService:
+  # recommendation service docker image
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/recommendation-service:latest
+  
+  # number of recommendation service replicas
+  replicas: 2
+
+  # recommendation service type, default: ClusterIP
+  # serviceType: ClusterIP
+
+  # recommendation service port. default: 80
+  # servicePort: 8080
+
+  # optional identifier of a Kafka consumer, default: "kafkaClients"
+  # kafkaClientId: "kafkaClients"
+  
+  # consumer group name, default: "None"
+  # kafkaGroupId: "consumergroup" 
+  
+  # see: auto.offset.reset setting in Kafka, default: "latest"
+  # autoOffsetReset: "latest"
+  
+  # time spent waiting for messages in in poll (s), default: 0.1
+  # pollTimeout: 0.1
+  
+  # fastAPI environment variables, see https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker for reference
+  fastApi: 
+    env:
+    - name: LOG_LEVEL
+      value: info
+    - name: MAX_WORKERS
+      value: 1
+
+  serviceAccount:
+    # create separate service account for recommendation service
+    create: true
+    # additional service account annotations
+    annotations: {}
+  
+  # specify limits and requests for the recommendation service
+  resources: {}
+
+predictionService:
+  # prediction service docker image
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/prediction-service:latest
+  
+  # number of prediction service replicas
+  replicas: 2
+
+  # prediction service type, default: ClusterIP
+  # serviceType: NodePort
+
+  # prediction service port, default: 80
+  # servicePort: 8080 
+
+  # fastAPI environment variables, see https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker for reference
+  fastApi:
+    env:
+    - name: LOG_LEVEL
+      value: info
+    - name: MAX_WORKERS
+      value: 1
+
+  serviceAccount:
+    # create separate service account for prediction service
+    create: true
+    # additional service account annotations
+    annotations: {}
+
+  # specify limits and requests for the prediction service
+  resources: {}
+
+customerSimulationService:
+  # customer simulation service docker image
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/customer-simulation-service:latest
+  
+  # number of customer simulations service replicas
+  replicas: 1
+  
+  # customer simulation service type, default: ClusterIP
+  # serviceType: ClusterIP
+
+  # customer simulation service port. default: 80
+  # servicePort: 8080
+
+  serviceAccount:
+    # create separate service account for customer simulation service
+    create: true
+    # additional service account annotations
+    annotations: {}
+
+
+  # set a log level for customer simulation service
+  logLevel: info
+  
+  # override the default customer lit file location: /app/app/resources/customers.json
+  # customersListFile: ""
+
+
+visualization:
+  # visualization simulation service docker image
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/visualization-service:latest
+  
+  # visualization service type, default: ClusterIP
+  # serviceType: ClusterIP
+
+  # visualization service port. default: 80
+  # servicePort: 8080
+
+  serviceAccount:
+    # create separate service account for customer simulation service
+    create: true
+    # additional service account annotations
+    annotations: {}
+

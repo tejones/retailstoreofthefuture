@@ -1,0 +1,111 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"description": "Comment describing your JSON Schema",
+	"properties": {
+		"coupon_id": {
+			"type": "integer"
+		},
+		"customer_id": {
+			"type": "integer"
+		},
+		"redemption_status": {
+			"type": "integer"
+		},
+		"brand": {
+			"type": "integer"
+		},
+		"category": {
+			"type": "integer"
+		},
+		"coupon_used_x": {
+			"type": "number"
+		},
+		"discount_mean": {
+			"type": "number"
+		},
+		"discount_sum": {
+			"type": "number"
+		},
+		"item_counts": {
+			"type": "integer"
+		},
+		"no_of_customers": {
+			"type": "number"
+		},
+		"price_mean": {
+			"type": "number"
+		},
+		"price_sum": {
+			"type": "number"
+		},
+		"quantity_mean": {
+			"type": "number"
+		},
+		"quantity_sum_x": {
+			"type": "number"
+		},
+		"tran_counts": {
+			"type": "integer"
+		},
+		"campaign_type": {
+			"type": "integer"
+		},
+		"campaign_duration": {
+			"type": "number"
+		},
+		"age_range": {
+			"type": "number"
+		},
+		"marital_status": {
+			"type": "number"
+		},
+		"rented": {
+			"type": "number"
+		},
+		"family_size": {
+			"type": "number"
+		},
+		"no_of_children": {
+			"type": "number"
+		},
+		"income_bracket": {
+			"type": "number"
+		},
+		"mean_discount": {
+			"type": "number"
+		},
+		"coupon_used_y": {
+			"type": "number"
+		},
+		"day": {
+			"type": "number"
+		},
+		"dow": {
+			"type": "number"
+		},
+		"no_of_items": {
+			"type": "integer"
+		},
+		"month": {
+			"type": "number"
+		},
+		"mean_quantity": {
+			"type": "number"
+		},
+		"mean_price": {
+			"type": "number"
+		},
+		"ddiscount_sum": {
+			"type": "number"
+		},
+		"customer_id_count": {
+			"type": "integer"
+		},
+		"quantity_sum_y": {
+			"type": "number"
+		},
+		"pprice_sum": {
+			"type": "number"
+		}
+	}
+}

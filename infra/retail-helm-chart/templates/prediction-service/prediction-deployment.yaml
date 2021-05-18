@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "prediction.labels" . | nindent 4 }}
+  name: {{ include "prediction.name" . }}
+  
+spec:
+  replicas: {{ .Values.predictionService.replicas }}
+  selector:
+    matchLabels:
+    {{- include "prediction.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+      {{- include "prediction.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccount: {{ include "prediction.serviceAccountName" . }}
+      containers:
+      - name: prediction-service
+        image: {{ .Values.predictionService.image }}
+        env:
+        {{- if and .Values.predictionService.fastApi  }}
+        {{- range .Values.predictionService.fastApi.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote}}
+        {{- end }}
+        {{- end }}
+        ports:
+        - containerPort: 80
+        redinessProbe:
+          tcpSocket:
+            port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 80

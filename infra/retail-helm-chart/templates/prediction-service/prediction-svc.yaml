@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "prediction.serviceName" . }}
+  labels:
+    {{- include "prediction.labels" . | nindent 4 }}
+spec:
+  type: {{  .Values.predictionService.serviceType | default "ClusterIP" }}
+  ports:
+  - name: http
+    port: {{ include "prediction.servicePort" . }}
+    targetPort: 80
+
+  selector:
+    {{- include "prediction.selectorLabels" . | nindent 4 }}

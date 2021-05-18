@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "visualization.serviceName" . }}
+  labels:
+    {{- include "visualization.labels" . | nindent 4 }}
+spec:
+  type: {{  .Values.visualization.serviceType | default "ClusterIP "}}
+  ports:
+  - name: http
+    port: {{ include "visualization.servicePort" . }}
+    targetPort: 80
+  selector:
+    {{- include "visualization.selectorLabels" . | nindent 4 }}

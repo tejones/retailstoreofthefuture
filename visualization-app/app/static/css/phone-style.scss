@@ -1,0 +1,182 @@
+$app-gray: rgb(92, 92, 92);
+$boys-color: rgb(63, 184, 175);
+$girls-color: rgb(255, 61, 127);
+$mens-color: rgb(127, 199, 175);
+$womens-color: rgb(255, 158, 157);
+$sport-color: rgb(218, 216, 167);
+$app-shadow: 0 0 5px $app-gray;
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&display=swap');
+
+html {
+    display: flex;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+.alert {
+    position: fixed;
+    top: -130px;
+    width: 100%;
+    padding: 20px;
+    font-size: 14px;
+    transition: top 0.5s;
+    z-index: 9999;
+}
+
+nav#app-header {
+    font-size: 1.7em;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px $app-gray solid;
+    box-shadow: $app-shadow;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: white;
+
+    a {
+        color: black;
+    }
+
+    .extra {
+        display: block;
+        font-family: 'Lobster Two', cursive;
+        font-size: 0.8em;
+        margin-top: -9px;
+        margin-left: 50px;
+        color: $app-gray;
+        margin-bottom: -2em;
+    }
+
+    button {
+        border: 0;
+        margin: 0;
+        margin-top: 13px;
+        padding: 0;
+        float: right;
+    }
+
+    ul {
+        font-size: 0.7em;
+        margin-top: 0.7em;
+
+        li {
+            border-top: 1px solid $app-gray;
+        }
+    }
+}
+
+.tab-content {
+    padding: 20px;
+    margin-top: 66px;
+    max-height: calc(100vh - 66px);
+    overflow: auto;
+
+    p {
+        font-size: 17px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    #city-name {
+        font-weight: bold;
+    }
+
+    #coupons {
+        .row {
+            margin: 0;
+            margin-top: 10px;
+            max-width: 100%;
+        }
+    
+        .category {
+            box-sizing: border-box;
+            padding: 0;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            border: 3px solid;
+
+            &>h1 {
+                font-size: 15px;
+                font-weight: bold;
+                border: 0;
+                padding: 10px;
+                display: block;
+                text-align: center;
+                margin-bottom: 5px
+            }
+        }
+
+        .boys {
+            border-color: $boys-color;
+        }
+
+        .girls {
+            border-color: $girls-color;
+        }
+
+        .men {
+            border-color: $mens-color;
+        }
+
+        .women {
+            border-color: $womens-color;
+        }
+
+        .sport {
+            border-color: $sport-color;
+        }
+    }
+
+    .accordion-item {
+        padding: 0;
+        border: 0;
+        border-bottom: 1px;
+        border-radius: 0;
+
+        h1, h6 {
+            display: block;
+            float: right;
+            position: relative;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+        
+        h6 {
+            margin-top: -16px;
+            margin-left: -25px;
+            margin-right: 15px;
+        }
+
+        h6 span {
+            text-decoration: line-through;
+        }
+
+        .accordion-button {
+            background-color: transparent;
+            border-top: 1px solid $app-gray;
+        }
+    }
+}

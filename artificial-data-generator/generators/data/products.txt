@@ -1,0 +1,1003 @@
+name,size,vendor,description,buyPrice,msrp,departmentCode
+Bathing suit,Kids,Bellerose,A Bathing suit by manufacturer Bellerose,48.00,63.00,1004
+Bathing suit,Large,Bellerose,A Bathing suit by manufacturer Bellerose,48.00,63.00,1004
+Bathing suit,Medium,Bellerose,A Bathing suit by manufacturer Bellerose,48.00,63.00,1004
+Bathing suit,Petite,Bellerose,A Bathing suit by manufacturer Bellerose,48.00,63.00,1004
+Bathing suit,Small,Bellerose,A Bathing suit by manufacturer Bellerose,48.00,63.00,1004
+Bathing suit,X-Large,Bellerose,A Bathing suit by manufacturer Bellerose,48.00,63.00,1004
+Bike short,Kids,Adidas,A Bike short by manufacturer Adidas,47.00,85.00,1000
+Bike short,Large,Adidas,A Bike short by manufacturer Adidas,47.00,85.00,1000
+Bike short,Medium,Adidas,A Bike short by manufacturer Adidas,47.00,85.00,1000
+Bike short,Petite,Adidas,A Bike short by manufacturer Adidas,47.00,85.00,1000
+Bike short,Small,Adidas,A Bike short by manufacturer Adidas,47.00,85.00,1000
+Bike short,X-Large,Adidas,A Bike short by manufacturer Adidas,47.00,85.00,1000
+Sport briefs,Kids,Polo,A Sport briefs by manufacturer Polo,15.00,24.00,1001
+Sport briefs,Large,Polo,A Sport briefs by manufacturer Polo,15.00,24.00,1001
+Sport briefs,Medium,Polo,A Sport briefs by manufacturer Polo,15.00,24.00,1001
+Sport briefs,Petite,Polo,A Sport briefs by manufacturer Polo,15.00,24.00,1001
+Sport briefs,Small,Polo,A Sport briefs by manufacturer Polo,15.00,24.00,1001
+Sport briefs,X-Large,Polo,A Sport briefs by manufacturer Polo,15.00,24.00,1001
+Rain jacket,Kids,Hugo Boss,A Rain jacket by manufacturer Hugo Boss,24.00,85.00,1001
+Rain jacket,Large,Hugo Boss,A Rain jacket by manufacturer Hugo Boss,24.00,85.00,1001
+Rain jacket,Medium,Hugo Boss,A Rain jacket by manufacturer Hugo Boss,24.00,85.00,1001
+Rain jacket,Petite,Hugo Boss,A Rain jacket by manufacturer Hugo Boss,24.00,85.00,1001
+Rain jacket,Small,Hugo Boss,A Rain jacket by manufacturer Hugo Boss,24.00,85.00,1001
+Rain jacket,X-Large,Hugo Boss,A Rain jacket by manufacturer Hugo Boss,24.00,85.00,1001
+Ballet skirt,Kids,Nununu,A Ballet skirt by manufacturer Nununu,58.00,46.00,1005
+Ballet skirt,Large,Nununu,A Ballet skirt by manufacturer Nununu,58.00,46.00,1005
+Ballet skirt,Medium,Nununu,A Ballet skirt by manufacturer Nununu,58.00,46.00,1005
+Ballet skirt,Petite,Nununu,A Ballet skirt by manufacturer Nununu,58.00,46.00,1005
+Ballet skirt,Small,Nununu,A Ballet skirt by manufacturer Nununu,58.00,46.00,1005
+Ballet skirt,X-Large,Nununu,A Ballet skirt by manufacturer Nununu,58.00,46.00,1005
+Tank top,Kids,Gap,A Tank top by manufacturer Gap,36.00,87.00,1005
+Tank top,Large,Gap,A Tank top by manufacturer Gap,36.00,87.00,1005
+Tank top,Medium,Gap,A Tank top by manufacturer Gap,36.00,87.00,1005
+Tank top,Petite,Gap,A Tank top by manufacturer Gap,36.00,87.00,1005
+Tank top,Small,Gap,A Tank top by manufacturer Gap,36.00,87.00,1005
+Tank top,X-Large,Gap,A Tank top by manufacturer Gap,36.00,87.00,1005
+Wool hat,Kids,Puma,A Wool hat by manufacturer Puma,60.00,26.00,1004
+Wool hat,Large,Puma,A Wool hat by manufacturer Puma,60.00,26.00,1004
+Wool hat,Medium,Puma,A Wool hat by manufacturer Puma,60.00,26.00,1004
+Wool hat,Petite,Puma,A Wool hat by manufacturer Puma,60.00,26.00,1004
+Wool hat,Small,Puma,A Wool hat by manufacturer Puma,60.00,26.00,1004
+Wool hat,X-Large,Puma,A Wool hat by manufacturer Puma,60.00,26.00,1004
+Sweat pants,Kids,J.Crew,A Sweat pants by manufacturer J.Crew,54.00,63.00,1001
+Sweat pants,Large,J.Crew,A Sweat pants by manufacturer J.Crew,54.00,63.00,1001
+Sweat pants,Medium,J.Crew,A Sweat pants by manufacturer J.Crew,54.00,63.00,1001
+Sweat pants,Petite,J.Crew,A Sweat pants by manufacturer J.Crew,54.00,63.00,1001
+Sweat pants,Small,J.Crew,A Sweat pants by manufacturer J.Crew,54.00,63.00,1001
+Sweat pants,X-Large,J.Crew,A Sweat pants by manufacturer J.Crew,54.00,63.00,1001
+Dress pants,Kids,Hugo Boss,A Dress pants by manufacturer Hugo Boss,18.00,96.00,1002
+Dress pants,Large,Hugo Boss,A Dress pants by manufacturer Hugo Boss,18.00,96.00,1002
+Dress pants,Medium,Hugo Boss,A Dress pants by manufacturer Hugo Boss,18.00,96.00,1002
+Dress pants,Petite,Hugo Boss,A Dress pants by manufacturer Hugo Boss,18.00,96.00,1002
+Dress pants,Small,Hugo Boss,A Dress pants by manufacturer Hugo Boss,18.00,96.00,1002
+Dress pants,X-Large,Hugo Boss,A Dress pants by manufacturer Hugo Boss,18.00,96.00,1002
+Beach sling,Kids,Fred Perry,A Beach sling by manufacturer Fred Perry,70.00,12.00,1005
+Beach sling,Large,Fred Perry,A Beach sling by manufacturer Fred Perry,70.00,12.00,1005
+Beach sling,Medium,Fred Perry,A Beach sling by manufacturer Fred Perry,70.00,12.00,1005
+Beach sling,Petite,Fred Perry,A Beach sling by manufacturer Fred Perry,70.00,12.00,1005
+Beach sling,Small,Fred Perry,A Beach sling by manufacturer Fred Perry,70.00,12.00,1005
+Beach sling,X-Large,Fred Perry,A Beach sling by manufacturer Fred Perry,70.00,12.00,1005
+Denim cut-offs,Kids,Aeropostale,A Denim cut-offs by manufacturer Aeropostale,43.00,81.00,1005
+Denim cut-offs,Large,Aeropostale,A Denim cut-offs by manufacturer Aeropostale,43.00,81.00,1005
+Denim cut-offs,Medium,Aeropostale,A Denim cut-offs by manufacturer Aeropostale,43.00,81.00,1005
+Denim cut-offs,Petite,Aeropostale,A Denim cut-offs by manufacturer Aeropostale,43.00,81.00,1005
+Denim cut-offs,Small,Aeropostale,A Denim cut-offs by manufacturer Aeropostale,43.00,81.00,1005
+Denim cut-offs,X-Large,Aeropostale,A Denim cut-offs by manufacturer Aeropostale,43.00,81.00,1005
+Short sleeve Henley,Kids,Fred Perry,A Short sleeve Henley by manufacturer Fred Perry,5.00,39.00,1005
+Short sleeve Henley,Large,Fred Perry,A Short sleeve Henley by manufacturer Fred Perry,5.00,39.00,1005
+Short sleeve Henley,Medium,Fred Perry,A Short sleeve Henley by manufacturer Fred Perry,5.00,39.00,1005
+Short sleeve Henley,Petite,Fred Perry,A Short sleeve Henley by manufacturer Fred Perry,5.00,39.00,1005
+Short sleeve Henley,Small,Fred Perry,A Short sleeve Henley by manufacturer Fred Perry,5.00,39.00,1005
+Short sleeve Henley,X-Large,Fred Perry,A Short sleeve Henley by manufacturer Fred Perry,5.00,39.00,1005
+Short sleeve polo,Kids,Guess,A Short sleeve polo by manufacturer Guess,61.00,90.00,1002
+Short sleeve polo,Large,Guess,A Short sleeve polo by manufacturer Guess,61.00,90.00,1002
+Short sleeve polo,Medium,Guess,A Short sleeve polo by manufacturer Guess,61.00,90.00,1002
+Short sleeve polo,Petite,Guess,A Short sleeve polo by manufacturer Guess,61.00,90.00,1002
+Short sleeve polo,Small,Guess,A Short sleeve polo by manufacturer Guess,61.00,90.00,1002
+Short sleeve polo,X-Large,Guess,A Short sleeve polo by manufacturer Guess,61.00,90.00,1002
+Denim cut-offs,Kids,Nike,A Denim cut-offs by manufacturer Nike,93.00,19.00,1003
+Denim cut-offs,Large,Nike,A Denim cut-offs by manufacturer Nike,93.00,19.00,1003
+Denim cut-offs,Medium,Nike,A Denim cut-offs by manufacturer Nike,93.00,19.00,1003
+Denim cut-offs,Petite,Nike,A Denim cut-offs by manufacturer Nike,93.00,19.00,1003
+Denim cut-offs,Small,Nike,A Denim cut-offs by manufacturer Nike,93.00,19.00,1003
+Denim cut-offs,X-Large,Nike,A Denim cut-offs by manufacturer Nike,93.00,19.00,1003
+Overalls,Kids,Nike,A Overalls by manufacturer Nike,22.00,72.00,1000
+Overalls,Large,Nike,A Overalls by manufacturer Nike,22.00,72.00,1000
+Overalls,Medium,Nike,A Overalls by manufacturer Nike,22.00,72.00,1000
+Overalls,Petite,Nike,A Overalls by manufacturer Nike,22.00,72.00,1000
+Overalls,Small,Nike,A Overalls by manufacturer Nike,22.00,72.00,1000
+Overalls,X-Large,Nike,A Overalls by manufacturer Nike,22.00,72.00,1000
+V-neck t-shirt,Kids,Gymboree,A V-neck t-shirt by manufacturer Gymboree,34.00,18.00,1004
+V-neck t-shirt,Large,Gymboree,A V-neck t-shirt by manufacturer Gymboree,34.00,18.00,1004
+V-neck t-shirt,Medium,Gymboree,A V-neck t-shirt by manufacturer Gymboree,34.00,18.00,1004
+V-neck t-shirt,Petite,Gymboree,A V-neck t-shirt by manufacturer Gymboree,34.00,18.00,1004
+V-neck t-shirt,Small,Gymboree,A V-neck t-shirt by manufacturer Gymboree,34.00,18.00,1004
+V-neck t-shirt,X-Large,Gymboree,A V-neck t-shirt by manufacturer Gymboree,34.00,18.00,1004
+Bucket hat,Kids,Acrylick,A Bucket hat by manufacturer Acrylick,76.00,41.00,1004
+Bucket hat,Large,Acrylick,A Bucket hat by manufacturer Acrylick,76.00,41.00,1004
+Bucket hat,Medium,Acrylick,A Bucket hat by manufacturer Acrylick,76.00,41.00,1004
+Bucket hat,Petite,Acrylick,A Bucket hat by manufacturer Acrylick,76.00,41.00,1004
+Bucket hat,Small,Acrylick,A Bucket hat by manufacturer Acrylick,76.00,41.00,1004
+Bucket hat,X-Large,Acrylick,A Bucket hat by manufacturer Acrylick,76.00,41.00,1004
+Cotton oxford,Kids,Polo,A Cotton oxford by manufacturer Polo,91.00,71.00,1003
+Cotton oxford,Large,Polo,A Cotton oxford by manufacturer Polo,91.00,71.00,1003
+Cotton oxford,Medium,Polo,A Cotton oxford by manufacturer Polo,91.00,71.00,1003
+Cotton oxford,Petite,Polo,A Cotton oxford by manufacturer Polo,91.00,71.00,1003
+Cotton oxford,Small,Polo,A Cotton oxford by manufacturer Polo,91.00,71.00,1003
+Cotton oxford,X-Large,Polo,A Cotton oxford by manufacturer Polo,91.00,71.00,1003
+Beach sling,Kids,Bellerose,A Beach sling by manufacturer Bellerose,85.00,2.00,1002
+Beach sling,Large,Bellerose,A Beach sling by manufacturer Bellerose,85.00,2.00,1002
+Beach sling,Medium,Bellerose,A Beach sling by manufacturer Bellerose,85.00,2.00,1002
+Beach sling,Petite,Bellerose,A Beach sling by manufacturer Bellerose,85.00,2.00,1002
+Beach sling,Small,Bellerose,A Beach sling by manufacturer Bellerose,85.00,2.00,1002
+Beach sling,X-Large,Bellerose,A Beach sling by manufacturer Bellerose,85.00,2.00,1002
+Swim trunk,Kids,Prada,A Swim trunk by manufacturer Prada,11.00,53.00,1002
+Swim trunk,Large,Prada,A Swim trunk by manufacturer Prada,11.00,53.00,1002
+Swim trunk,Medium,Prada,A Swim trunk by manufacturer Prada,11.00,53.00,1002
+Swim trunk,Petite,Prada,A Swim trunk by manufacturer Prada,11.00,53.00,1002
+Swim trunk,Small,Prada,A Swim trunk by manufacturer Prada,11.00,53.00,1002
+Swim trunk,X-Large,Prada,A Swim trunk by manufacturer Prada,11.00,53.00,1002
+Beach sling,Kids,Lacoste,A Beach sling by manufacturer Lacoste,12.00,62.00,1002
+Beach sling,Large,Lacoste,A Beach sling by manufacturer Lacoste,12.00,62.00,1002
+Beach sling,Medium,Lacoste,A Beach sling by manufacturer Lacoste,12.00,62.00,1002
+Beach sling,Petite,Lacoste,A Beach sling by manufacturer Lacoste,12.00,62.00,1002
+Beach sling,Small,Lacoste,A Beach sling by manufacturer Lacoste,12.00,62.00,1002
+Beach sling,X-Large,Lacoste,A Beach sling by manufacturer Lacoste,12.00,62.00,1002
+Cotton oxford,Kids,J.Crew,A Cotton oxford by manufacturer J.Crew,24.00,86.00,1003
+Cotton oxford,Large,J.Crew,A Cotton oxford by manufacturer J.Crew,24.00,86.00,1003
+Cotton oxford,Medium,J.Crew,A Cotton oxford by manufacturer J.Crew,24.00,86.00,1003
+Cotton oxford,Petite,J.Crew,A Cotton oxford by manufacturer J.Crew,24.00,86.00,1003
+Cotton oxford,Small,J.Crew,A Cotton oxford by manufacturer J.Crew,24.00,86.00,1003
+Cotton oxford,X-Large,J.Crew,A Cotton oxford by manufacturer J.Crew,24.00,86.00,1003
+Short sleeve polo,Kids,Bellerose,A Short sleeve polo by manufacturer Bellerose,11.00,7.00,1001
+Short sleeve polo,Large,Bellerose,A Short sleeve polo by manufacturer Bellerose,11.00,7.00,1001
+Short sleeve polo,Medium,Bellerose,A Short sleeve polo by manufacturer Bellerose,11.00,7.00,1001
+Short sleeve polo,Petite,Bellerose,A Short sleeve polo by manufacturer Bellerose,11.00,7.00,1001
+Short sleeve polo,Small,Bellerose,A Short sleeve polo by manufacturer Bellerose,11.00,7.00,1001
+Short sleeve polo,X-Large,Bellerose,A Short sleeve polo by manufacturer Bellerose,11.00,7.00,1001
+Beach sling,Kids,CLSC,A Beach sling by manufacturer CLSC,75.00,3.00,1005
+Beach sling,Large,CLSC,A Beach sling by manufacturer CLSC,75.00,3.00,1005
+Beach sling,Medium,CLSC,A Beach sling by manufacturer CLSC,75.00,3.00,1005
+Beach sling,Petite,CLSC,A Beach sling by manufacturer CLSC,75.00,3.00,1005
+Beach sling,Small,CLSC,A Beach sling by manufacturer CLSC,75.00,3.00,1005
+Beach sling,X-Large,CLSC,A Beach sling by manufacturer CLSC,75.00,3.00,1005
+Bike short,Kids,J.Crew,A Bike short by manufacturer J.Crew,25.00,33.00,1003
+Bike short,Large,J.Crew,A Bike short by manufacturer J.Crew,25.00,33.00,1003
+Bike short,Medium,J.Crew,A Bike short by manufacturer J.Crew,25.00,33.00,1003
+Bike short,Petite,J.Crew,A Bike short by manufacturer J.Crew,25.00,33.00,1003
+Bike short,Small,J.Crew,A Bike short by manufacturer J.Crew,25.00,33.00,1003
+Bike short,X-Large,J.Crew,A Bike short by manufacturer J.Crew,25.00,33.00,1003
+Swim trunk,Kids,Converse,A Swim trunk by manufacturer Converse,31.00,80.00,1002
+Swim trunk,Large,Converse,A Swim trunk by manufacturer Converse,31.00,80.00,1002
+Swim trunk,Medium,Converse,A Swim trunk by manufacturer Converse,31.00,80.00,1002
+Swim trunk,Petite,Converse,A Swim trunk by manufacturer Converse,31.00,80.00,1002
+Swim trunk,Small,Converse,A Swim trunk by manufacturer Converse,31.00,80.00,1002
+Swim trunk,X-Large,Converse,A Swim trunk by manufacturer Converse,31.00,80.00,1002
+Yoga skort,Kids,Prada,A Yoga skort by manufacturer Prada,97.00,17.00,1005
+Yoga skort,Large,Prada,A Yoga skort by manufacturer Prada,97.00,17.00,1005
+Yoga skort,Medium,Prada,A Yoga skort by manufacturer Prada,97.00,17.00,1005
+Yoga skort,Petite,Prada,A Yoga skort by manufacturer Prada,97.00,17.00,1005
+Yoga skort,Small,Prada,A Yoga skort by manufacturer Prada,97.00,17.00,1005
+Yoga skort,X-Large,Prada,A Yoga skort by manufacturer Prada,97.00,17.00,1005
+Sweat pants,Kids,Gucci,A Sweat pants by manufacturer Gucci,31.00,68.00,1000
+Sweat pants,Large,Gucci,A Sweat pants by manufacturer Gucci,31.00,68.00,1000
+Sweat pants,Medium,Gucci,A Sweat pants by manufacturer Gucci,31.00,68.00,1000
+Sweat pants,Petite,Gucci,A Sweat pants by manufacturer Gucci,31.00,68.00,1000
+Sweat pants,Small,Gucci,A Sweat pants by manufacturer Gucci,31.00,68.00,1000
+Sweat pants,X-Large,Gucci,A Sweat pants by manufacturer Gucci,31.00,68.00,1000
+Romper,Kids,H & M,A Romper by manufacturer H & M,99.00,49.00,1001
+Romper,Large,H & M,A Romper by manufacturer H & M,99.00,49.00,1001
+Romper,Medium,H & M,A Romper by manufacturer H & M,99.00,49.00,1001
+Romper,Petite,H & M,A Romper by manufacturer H & M,99.00,49.00,1001
+Romper,Small,H & M,A Romper by manufacturer H & M,99.00,49.00,1001
+Romper,X-Large,H & M,A Romper by manufacturer H & M,99.00,49.00,1001
+Cotton oxford,Kids,Hugo Boss,A Cotton oxford by manufacturer Hugo Boss,95.00,71.00,1001
+Cotton oxford,Large,Hugo Boss,A Cotton oxford by manufacturer Hugo Boss,95.00,71.00,1001
+Cotton oxford,Medium,Hugo Boss,A Cotton oxford by manufacturer Hugo Boss,95.00,71.00,1001
+Cotton oxford,Petite,Hugo Boss,A Cotton oxford by manufacturer Hugo Boss,95.00,71.00,1001
+Cotton oxford,Small,Hugo Boss,A Cotton oxford by manufacturer Hugo Boss,95.00,71.00,1001
+Cotton oxford,X-Large,Hugo Boss,A Cotton oxford by manufacturer Hugo Boss,95.00,71.00,1001
+Wool hat,Kids,Gucci,A Wool hat by manufacturer Gucci,81.00,68.00,1002
+Wool hat,Large,Gucci,A Wool hat by manufacturer Gucci,81.00,68.00,1002
+Wool hat,Medium,Gucci,A Wool hat by manufacturer Gucci,81.00,68.00,1002
+Wool hat,Petite,Gucci,A Wool hat by manufacturer Gucci,81.00,68.00,1002
+Wool hat,Small,Gucci,A Wool hat by manufacturer Gucci,81.00,68.00,1002
+Wool hat,X-Large,Gucci,A Wool hat by manufacturer Gucci,81.00,68.00,1002
+Wool hat,Kids,Lacoste,A Wool hat by manufacturer Lacoste,96.00,71.00,1002
+Wool hat,Large,Lacoste,A Wool hat by manufacturer Lacoste,96.00,71.00,1002
+Wool hat,Medium,Lacoste,A Wool hat by manufacturer Lacoste,96.00,71.00,1002
+Wool hat,Petite,Lacoste,A Wool hat by manufacturer Lacoste,96.00,71.00,1002
+Wool hat,Small,Lacoste,A Wool hat by manufacturer Lacoste,96.00,71.00,1002
+Wool hat,X-Large,Lacoste,A Wool hat by manufacturer Lacoste,96.00,71.00,1002
+Bike short,Kids,J.Crew,A Bike short by manufacturer J.Crew,9.00,51.00,1004
+Bike short,Large,J.Crew,A Bike short by manufacturer J.Crew,9.00,51.00,1004
+Bike short,Medium,J.Crew,A Bike short by manufacturer J.Crew,9.00,51.00,1004
+Bike short,Petite,J.Crew,A Bike short by manufacturer J.Crew,9.00,51.00,1004
+Bike short,Small,J.Crew,A Bike short by manufacturer J.Crew,9.00,51.00,1004
+Bike short,X-Large,J.Crew,A Bike short by manufacturer J.Crew,9.00,51.00,1004
+Skinny jean,Kids,Nununu,A Skinny jean by manufacturer Nununu,55.00,20.00,1001
+Skinny jean,Large,Nununu,A Skinny jean by manufacturer Nununu,55.00,20.00,1001
+Skinny jean,Medium,Nununu,A Skinny jean by manufacturer Nununu,55.00,20.00,1001
+Skinny jean,Petite,Nununu,A Skinny jean by manufacturer Nununu,55.00,20.00,1001
+Skinny jean,Small,Nununu,A Skinny jean by manufacturer Nununu,55.00,20.00,1001
+Skinny jean,X-Large,Nununu,A Skinny jean by manufacturer Nununu,55.00,20.00,1001
+Yoga skort,Kids,Gymboree,A Yoga skort by manufacturer Gymboree,85.00,54.00,1003
+Yoga skort,Large,Gymboree,A Yoga skort by manufacturer Gymboree,85.00,54.00,1003
+Yoga skort,Medium,Gymboree,A Yoga skort by manufacturer Gymboree,85.00,54.00,1003
+Yoga skort,Petite,Gymboree,A Yoga skort by manufacturer Gymboree,85.00,54.00,1003
+Yoga skort,Small,Gymboree,A Yoga skort by manufacturer Gymboree,85.00,54.00,1003
+Yoga skort,X-Large,Gymboree,A Yoga skort by manufacturer Gymboree,85.00,54.00,1003
+Bathing suit,Kids,TinyCottons,A Bathing suit by manufacturer TinyCottons,68.00,57.00,1004
+Bathing suit,Large,TinyCottons,A Bathing suit by manufacturer TinyCottons,68.00,57.00,1004
+Bathing suit,Medium,TinyCottons,A Bathing suit by manufacturer TinyCottons,68.00,57.00,1004
+Bathing suit,Petite,TinyCottons,A Bathing suit by manufacturer TinyCottons,68.00,57.00,1004
+Bathing suit,Small,TinyCottons,A Bathing suit by manufacturer TinyCottons,68.00,57.00,1004
+Bathing suit,X-Large,TinyCottons,A Bathing suit by manufacturer TinyCottons,68.00,57.00,1004
+Bathing suit,Kids,Calvin Klein,A Bathing suit by manufacturer Calvin Klein,14.00,54.00,1001
+Bathing suit,Large,Calvin Klein,A Bathing suit by manufacturer Calvin Klein,14.00,54.00,1001
+Bathing suit,Medium,Calvin Klein,A Bathing suit by manufacturer Calvin Klein,14.00,54.00,1001
+Bathing suit,Petite,Calvin Klein,A Bathing suit by manufacturer Calvin Klein,14.00,54.00,1001
+Bathing suit,Small,Calvin Klein,A Bathing suit by manufacturer Calvin Klein,14.00,54.00,1001
+Bathing suit,X-Large,Calvin Klein,A Bathing suit by manufacturer Calvin Klein,14.00,54.00,1001
+Sport coat,Kids,Aeropostale,A Sport coat by manufacturer Aeropostale,79.00,35.00,1000
+Sport coat,Large,Aeropostale,A Sport coat by manufacturer Aeropostale,79.00,35.00,1000
+Sport coat,Medium,Aeropostale,A Sport coat by manufacturer Aeropostale,79.00,35.00,1000
+Sport coat,Petite,Aeropostale,A Sport coat by manufacturer Aeropostale,79.00,35.00,1000
+Sport coat,Small,Aeropostale,A Sport coat by manufacturer Aeropostale,79.00,35.00,1000
+Sport coat,X-Large,Aeropostale,A Sport coat by manufacturer Aeropostale,79.00,35.00,1000
+Wool hat,Kids,Chanel,A Wool hat by manufacturer Chanel,9.00,93.00,1000
+Wool hat,Large,Chanel,A Wool hat by manufacturer Chanel,9.00,93.00,1000
+Wool hat,Medium,Chanel,A Wool hat by manufacturer Chanel,9.00,93.00,1000
+Wool hat,Petite,Chanel,A Wool hat by manufacturer Chanel,9.00,93.00,1000
+Wool hat,Small,Chanel,A Wool hat by manufacturer Chanel,9.00,93.00,1000
+Wool hat,X-Large,Chanel,A Wool hat by manufacturer Chanel,9.00,93.00,1000
+Suspenders,Kids,Izod,A Suspenders by manufacturer Izod,69.00,18.00,1003
+Suspenders,Large,Izod,A Suspenders by manufacturer Izod,69.00,18.00,1003
+Suspenders,Medium,Izod,A Suspenders by manufacturer Izod,69.00,18.00,1003
+Suspenders,Petite,Izod,A Suspenders by manufacturer Izod,69.00,18.00,1003
+Suspenders,Small,Izod,A Suspenders by manufacturer Izod,69.00,18.00,1003
+Suspenders,X-Large,Izod,A Suspenders by manufacturer Izod,69.00,18.00,1003
+Cotton oxford,Kids,H & M,A Cotton oxford by manufacturer H & M,47.00,51.00,1005
+Cotton oxford,Large,H & M,A Cotton oxford by manufacturer H & M,47.00,51.00,1005
+Cotton oxford,Medium,H & M,A Cotton oxford by manufacturer H & M,47.00,51.00,1005
+Cotton oxford,Petite,H & M,A Cotton oxford by manufacturer H & M,47.00,51.00,1005
+Cotton oxford,Small,H & M,A Cotton oxford by manufacturer H & M,47.00,51.00,1005
+Cotton oxford,X-Large,H & M,A Cotton oxford by manufacturer H & M,47.00,51.00,1005
+Sweat pants,Kids,Diesel,A Sweat pants by manufacturer Diesel,29.00,62.00,1001
+Sweat pants,Large,Diesel,A Sweat pants by manufacturer Diesel,29.00,62.00,1001
+Sweat pants,Medium,Diesel,A Sweat pants by manufacturer Diesel,29.00,62.00,1001
+Sweat pants,Petite,Diesel,A Sweat pants by manufacturer Diesel,29.00,62.00,1001
+Sweat pants,Small,Diesel,A Sweat pants by manufacturer Diesel,29.00,62.00,1001
+Sweat pants,X-Large,Diesel,A Sweat pants by manufacturer Diesel,29.00,62.00,1001
+Skinny jean,Kids,Gymboree,A Skinny jean by manufacturer Gymboree,34.00,57.00,1001
+Skinny jean,Large,Gymboree,A Skinny jean by manufacturer Gymboree,34.00,57.00,1001
+Skinny jean,Medium,Gymboree,A Skinny jean by manufacturer Gymboree,34.00,57.00,1001
+Skinny jean,Petite,Gymboree,A Skinny jean by manufacturer Gymboree,34.00,57.00,1001
+Skinny jean,Small,Gymboree,A Skinny jean by manufacturer Gymboree,34.00,57.00,1001
+Skinny jean,X-Large,Gymboree,A Skinny jean by manufacturer Gymboree,34.00,57.00,1001
+Romper,Kids,Prada,A Romper by manufacturer Prada,9.00,78.00,1004
+Romper,Large,Prada,A Romper by manufacturer Prada,9.00,78.00,1004
+Romper,Medium,Prada,A Romper by manufacturer Prada,9.00,78.00,1004
+Romper,Petite,Prada,A Romper by manufacturer Prada,9.00,78.00,1004
+Romper,Small,Prada,A Romper by manufacturer Prada,9.00,78.00,1004
+Romper,X-Large,Prada,A Romper by manufacturer Prada,9.00,78.00,1004
+Tuxedo,Kids,Puma,A Tuxedo by manufacturer Puma,56.00,61.00,1004
+Tuxedo,Large,Puma,A Tuxedo by manufacturer Puma,56.00,61.00,1004
+Tuxedo,Medium,Puma,A Tuxedo by manufacturer Puma,56.00,61.00,1004
+Tuxedo,Petite,Puma,A Tuxedo by manufacturer Puma,56.00,61.00,1004
+Tuxedo,Small,Puma,A Tuxedo by manufacturer Puma,56.00,61.00,1004
+Tuxedo,X-Large,Puma,A Tuxedo by manufacturer Puma,56.00,61.00,1004
+Hawaiian shirt,Kids,H & M,A Hawaiian shirt by manufacturer H & M,97.00,70.00,1005
+Hawaiian shirt,Large,H & M,A Hawaiian shirt by manufacturer H & M,97.00,70.00,1005
+Hawaiian shirt,Medium,H & M,A Hawaiian shirt by manufacturer H & M,97.00,70.00,1005
+Hawaiian shirt,Petite,H & M,A Hawaiian shirt by manufacturer H & M,97.00,70.00,1005
+Hawaiian shirt,Small,H & M,A Hawaiian shirt by manufacturer H & M,97.00,70.00,1005
+Hawaiian shirt,X-Large,H & M,A Hawaiian shirt by manufacturer H & M,97.00,70.00,1005
+Bucket hat,Kids,Nununu,A Bucket hat by manufacturer Nununu,27.00,86.00,1002
+Bucket hat,Large,Nununu,A Bucket hat by manufacturer Nununu,27.00,86.00,1002
+Bucket hat,Medium,Nununu,A Bucket hat by manufacturer Nununu,27.00,86.00,1002
+Bucket hat,Petite,Nununu,A Bucket hat by manufacturer Nununu,27.00,86.00,1002
+Bucket hat,Small,Nununu,A Bucket hat by manufacturer Nununu,27.00,86.00,1002
+Bucket hat,X-Large,Nununu,A Bucket hat by manufacturer Nununu,27.00,86.00,1002
+Tank top,Kids,Chanel,A Tank top by manufacturer Chanel,6.00,48.00,1004
+Tank top,Large,Chanel,A Tank top by manufacturer Chanel,6.00,48.00,1004
+Tank top,Medium,Chanel,A Tank top by manufacturer Chanel,6.00,48.00,1004
+Tank top,Petite,Chanel,A Tank top by manufacturer Chanel,6.00,48.00,1004
+Tank top,Small,Chanel,A Tank top by manufacturer Chanel,6.00,48.00,1004
+Tank top,X-Large,Chanel,A Tank top by manufacturer Chanel,6.00,48.00,1004
+Rain jacket,Kids,Guess,A Rain jacket by manufacturer Guess,62.00,3.00,1002
+Rain jacket,Large,Guess,A Rain jacket by manufacturer Guess,62.00,3.00,1002
+Rain jacket,Medium,Guess,A Rain jacket by manufacturer Guess,62.00,3.00,1002
+Rain jacket,Petite,Guess,A Rain jacket by manufacturer Guess,62.00,3.00,1002
+Rain jacket,Small,Guess,A Rain jacket by manufacturer Guess,62.00,3.00,1002
+Rain jacket,X-Large,Guess,A Rain jacket by manufacturer Guess,62.00,3.00,1002
+Beach sling,Kids,H & M,A Beach sling by manufacturer H & M,92.00,45.00,1002
+Beach sling,Large,H & M,A Beach sling by manufacturer H & M,92.00,45.00,1002
+Beach sling,Medium,H & M,A Beach sling by manufacturer H & M,92.00,45.00,1002
+Beach sling,Petite,H & M,A Beach sling by manufacturer H & M,92.00,45.00,1002
+Beach sling,Small,H & M,A Beach sling by manufacturer H & M,92.00,45.00,1002
+Beach sling,X-Large,H & M,A Beach sling by manufacturer H & M,92.00,45.00,1002
+Bathrobe,Kids,Gucci,A Bathrobe by manufacturer Gucci,70.00,62.00,1003
+Bathrobe,Large,Gucci,A Bathrobe by manufacturer Gucci,70.00,62.00,1003
+Bathrobe,Medium,Gucci,A Bathrobe by manufacturer Gucci,70.00,62.00,1003
+Bathrobe,Petite,Gucci,A Bathrobe by manufacturer Gucci,70.00,62.00,1003
+Bathrobe,Small,Gucci,A Bathrobe by manufacturer Gucci,70.00,62.00,1003
+Bathrobe,X-Large,Gucci,A Bathrobe by manufacturer Gucci,70.00,62.00,1003
+Wool hat,Kids,Nike,A Wool hat by manufacturer Nike,95.00,1.00,1002
+Wool hat,Large,Nike,A Wool hat by manufacturer Nike,95.00,1.00,1002
+Wool hat,Medium,Nike,A Wool hat by manufacturer Nike,95.00,1.00,1002
+Wool hat,Petite,Nike,A Wool hat by manufacturer Nike,95.00,1.00,1002
+Wool hat,Small,Nike,A Wool hat by manufacturer Nike,95.00,1.00,1002
+Wool hat,X-Large,Nike,A Wool hat by manufacturer Nike,95.00,1.00,1002
+Yoga skort,Kids,Gucci,A Yoga skort by manufacturer Gucci,92.00,99.00,1005
+Yoga skort,Large,Gucci,A Yoga skort by manufacturer Gucci,92.00,99.00,1005
+Yoga skort,Medium,Gucci,A Yoga skort by manufacturer Gucci,92.00,99.00,1005
+Yoga skort,Petite,Gucci,A Yoga skort by manufacturer Gucci,92.00,99.00,1005
+Yoga skort,Small,Gucci,A Yoga skort by manufacturer Gucci,92.00,99.00,1005
+Yoga skort,X-Large,Gucci,A Yoga skort by manufacturer Gucci,92.00,99.00,1005
+Bike short,Kids,Polo,A Bike short by manufacturer Polo,95.00,11.00,1002
+Bike short,Large,Polo,A Bike short by manufacturer Polo,95.00,11.00,1002
+Bike short,Medium,Polo,A Bike short by manufacturer Polo,95.00,11.00,1002
+Bike short,Petite,Polo,A Bike short by manufacturer Polo,95.00,11.00,1002
+Bike short,Small,Polo,A Bike short by manufacturer Polo,95.00,11.00,1002
+Bike short,X-Large,Polo,A Bike short by manufacturer Polo,95.00,11.00,1002
+Beach sling,Kids,Chanel,A Beach sling by manufacturer Chanel,25.00,32.00,1002
+Beach sling,Large,Chanel,A Beach sling by manufacturer Chanel,25.00,32.00,1002
+Beach sling,Medium,Chanel,A Beach sling by manufacturer Chanel,25.00,32.00,1002
+Beach sling,Petite,Chanel,A Beach sling by manufacturer Chanel,25.00,32.00,1002
+Beach sling,Small,Chanel,A Beach sling by manufacturer Chanel,25.00,32.00,1002
+Beach sling,X-Large,Chanel,A Beach sling by manufacturer Chanel,25.00,32.00,1002
+Denim cut-offs,Kids,Armani,A Denim cut-offs by manufacturer Armani,39.00,36.00,1003
+Denim cut-offs,Large,Armani,A Denim cut-offs by manufacturer Armani,39.00,36.00,1003
+Denim cut-offs,Medium,Armani,A Denim cut-offs by manufacturer Armani,39.00,36.00,1003
+Denim cut-offs,Petite,Armani,A Denim cut-offs by manufacturer Armani,39.00,36.00,1003
+Denim cut-offs,Small,Armani,A Denim cut-offs by manufacturer Armani,39.00,36.00,1003
+Denim cut-offs,X-Large,Armani,A Denim cut-offs by manufacturer Armani,39.00,36.00,1003
+Rain jacket,Kids,Converse,A Rain jacket by manufacturer Converse,79.00,35.00,1003
+Rain jacket,Large,Converse,A Rain jacket by manufacturer Converse,79.00,35.00,1003
+Rain jacket,Medium,Converse,A Rain jacket by manufacturer Converse,79.00,35.00,1003
+Rain jacket,Petite,Converse,A Rain jacket by manufacturer Converse,79.00,35.00,1003
+Rain jacket,Small,Converse,A Rain jacket by manufacturer Converse,79.00,35.00,1003
+Rain jacket,X-Large,Converse,A Rain jacket by manufacturer Converse,79.00,35.00,1003
+Skinny jean,Kids,ZARA,A Skinny jean by manufacturer ZARA,89.00,82.00,1005
+Skinny jean,Large,ZARA,A Skinny jean by manufacturer ZARA,89.00,82.00,1005
+Skinny jean,Medium,ZARA,A Skinny jean by manufacturer ZARA,89.00,82.00,1005
+Skinny jean,Petite,ZARA,A Skinny jean by manufacturer ZARA,89.00,82.00,1005
+Skinny jean,Small,ZARA,A Skinny jean by manufacturer ZARA,89.00,82.00,1005
+Skinny jean,X-Large,ZARA,A Skinny jean by manufacturer ZARA,89.00,82.00,1005
+V-neck t-shirt,Kids,Fred Perry,A V-neck t-shirt by manufacturer Fred Perry,65.00,83.00,1005
+V-neck t-shirt,Large,Fred Perry,A V-neck t-shirt by manufacturer Fred Perry,65.00,83.00,1005
+V-neck t-shirt,Medium,Fred Perry,A V-neck t-shirt by manufacturer Fred Perry,65.00,83.00,1005
+V-neck t-shirt,Petite,Fred Perry,A V-neck t-shirt by manufacturer Fred Perry,65.00,83.00,1005
+V-neck t-shirt,Small,Fred Perry,A V-neck t-shirt by manufacturer Fred Perry,65.00,83.00,1005
+V-neck t-shirt,X-Large,Fred Perry,A V-neck t-shirt by manufacturer Fred Perry,65.00,83.00,1005
+V-neck t-shirt,Kids,Diesel,A V-neck t-shirt by manufacturer Diesel,83.00,48.00,1004
+V-neck t-shirt,Large,Diesel,A V-neck t-shirt by manufacturer Diesel,83.00,48.00,1004
+V-neck t-shirt,Medium,Diesel,A V-neck t-shirt by manufacturer Diesel,83.00,48.00,1004
+V-neck t-shirt,Petite,Diesel,A V-neck t-shirt by manufacturer Diesel,83.00,48.00,1004
+V-neck t-shirt,Small,Diesel,A V-neck t-shirt by manufacturer Diesel,83.00,48.00,1004
+V-neck t-shirt,X-Large,Diesel,A V-neck t-shirt by manufacturer Diesel,83.00,48.00,1004
+Tank top,Kids,Acrylick,A Tank top by manufacturer Acrylick,75.00,52.00,1002
+Tank top,Large,Acrylick,A Tank top by manufacturer Acrylick,75.00,52.00,1002
+Tank top,Medium,Acrylick,A Tank top by manufacturer Acrylick,75.00,52.00,1002
+Tank top,Petite,Acrylick,A Tank top by manufacturer Acrylick,75.00,52.00,1002
+Tank top,Small,Acrylick,A Tank top by manufacturer Acrylick,75.00,52.00,1002
+Tank top,X-Large,Acrylick,A Tank top by manufacturer Acrylick,75.00,52.00,1002
+Overalls,Kids,Gap,A Overalls by manufacturer Gap,70.00,60.00,1001
+Overalls,Large,Gap,A Overalls by manufacturer Gap,70.00,60.00,1001
+Overalls,Medium,Gap,A Overalls by manufacturer Gap,70.00,60.00,1001
+Overalls,Petite,Gap,A Overalls by manufacturer Gap,70.00,60.00,1001
+Overalls,Small,Gap,A Overalls by manufacturer Gap,70.00,60.00,1001
+Overalls,X-Large,Gap,A Overalls by manufacturer Gap,70.00,60.00,1001
+Sweatshirt,Kids,ZARA,A Sweatshirt by manufacturer ZARA,16.00,15.00,1000
+Sweatshirt,Large,ZARA,A Sweatshirt by manufacturer ZARA,16.00,15.00,1000
+Sweatshirt,Medium,ZARA,A Sweatshirt by manufacturer ZARA,16.00,15.00,1000
+Sweatshirt,Petite,ZARA,A Sweatshirt by manufacturer ZARA,16.00,15.00,1000
+Sweatshirt,Small,ZARA,A Sweatshirt by manufacturer ZARA,16.00,15.00,1000
+Sweatshirt,X-Large,ZARA,A Sweatshirt by manufacturer ZARA,16.00,15.00,1000
+Wool hat,Kids,Carhartt,A Wool hat by manufacturer Carhartt,87.00,42.00,1004
+Wool hat,Large,Carhartt,A Wool hat by manufacturer Carhartt,87.00,42.00,1004
+Wool hat,Medium,Carhartt,A Wool hat by manufacturer Carhartt,87.00,42.00,1004
+Wool hat,Petite,Carhartt,A Wool hat by manufacturer Carhartt,87.00,42.00,1004
+Wool hat,Small,Carhartt,A Wool hat by manufacturer Carhartt,87.00,42.00,1004
+Wool hat,X-Large,Carhartt,A Wool hat by manufacturer Carhartt,87.00,42.00,1004
+Tank top,Kids,Gymboree,A Tank top by manufacturer Gymboree,79.00,27.00,1002
+Tank top,Large,Gymboree,A Tank top by manufacturer Gymboree,79.00,27.00,1002
+Tank top,Medium,Gymboree,A Tank top by manufacturer Gymboree,79.00,27.00,1002
+Tank top,Petite,Gymboree,A Tank top by manufacturer Gymboree,79.00,27.00,1002
+Tank top,Small,Gymboree,A Tank top by manufacturer Gymboree,79.00,27.00,1002
+Tank top,X-Large,Gymboree,A Tank top by manufacturer Gymboree,79.00,27.00,1002
+Tuxedo,Kids,Fred Perry,A Tuxedo by manufacturer Fred Perry,46.00,33.00,1003
+Tuxedo,Large,Fred Perry,A Tuxedo by manufacturer Fred Perry,46.00,33.00,1003
+Tuxedo,Medium,Fred Perry,A Tuxedo by manufacturer Fred Perry,46.00,33.00,1003
+Tuxedo,Petite,Fred Perry,A Tuxedo by manufacturer Fred Perry,46.00,33.00,1003
+Tuxedo,Small,Fred Perry,A Tuxedo by manufacturer Fred Perry,46.00,33.00,1003
+Tuxedo,X-Large,Fred Perry,A Tuxedo by manufacturer Fred Perry,46.00,33.00,1003
+Ballet skirt,Kids,Hugo Boss,A Ballet skirt by manufacturer Hugo Boss,14.00,11.00,1000
+Ballet skirt,Large,Hugo Boss,A Ballet skirt by manufacturer Hugo Boss,14.00,11.00,1000
+Ballet skirt,Medium,Hugo Boss,A Ballet skirt by manufacturer Hugo Boss,14.00,11.00,1000
+Ballet skirt,Petite,Hugo Boss,A Ballet skirt by manufacturer Hugo Boss,14.00,11.00,1000
+Ballet skirt,Small,Hugo Boss,A Ballet skirt by manufacturer Hugo Boss,14.00,11.00,1000
+Ballet skirt,X-Large,Hugo Boss,A Ballet skirt by manufacturer Hugo Boss,14.00,11.00,1000
+Bucket hat,Kids,Carhartt,A Bucket hat by manufacturer Carhartt,65.00,47.00,1000
+Bucket hat,Large,Carhartt,A Bucket hat by manufacturer Carhartt,65.00,47.00,1000
+Bucket hat,Medium,Carhartt,A Bucket hat by manufacturer Carhartt,65.00,47.00,1000
+Bucket hat,Petite,Carhartt,A Bucket hat by manufacturer Carhartt,65.00,47.00,1000
+Bucket hat,Small,Carhartt,A Bucket hat by manufacturer Carhartt,65.00,47.00,1000
+Bucket hat,X-Large,Carhartt,A Bucket hat by manufacturer Carhartt,65.00,47.00,1000
+Rain jacket,Kids,Carhartt,A Rain jacket by manufacturer Carhartt,28.00,55.00,1004
+Rain jacket,Large,Carhartt,A Rain jacket by manufacturer Carhartt,28.00,55.00,1004
+Rain jacket,Medium,Carhartt,A Rain jacket by manufacturer Carhartt,28.00,55.00,1004
+Rain jacket,Petite,Carhartt,A Rain jacket by manufacturer Carhartt,28.00,55.00,1004
+Rain jacket,Small,Carhartt,A Rain jacket by manufacturer Carhartt,28.00,55.00,1004
+Rain jacket,X-Large,Carhartt,A Rain jacket by manufacturer Carhartt,28.00,55.00,1004
+Beach sling,Kids,Prada,A Beach sling by manufacturer Prada,93.00,28.00,1000
+Beach sling,Large,Prada,A Beach sling by manufacturer Prada,93.00,28.00,1000
+Beach sling,Medium,Prada,A Beach sling by manufacturer Prada,93.00,28.00,1000
+Beach sling,Petite,Prada,A Beach sling by manufacturer Prada,93.00,28.00,1000
+Beach sling,Small,Prada,A Beach sling by manufacturer Prada,93.00,28.00,1000
+Beach sling,X-Large,Prada,A Beach sling by manufacturer Prada,93.00,28.00,1000
+Sweat pants,Kids,Converse,A Sweat pants by manufacturer Converse,98.00,71.00,1005
+Sweat pants,Large,Converse,A Sweat pants by manufacturer Converse,98.00,71.00,1005
+Sweat pants,Medium,Converse,A Sweat pants by manufacturer Converse,98.00,71.00,1005
+Sweat pants,Petite,Converse,A Sweat pants by manufacturer Converse,98.00,71.00,1005
+Sweat pants,Small,Converse,A Sweat pants by manufacturer Converse,98.00,71.00,1005
+Sweat pants,X-Large,Converse,A Sweat pants by manufacturer Converse,98.00,71.00,1005
+Denim cut-offs,Kids,J.Crew,A Denim cut-offs by manufacturer J.Crew,3.00,82.00,1004
+Denim cut-offs,Large,J.Crew,A Denim cut-offs by manufacturer J.Crew,3.00,82.00,1004
+Denim cut-offs,Medium,J.Crew,A Denim cut-offs by manufacturer J.Crew,3.00,82.00,1004
+Denim cut-offs,Petite,J.Crew,A Denim cut-offs by manufacturer J.Crew,3.00,82.00,1004
+Denim cut-offs,Small,J.Crew,A Denim cut-offs by manufacturer J.Crew,3.00,82.00,1004
+Denim cut-offs,X-Large,J.Crew,A Denim cut-offs by manufacturer J.Crew,3.00,82.00,1004
+Romper,Kids,Aeropostale,A Romper by manufacturer Aeropostale,19.00,85.00,1000
+Romper,Large,Aeropostale,A Romper by manufacturer Aeropostale,19.00,85.00,1000
+Romper,Medium,Aeropostale,A Romper by manufacturer Aeropostale,19.00,85.00,1000
+Romper,Petite,Aeropostale,A Romper by manufacturer Aeropostale,19.00,85.00,1000
+Romper,Small,Aeropostale,A Romper by manufacturer Aeropostale,19.00,85.00,1000
+Romper,X-Large,Aeropostale,A Romper by manufacturer Aeropostale,19.00,85.00,1000
+Bike short,Kids,Puma,A Bike short by manufacturer Puma,8.00,54.00,1000
+Bike short,Large,Puma,A Bike short by manufacturer Puma,8.00,54.00,1000
+Bike short,Medium,Puma,A Bike short by manufacturer Puma,8.00,54.00,1000
+Bike short,Petite,Puma,A Bike short by manufacturer Puma,8.00,54.00,1000
+Bike short,Small,Puma,A Bike short by manufacturer Puma,8.00,54.00,1000
+Bike short,X-Large,Puma,A Bike short by manufacturer Puma,8.00,54.00,1000
+Bike short,Kids,Puma,A Bike short by manufacturer Puma,51.00,9.00,1005
+Bike short,Large,Puma,A Bike short by manufacturer Puma,51.00,9.00,1005
+Bike short,Medium,Puma,A Bike short by manufacturer Puma,51.00,9.00,1005
+Bike short,Petite,Puma,A Bike short by manufacturer Puma,51.00,9.00,1005
+Bike short,Small,Puma,A Bike short by manufacturer Puma,51.00,9.00,1005
+Bike short,X-Large,Puma,A Bike short by manufacturer Puma,51.00,9.00,1005
+Backpack,Kids,Armani,A Backpack by manufacturer Armani,60.00,93.00,1000
+Backpack,Large,Armani,A Backpack by manufacturer Armani,60.00,93.00,1000
+Backpack,Medium,Armani,A Backpack by manufacturer Armani,60.00,93.00,1000
+Backpack,Petite,Armani,A Backpack by manufacturer Armani,60.00,93.00,1000
+Backpack,Small,Armani,A Backpack by manufacturer Armani,60.00,93.00,1000
+Backpack,X-Large,Armani,A Backpack by manufacturer Armani,60.00,93.00,1000
+Denim cut-offs,Kids,Gap,A Denim cut-offs by manufacturer Gap,41.00,96.00,1002
+Denim cut-offs,Large,Gap,A Denim cut-offs by manufacturer Gap,41.00,96.00,1002
+Denim cut-offs,Medium,Gap,A Denim cut-offs by manufacturer Gap,41.00,96.00,1002
+Denim cut-offs,Petite,Gap,A Denim cut-offs by manufacturer Gap,41.00,96.00,1002
+Denim cut-offs,Small,Gap,A Denim cut-offs by manufacturer Gap,41.00,96.00,1002
+Denim cut-offs,X-Large,Gap,A Denim cut-offs by manufacturer Gap,41.00,96.00,1002
+Denim cut-offs,Kids,Calvin Klein,A Denim cut-offs by manufacturer Calvin Klein,58.00,80.00,1003
+Denim cut-offs,Large,Calvin Klein,A Denim cut-offs by manufacturer Calvin Klein,58.00,80.00,1003
+Denim cut-offs,Medium,Calvin Klein,A Denim cut-offs by manufacturer Calvin Klein,58.00,80.00,1003
+Denim cut-offs,Petite,Calvin Klein,A Denim cut-offs by manufacturer Calvin Klein,58.00,80.00,1003
+Denim cut-offs,Small,Calvin Klein,A Denim cut-offs by manufacturer Calvin Klein,58.00,80.00,1003
+Denim cut-offs,X-Large,Calvin Klein,A Denim cut-offs by manufacturer Calvin Klein,58.00,80.00,1003
+Pajama pants,Kids,Fred Perry,A Pajama pants by manufacturer Fred Perry,32.00,25.00,1002
+Pajama pants,Large,Fred Perry,A Pajama pants by manufacturer Fred Perry,32.00,25.00,1002
+Pajama pants,Medium,Fred Perry,A Pajama pants by manufacturer Fred Perry,32.00,25.00,1002
+Pajama pants,Petite,Fred Perry,A Pajama pants by manufacturer Fred Perry,32.00,25.00,1002
+Pajama pants,Small,Fred Perry,A Pajama pants by manufacturer Fred Perry,32.00,25.00,1002
+Pajama pants,X-Large,Fred Perry,A Pajama pants by manufacturer Fred Perry,32.00,25.00,1002
+Denim cut-offs,Kids,J.Crew,A Denim cut-offs by manufacturer J.Crew,89.00,34.00,1000
+Denim cut-offs,Large,J.Crew,A Denim cut-offs by manufacturer J.Crew,89.00,34.00,1000
+Denim cut-offs,Medium,J.Crew,A Denim cut-offs by manufacturer J.Crew,89.00,34.00,1000
+Denim cut-offs,Petite,J.Crew,A Denim cut-offs by manufacturer J.Crew,89.00,34.00,1000
+Denim cut-offs,Small,J.Crew,A Denim cut-offs by manufacturer J.Crew,89.00,34.00,1000
+Denim cut-offs,X-Large,J.Crew,A Denim cut-offs by manufacturer J.Crew,89.00,34.00,1000
+Romper,Kids,Acrylick,A Romper by manufacturer Acrylick,20.00,23.00,1005
+Romper,Large,Acrylick,A Romper by manufacturer Acrylick,20.00,23.00,1005
+Romper,Medium,Acrylick,A Romper by manufacturer Acrylick,20.00,23.00,1005
+Romper,Petite,Acrylick,A Romper by manufacturer Acrylick,20.00,23.00,1005
+Romper,Small,Acrylick,A Romper by manufacturer Acrylick,20.00,23.00,1005
+Romper,X-Large,Acrylick,A Romper by manufacturer Acrylick,20.00,23.00,1005
+Sport briefs,Kids,CLSC,A Sport briefs by manufacturer CLSC,85.00,56.00,1001
+Sport briefs,Large,CLSC,A Sport briefs by manufacturer CLSC,85.00,56.00,1001
+Sport briefs,Medium,CLSC,A Sport briefs by manufacturer CLSC,85.00,56.00,1001
+Sport briefs,Petite,CLSC,A Sport briefs by manufacturer CLSC,85.00,56.00,1001
+Sport briefs,Small,CLSC,A Sport briefs by manufacturer CLSC,85.00,56.00,1001
+Sport briefs,X-Large,CLSC,A Sport briefs by manufacturer CLSC,85.00,56.00,1001
+Sport coat,Kids,Versace,A Sport coat by manufacturer Versace,41.00,4.00,1001
+Sport coat,Large,Versace,A Sport coat by manufacturer Versace,41.00,4.00,1001
+Sport coat,Medium,Versace,A Sport coat by manufacturer Versace,41.00,4.00,1001
+Sport coat,Petite,Versace,A Sport coat by manufacturer Versace,41.00,4.00,1001
+Sport coat,Small,Versace,A Sport coat by manufacturer Versace,41.00,4.00,1001
+Sport coat,X-Large,Versace,A Sport coat by manufacturer Versace,41.00,4.00,1001
+Swim trunk,Kids,Nike,A Swim trunk by manufacturer Nike,38.00,40.00,1002
+Swim trunk,Large,Nike,A Swim trunk by manufacturer Nike,38.00,40.00,1002
+Swim trunk,Medium,Nike,A Swim trunk by manufacturer Nike,38.00,40.00,1002
+Swim trunk,Petite,Nike,A Swim trunk by manufacturer Nike,38.00,40.00,1002
+Swim trunk,Small,Nike,A Swim trunk by manufacturer Nike,38.00,40.00,1002
+Swim trunk,X-Large,Nike,A Swim trunk by manufacturer Nike,38.00,40.00,1002
+Skinny jean,Kids,Carhartt,A Skinny jean by manufacturer Carhartt,83.00,51.00,1002
+Skinny jean,Large,Carhartt,A Skinny jean by manufacturer Carhartt,83.00,51.00,1002
+Skinny jean,Medium,Carhartt,A Skinny jean by manufacturer Carhartt,83.00,51.00,1002
+Skinny jean,Petite,Carhartt,A Skinny jean by manufacturer Carhartt,83.00,51.00,1002
+Skinny jean,Small,Carhartt,A Skinny jean by manufacturer Carhartt,83.00,51.00,1002
+Skinny jean,X-Large,Carhartt,A Skinny jean by manufacturer Carhartt,83.00,51.00,1002
+Bathing suit,Kids,Carhartt,A Bathing suit by manufacturer Carhartt,92.00,23.00,1002
+Bathing suit,Large,Carhartt,A Bathing suit by manufacturer Carhartt,92.00,23.00,1002
+Bathing suit,Medium,Carhartt,A Bathing suit by manufacturer Carhartt,92.00,23.00,1002
+Bathing suit,Petite,Carhartt,A Bathing suit by manufacturer Carhartt,92.00,23.00,1002
+Bathing suit,Small,Carhartt,A Bathing suit by manufacturer Carhartt,92.00,23.00,1002
+Bathing suit,X-Large,Carhartt,A Bathing suit by manufacturer Carhartt,92.00,23.00,1002
+Tank top,Kids,Gucci,A Tank top by manufacturer Gucci,8.00,76.00,1000
+Tank top,Large,Gucci,A Tank top by manufacturer Gucci,8.00,76.00,1000
+Tank top,Medium,Gucci,A Tank top by manufacturer Gucci,8.00,76.00,1000
+Tank top,Petite,Gucci,A Tank top by manufacturer Gucci,8.00,76.00,1000
+Tank top,Small,Gucci,A Tank top by manufacturer Gucci,8.00,76.00,1000
+Tank top,X-Large,Gucci,A Tank top by manufacturer Gucci,8.00,76.00,1000
+Tuxedo,Kids,Converse,A Tuxedo by manufacturer Converse,4.00,31.00,1005
+Tuxedo,Large,Converse,A Tuxedo by manufacturer Converse,4.00,31.00,1005
+Tuxedo,Medium,Converse,A Tuxedo by manufacturer Converse,4.00,31.00,1005
+Tuxedo,Petite,Converse,A Tuxedo by manufacturer Converse,4.00,31.00,1005
+Tuxedo,Small,Converse,A Tuxedo by manufacturer Converse,4.00,31.00,1005
+Tuxedo,X-Large,Converse,A Tuxedo by manufacturer Converse,4.00,31.00,1005
+Overalls,Kids,Nununu,A Overalls by manufacturer Nununu,67.00,3.00,1005
+Overalls,Large,Nununu,A Overalls by manufacturer Nununu,67.00,3.00,1005
+Overalls,Medium,Nununu,A Overalls by manufacturer Nununu,67.00,3.00,1005
+Overalls,Petite,Nununu,A Overalls by manufacturer Nununu,67.00,3.00,1005
+Overalls,Small,Nununu,A Overalls by manufacturer Nununu,67.00,3.00,1005
+Overalls,X-Large,Nununu,A Overalls by manufacturer Nununu,67.00,3.00,1005
+Pajama pants,Kids,Diesel,A Pajama pants by manufacturer Diesel,13.00,82.00,1000
+Pajama pants,Large,Diesel,A Pajama pants by manufacturer Diesel,13.00,82.00,1000
+Pajama pants,Medium,Diesel,A Pajama pants by manufacturer Diesel,13.00,82.00,1000
+Pajama pants,Petite,Diesel,A Pajama pants by manufacturer Diesel,13.00,82.00,1000
+Pajama pants,Small,Diesel,A Pajama pants by manufacturer Diesel,13.00,82.00,1000
+Pajama pants,X-Large,Diesel,A Pajama pants by manufacturer Diesel,13.00,82.00,1000
+Bathrobe,Kids,Hugo Boss,A Bathrobe by manufacturer Hugo Boss,91.00,94.00,1000
+Bathrobe,Large,Hugo Boss,A Bathrobe by manufacturer Hugo Boss,91.00,94.00,1000
+Bathrobe,Medium,Hugo Boss,A Bathrobe by manufacturer Hugo Boss,91.00,94.00,1000
+Bathrobe,Petite,Hugo Boss,A Bathrobe by manufacturer Hugo Boss,91.00,94.00,1000
+Bathrobe,Small,Hugo Boss,A Bathrobe by manufacturer Hugo Boss,91.00,94.00,1000
+Bathrobe,X-Large,Hugo Boss,A Bathrobe by manufacturer Hugo Boss,91.00,94.00,1000
+Tuxedo,Kids,Nununu,A Tuxedo by manufacturer Nununu,91.00,68.00,1000
+Tuxedo,Large,Nununu,A Tuxedo by manufacturer Nununu,91.00,68.00,1000
+Tuxedo,Medium,Nununu,A Tuxedo by manufacturer Nununu,91.00,68.00,1000
+Tuxedo,Petite,Nununu,A Tuxedo by manufacturer Nununu,91.00,68.00,1000
+Tuxedo,Small,Nununu,A Tuxedo by manufacturer Nununu,91.00,68.00,1000
+Tuxedo,X-Large,Nununu,A Tuxedo by manufacturer Nununu,91.00,68.00,1000
+Hawaiian shirt,Kids,CLSC,A Hawaiian shirt by manufacturer CLSC,76.00,42.00,1000
+Hawaiian shirt,Large,CLSC,A Hawaiian shirt by manufacturer CLSC,76.00,42.00,1000
+Hawaiian shirt,Medium,CLSC,A Hawaiian shirt by manufacturer CLSC,76.00,42.00,1000
+Hawaiian shirt,Petite,CLSC,A Hawaiian shirt by manufacturer CLSC,76.00,42.00,1000
+Hawaiian shirt,Small,CLSC,A Hawaiian shirt by manufacturer CLSC,76.00,42.00,1000
+Hawaiian shirt,X-Large,CLSC,A Hawaiian shirt by manufacturer CLSC,76.00,42.00,1000
+Backpack,Kids,Armani,A Backpack by manufacturer Armani,61.00,29.00,1004
+Backpack,Large,Armani,A Backpack by manufacturer Armani,61.00,29.00,1004
+Backpack,Medium,Armani,A Backpack by manufacturer Armani,61.00,29.00,1004
+Backpack,Petite,Armani,A Backpack by manufacturer Armani,61.00,29.00,1004
+Backpack,Small,Armani,A Backpack by manufacturer Armani,61.00,29.00,1004
+Backpack,X-Large,Armani,A Backpack by manufacturer Armani,61.00,29.00,1004
+Tuxedo,Kids,Guess,A Tuxedo by manufacturer Guess,7.00,74.00,1000
+Tuxedo,Large,Guess,A Tuxedo by manufacturer Guess,7.00,74.00,1000
+Tuxedo,Medium,Guess,A Tuxedo by manufacturer Guess,7.00,74.00,1000
+Tuxedo,Petite,Guess,A Tuxedo by manufacturer Guess,7.00,74.00,1000
+Tuxedo,Small,Guess,A Tuxedo by manufacturer Guess,7.00,74.00,1000
+Tuxedo,X-Large,Guess,A Tuxedo by manufacturer Guess,7.00,74.00,1000
+Sport coat,Kids,Fred Perry,A Sport coat by manufacturer Fred Perry,31.00,10.00,1002
+Sport coat,Large,Fred Perry,A Sport coat by manufacturer Fred Perry,31.00,10.00,1002
+Sport coat,Medium,Fred Perry,A Sport coat by manufacturer Fred Perry,31.00,10.00,1002
+Sport coat,Petite,Fred Perry,A Sport coat by manufacturer Fred Perry,31.00,10.00,1002
+Sport coat,Small,Fred Perry,A Sport coat by manufacturer Fred Perry,31.00,10.00,1002
+Sport coat,X-Large,Fred Perry,A Sport coat by manufacturer Fred Perry,31.00,10.00,1002
+Backpack,Kids,Diesel,A Backpack by manufacturer Diesel,73.00,51.00,1003
+Backpack,Large,Diesel,A Backpack by manufacturer Diesel,73.00,51.00,1003
+Backpack,Medium,Diesel,A Backpack by manufacturer Diesel,73.00,51.00,1003
+Backpack,Petite,Diesel,A Backpack by manufacturer Diesel,73.00,51.00,1003
+Backpack,Small,Diesel,A Backpack by manufacturer Diesel,73.00,51.00,1003
+Backpack,X-Large,Diesel,A Backpack by manufacturer Diesel,73.00,51.00,1003
+Denim cut-offs,Kids,Carhartt,A Denim cut-offs by manufacturer Carhartt,6.00,12.00,1001
+Denim cut-offs,Large,Carhartt,A Denim cut-offs by manufacturer Carhartt,6.00,12.00,1001
+Denim cut-offs,Medium,Carhartt,A Denim cut-offs by manufacturer Carhartt,6.00,12.00,1001
+Denim cut-offs,Petite,Carhartt,A Denim cut-offs by manufacturer Carhartt,6.00,12.00,1001
+Denim cut-offs,Small,Carhartt,A Denim cut-offs by manufacturer Carhartt,6.00,12.00,1001
+Denim cut-offs,X-Large,Carhartt,A Denim cut-offs by manufacturer Carhartt,6.00,12.00,1001
+Suspenders,Kids,Prada,A Suspenders by manufacturer Prada,16.00,55.00,1005
+Suspenders,Large,Prada,A Suspenders by manufacturer Prada,16.00,55.00,1005
+Suspenders,Medium,Prada,A Suspenders by manufacturer Prada,16.00,55.00,1005
+Suspenders,Petite,Prada,A Suspenders by manufacturer Prada,16.00,55.00,1005
+Suspenders,Small,Prada,A Suspenders by manufacturer Prada,16.00,55.00,1005
+Suspenders,X-Large,Prada,A Suspenders by manufacturer Prada,16.00,55.00,1005
+Backpack,Kids,J.Crew,A Backpack by manufacturer J.Crew,29.00,12.00,1002
+Backpack,Large,J.Crew,A Backpack by manufacturer J.Crew,29.00,12.00,1002
+Backpack,Medium,J.Crew,A Backpack by manufacturer J.Crew,29.00,12.00,1002
+Backpack,Petite,J.Crew,A Backpack by manufacturer J.Crew,29.00,12.00,1002
+Backpack,Small,J.Crew,A Backpack by manufacturer J.Crew,29.00,12.00,1002
+Backpack,X-Large,J.Crew,A Backpack by manufacturer J.Crew,29.00,12.00,1002
+Sport briefs,Kids,Lacoste,A Sport briefs by manufacturer Lacoste,29.00,60.00,1004
+Sport briefs,Large,Lacoste,A Sport briefs by manufacturer Lacoste,29.00,60.00,1004
+Sport briefs,Medium,Lacoste,A Sport briefs by manufacturer Lacoste,29.00,60.00,1004
+Sport briefs,Petite,Lacoste,A Sport briefs by manufacturer Lacoste,29.00,60.00,1004
+Sport briefs,Small,Lacoste,A Sport briefs by manufacturer Lacoste,29.00,60.00,1004
+Sport briefs,X-Large,Lacoste,A Sport briefs by manufacturer Lacoste,29.00,60.00,1004
+Sport coat,Kids,Nike,A Sport coat by manufacturer Nike,92.00,20.00,1001
+Sport coat,Large,Nike,A Sport coat by manufacturer Nike,92.00,20.00,1001
+Sport coat,Medium,Nike,A Sport coat by manufacturer Nike,92.00,20.00,1001
+Sport coat,Petite,Nike,A Sport coat by manufacturer Nike,92.00,20.00,1001
+Sport coat,Small,Nike,A Sport coat by manufacturer Nike,92.00,20.00,1001
+Sport coat,X-Large,Nike,A Sport coat by manufacturer Nike,92.00,20.00,1001
+Rain jacket,Kids,Armani,A Rain jacket by manufacturer Armani,66.00,99.00,1005
+Rain jacket,Large,Armani,A Rain jacket by manufacturer Armani,66.00,99.00,1005
+Rain jacket,Medium,Armani,A Rain jacket by manufacturer Armani,66.00,99.00,1005
+Rain jacket,Petite,Armani,A Rain jacket by manufacturer Armani,66.00,99.00,1005
+Rain jacket,Small,Armani,A Rain jacket by manufacturer Armani,66.00,99.00,1005
+Rain jacket,X-Large,Armani,A Rain jacket by manufacturer Armani,66.00,99.00,1005
+Sweat pants,Kids,Polo,A Sweat pants by manufacturer Polo,50.00,84.00,1000
+Sweat pants,Large,Polo,A Sweat pants by manufacturer Polo,50.00,84.00,1000
+Sweat pants,Medium,Polo,A Sweat pants by manufacturer Polo,50.00,84.00,1000
+Sweat pants,Petite,Polo,A Sweat pants by manufacturer Polo,50.00,84.00,1000
+Sweat pants,Small,Polo,A Sweat pants by manufacturer Polo,50.00,84.00,1000
+Sweat pants,X-Large,Polo,A Sweat pants by manufacturer Polo,50.00,84.00,1000
+Wool hat,Kids,Acrylick,A Wool hat by manufacturer Acrylick,37.00,69.00,1000
+Wool hat,Large,Acrylick,A Wool hat by manufacturer Acrylick,37.00,69.00,1000
+Wool hat,Medium,Acrylick,A Wool hat by manufacturer Acrylick,37.00,69.00,1000
+Wool hat,Petite,Acrylick,A Wool hat by manufacturer Acrylick,37.00,69.00,1000
+Wool hat,Small,Acrylick,A Wool hat by manufacturer Acrylick,37.00,69.00,1000
+Wool hat,X-Large,Acrylick,A Wool hat by manufacturer Acrylick,37.00,69.00,1000
+Short sleeve polo,Kids,Diesel,A Short sleeve polo by manufacturer Diesel,70.00,46.00,1002
+Short sleeve polo,Large,Diesel,A Short sleeve polo by manufacturer Diesel,70.00,46.00,1002
+Short sleeve polo,Medium,Diesel,A Short sleeve polo by manufacturer Diesel,70.00,46.00,1002
+Short sleeve polo,Petite,Diesel,A Short sleeve polo by manufacturer Diesel,70.00,46.00,1002
+Short sleeve polo,Small,Diesel,A Short sleeve polo by manufacturer Diesel,70.00,46.00,1002
+Short sleeve polo,X-Large,Diesel,A Short sleeve polo by manufacturer Diesel,70.00,46.00,1002
+Jeans,Kids,Nununu,A Jeans by manufacturer Nununu,44.00,24.00,1001
+Jeans,Large,Nununu,A Jeans by manufacturer Nununu,44.00,24.00,1001
+Jeans,Medium,Nununu,A Jeans by manufacturer Nununu,44.00,24.00,1001
+Jeans,Petite,Nununu,A Jeans by manufacturer Nununu,44.00,24.00,1001
+Jeans,Small,Nununu,A Jeans by manufacturer Nununu,44.00,24.00,1001
+Jeans,X-Large,Nununu,A Jeans by manufacturer Nununu,44.00,24.00,1001
+Romper,Kids,Gap,A Romper by manufacturer Gap,33.00,97.00,1003
+Romper,Large,Gap,A Romper by manufacturer Gap,33.00,97.00,1003
+Romper,Medium,Gap,A Romper by manufacturer Gap,33.00,97.00,1003
+Romper,Petite,Gap,A Romper by manufacturer Gap,33.00,97.00,1003
+Romper,Small,Gap,A Romper by manufacturer Gap,33.00,97.00,1003
+Romper,X-Large,Gap,A Romper by manufacturer Gap,33.00,97.00,1003
+Beach sling,Kids,Izod,A Beach sling by manufacturer Izod,96.00,18.00,1001
+Beach sling,Large,Izod,A Beach sling by manufacturer Izod,96.00,18.00,1001
+Beach sling,Medium,Izod,A Beach sling by manufacturer Izod,96.00,18.00,1001
+Beach sling,Petite,Izod,A Beach sling by manufacturer Izod,96.00,18.00,1001
+Beach sling,Small,Izod,A Beach sling by manufacturer Izod,96.00,18.00,1001
+Beach sling,X-Large,Izod,A Beach sling by manufacturer Izod,96.00,18.00,1001
+Beach sling,Kids,Lacoste,A Beach sling by manufacturer Lacoste,99.00,69.00,1003
+Beach sling,Large,Lacoste,A Beach sling by manufacturer Lacoste,99.00,69.00,1003
+Beach sling,Medium,Lacoste,A Beach sling by manufacturer Lacoste,99.00,69.00,1003
+Beach sling,Petite,Lacoste,A Beach sling by manufacturer Lacoste,99.00,69.00,1003
+Beach sling,Small,Lacoste,A Beach sling by manufacturer Lacoste,99.00,69.00,1003
+Beach sling,X-Large,Lacoste,A Beach sling by manufacturer Lacoste,99.00,69.00,1003
+Sport coat,Kids,Prada,A Sport coat by manufacturer Prada,66.00,96.00,1003
+Sport coat,Large,Prada,A Sport coat by manufacturer Prada,66.00,96.00,1003
+Sport coat,Medium,Prada,A Sport coat by manufacturer Prada,66.00,96.00,1003
+Sport coat,Petite,Prada,A Sport coat by manufacturer Prada,66.00,96.00,1003
+Sport coat,Small,Prada,A Sport coat by manufacturer Prada,66.00,96.00,1003
+Sport coat,X-Large,Prada,A Sport coat by manufacturer Prada,66.00,96.00,1003
+Suspenders,Kids,Gymboree,A Suspenders by manufacturer Gymboree,30.00,41.00,1003
+Suspenders,Large,Gymboree,A Suspenders by manufacturer Gymboree,30.00,41.00,1003
+Suspenders,Medium,Gymboree,A Suspenders by manufacturer Gymboree,30.00,41.00,1003
+Suspenders,Petite,Gymboree,A Suspenders by manufacturer Gymboree,30.00,41.00,1003
+Suspenders,Small,Gymboree,A Suspenders by manufacturer Gymboree,30.00,41.00,1003
+Suspenders,X-Large,Gymboree,A Suspenders by manufacturer Gymboree,30.00,41.00,1003
+Romper,Kids,Puma,A Romper by manufacturer Puma,96.00,2.00,1000
+Romper,Large,Puma,A Romper by manufacturer Puma,96.00,2.00,1000
+Romper,Medium,Puma,A Romper by manufacturer Puma,96.00,2.00,1000
+Romper,Petite,Puma,A Romper by manufacturer Puma,96.00,2.00,1000
+Romper,Small,Puma,A Romper by manufacturer Puma,96.00,2.00,1000
+Romper,X-Large,Puma,A Romper by manufacturer Puma,96.00,2.00,1000
+Overalls,Kids,Versace,A Overalls by manufacturer Versace,70.00,26.00,1003
+Overalls,Large,Versace,A Overalls by manufacturer Versace,70.00,26.00,1003
+Overalls,Medium,Versace,A Overalls by manufacturer Versace,70.00,26.00,1003
+Overalls,Petite,Versace,A Overalls by manufacturer Versace,70.00,26.00,1003
+Overalls,Small,Versace,A Overalls by manufacturer Versace,70.00,26.00,1003
+Overalls,X-Large,Versace,A Overalls by manufacturer Versace,70.00,26.00,1003
+Tuxedo,Kids,Converse,A Tuxedo by manufacturer Converse,44.00,71.00,1003
+Tuxedo,Large,Converse,A Tuxedo by manufacturer Converse,44.00,71.00,1003
+Tuxedo,Medium,Converse,A Tuxedo by manufacturer Converse,44.00,71.00,1003
+Tuxedo,Petite,Converse,A Tuxedo by manufacturer Converse,44.00,71.00,1003
+Tuxedo,Small,Converse,A Tuxedo by manufacturer Converse,44.00,71.00,1003
+Tuxedo,X-Large,Converse,A Tuxedo by manufacturer Converse,44.00,71.00,1003
+V-neck t-shirt,Kids,Gucci,A V-neck t-shirt by manufacturer Gucci,53.00,13.00,1000
+V-neck t-shirt,Large,Gucci,A V-neck t-shirt by manufacturer Gucci,53.00,13.00,1000
+V-neck t-shirt,Medium,Gucci,A V-neck t-shirt by manufacturer Gucci,53.00,13.00,1000
+V-neck t-shirt,Petite,Gucci,A V-neck t-shirt by manufacturer Gucci,53.00,13.00,1000
+V-neck t-shirt,Small,Gucci,A V-neck t-shirt by manufacturer Gucci,53.00,13.00,1000
+V-neck t-shirt,X-Large,Gucci,A V-neck t-shirt by manufacturer Gucci,53.00,13.00,1000
+Bike short,Kids,Bellerose,A Bike short by manufacturer Bellerose,55.00,81.00,1003
+Bike short,Large,Bellerose,A Bike short by manufacturer Bellerose,55.00,81.00,1003
+Bike short,Medium,Bellerose,A Bike short by manufacturer Bellerose,55.00,81.00,1003
+Bike short,Petite,Bellerose,A Bike short by manufacturer Bellerose,55.00,81.00,1003
+Bike short,Small,Bellerose,A Bike short by manufacturer Bellerose,55.00,81.00,1003
+Bike short,X-Large,Bellerose,A Bike short by manufacturer Bellerose,55.00,81.00,1003
+Flannel shirt,Kids,Prada,A Flannel shirt by manufacturer Prada,21.00,2.00,1005
+Flannel shirt,Large,Prada,A Flannel shirt by manufacturer Prada,21.00,2.00,1005
+Flannel shirt,Medium,Prada,A Flannel shirt by manufacturer Prada,21.00,2.00,1005
+Flannel shirt,Petite,Prada,A Flannel shirt by manufacturer Prada,21.00,2.00,1005
+Flannel shirt,Small,Prada,A Flannel shirt by manufacturer Prada,21.00,2.00,1005
+Flannel shirt,X-Large,Prada,A Flannel shirt by manufacturer Prada,21.00,2.00,1005
+Flannel shirt,Kids,Gap,A Flannel shirt by manufacturer Gap,59.00,34.00,1000
+Flannel shirt,Large,Gap,A Flannel shirt by manufacturer Gap,59.00,34.00,1000
+Flannel shirt,Medium,Gap,A Flannel shirt by manufacturer Gap,59.00,34.00,1000
+Flannel shirt,Petite,Gap,A Flannel shirt by manufacturer Gap,59.00,34.00,1000
+Flannel shirt,Small,Gap,A Flannel shirt by manufacturer Gap,59.00,34.00,1000
+Flannel shirt,X-Large,Gap,A Flannel shirt by manufacturer Gap,59.00,34.00,1000
+Skinny jean,Kids,Fred Perry,A Skinny jean by manufacturer Fred Perry,59.00,17.00,1000
+Skinny jean,Large,Fred Perry,A Skinny jean by manufacturer Fred Perry,59.00,17.00,1000
+Skinny jean,Medium,Fred Perry,A Skinny jean by manufacturer Fred Perry,59.00,17.00,1000
+Skinny jean,Petite,Fred Perry,A Skinny jean by manufacturer Fred Perry,59.00,17.00,1000
+Skinny jean,Small,Fred Perry,A Skinny jean by manufacturer Fred Perry,59.00,17.00,1000
+Skinny jean,X-Large,Fred Perry,A Skinny jean by manufacturer Fred Perry,59.00,17.00,1000
+Onesy,Kids,Nununu,A Onesy by manufacturer Nununu,40.00,11.00,1000
+Onesy,Large,Nununu,A Onesy by manufacturer Nununu,40.00,11.00,1000
+Onesy,Medium,Nununu,A Onesy by manufacturer Nununu,40.00,11.00,1000
+Onesy,Petite,Nununu,A Onesy by manufacturer Nununu,40.00,11.00,1000
+Onesy,Small,Nununu,A Onesy by manufacturer Nununu,40.00,11.00,1000
+Onesy,X-Large,Nununu,A Onesy by manufacturer Nununu,40.00,11.00,1000
+Tuxedo,Kids,Bellerose,A Tuxedo by manufacturer Bellerose,72.00,43.00,1000
+Tuxedo,Large,Bellerose,A Tuxedo by manufacturer Bellerose,72.00,43.00,1000
+Tuxedo,Medium,Bellerose,A Tuxedo by manufacturer Bellerose,72.00,43.00,1000
+Tuxedo,Petite,Bellerose,A Tuxedo by manufacturer Bellerose,72.00,43.00,1000
+Tuxedo,Small,Bellerose,A Tuxedo by manufacturer Bellerose,72.00,43.00,1000
+Tuxedo,X-Large,Bellerose,A Tuxedo by manufacturer Bellerose,72.00,43.00,1000
+Bathing suit,Kids,Puma,A Bathing suit by manufacturer Puma,70.00,77.00,1004
+Bathing suit,Large,Puma,A Bathing suit by manufacturer Puma,70.00,77.00,1004
+Bathing suit,Medium,Puma,A Bathing suit by manufacturer Puma,70.00,77.00,1004
+Bathing suit,Petite,Puma,A Bathing suit by manufacturer Puma,70.00,77.00,1004
+Bathing suit,Small,Puma,A Bathing suit by manufacturer Puma,70.00,77.00,1004
+Bathing suit,X-Large,Puma,A Bathing suit by manufacturer Puma,70.00,77.00,1004
+Vest top,Kids,ZARA,A Vest top by manufacturer ZARA,55.00,42.00,1000
+Vest top,Large,ZARA,A Vest top by manufacturer ZARA,55.00,42.00,1000
+Vest top,Medium,ZARA,A Vest top by manufacturer ZARA,55.00,42.00,1000
+Vest top,Petite,ZARA,A Vest top by manufacturer ZARA,55.00,42.00,1000
+Vest top,Small,ZARA,A Vest top by manufacturer ZARA,55.00,42.00,1000
+Vest top,X-Large,ZARA,A Vest top by manufacturer ZARA,55.00,42.00,1000
+Romper,Kids,Gap,A Romper by manufacturer Gap,26.00,82.00,1001
+Romper,Large,Gap,A Romper by manufacturer Gap,26.00,82.00,1001
+Romper,Medium,Gap,A Romper by manufacturer Gap,26.00,82.00,1001
+Romper,Petite,Gap,A Romper by manufacturer Gap,26.00,82.00,1001
+Romper,Small,Gap,A Romper by manufacturer Gap,26.00,82.00,1001
+Romper,X-Large,Gap,A Romper by manufacturer Gap,26.00,82.00,1001
+Vest top,Kids,Polo,A Vest top by manufacturer Polo,81.00,81.00,1002
+Vest top,Large,Polo,A Vest top by manufacturer Polo,81.00,81.00,1002
+Vest top,Medium,Polo,A Vest top by manufacturer Polo,81.00,81.00,1002
+Vest top,Petite,Polo,A Vest top by manufacturer Polo,81.00,81.00,1002
+Vest top,Small,Polo,A Vest top by manufacturer Polo,81.00,81.00,1002
+Vest top,X-Large,Polo,A Vest top by manufacturer Polo,81.00,81.00,1002
+Jeans,Kids,Gymboree,A Jeans by manufacturer Gymboree,45.00,66.00,1003
+Jeans,Large,Gymboree,A Jeans by manufacturer Gymboree,45.00,66.00,1003
+Jeans,Medium,Gymboree,A Jeans by manufacturer Gymboree,45.00,66.00,1003
+Jeans,Petite,Gymboree,A Jeans by manufacturer Gymboree,45.00,66.00,1003
+Jeans,Small,Gymboree,A Jeans by manufacturer Gymboree,45.00,66.00,1003
+Jeans,X-Large,Gymboree,A Jeans by manufacturer Gymboree,45.00,66.00,1003
+Bathrobe,Kids,Nununu,A Bathrobe by manufacturer Nununu,26.00,65.00,1001
+Bathrobe,Large,Nununu,A Bathrobe by manufacturer Nununu,26.00,65.00,1001
+Bathrobe,Medium,Nununu,A Bathrobe by manufacturer Nununu,26.00,65.00,1001
+Bathrobe,Petite,Nununu,A Bathrobe by manufacturer Nununu,26.00,65.00,1001
+Bathrobe,Small,Nununu,A Bathrobe by manufacturer Nununu,26.00,65.00,1001
+Bathrobe,X-Large,Nununu,A Bathrobe by manufacturer Nununu,26.00,65.00,1001
+Cargo short,Kids,Izod,A Cargo short by manufacturer Izod,65.00,75.00,1004
+Cargo short,Large,Izod,A Cargo short by manufacturer Izod,65.00,75.00,1004
+Cargo short,Medium,Izod,A Cargo short by manufacturer Izod,65.00,75.00,1004
+Cargo short,Petite,Izod,A Cargo short by manufacturer Izod,65.00,75.00,1004
+Cargo short,Small,Izod,A Cargo short by manufacturer Izod,65.00,75.00,1004
+Cargo short,X-Large,Izod,A Cargo short by manufacturer Izod,65.00,75.00,1004
+Vest top,Kids,Adidas,A Vest top by manufacturer Adidas,14.00,94.00,1000
+Vest top,Large,Adidas,A Vest top by manufacturer Adidas,14.00,94.00,1000
+Vest top,Medium,Adidas,A Vest top by manufacturer Adidas,14.00,94.00,1000
+Vest top,Petite,Adidas,A Vest top by manufacturer Adidas,14.00,94.00,1000
+Vest top,Small,Adidas,A Vest top by manufacturer Adidas,14.00,94.00,1000
+Vest top,X-Large,Adidas,A Vest top by manufacturer Adidas,14.00,94.00,1000
+Cargo short,Kids,CLSC,A Cargo short by manufacturer CLSC,7.00,56.00,1004
+Cargo short,Large,CLSC,A Cargo short by manufacturer CLSC,7.00,56.00,1004
+Cargo short,Medium,CLSC,A Cargo short by manufacturer CLSC,7.00,56.00,1004
+Cargo short,Petite,CLSC,A Cargo short by manufacturer CLSC,7.00,56.00,1004
+Cargo short,Small,CLSC,A Cargo short by manufacturer CLSC,7.00,56.00,1004
+Cargo short,X-Large,CLSC,A Cargo short by manufacturer CLSC,7.00,56.00,1004
+Dress pants,Kids,CLSC,A Dress pants by manufacturer CLSC,79.00,60.00,1001
+Dress pants,Large,CLSC,A Dress pants by manufacturer CLSC,79.00,60.00,1001
+Dress pants,Medium,CLSC,A Dress pants by manufacturer CLSC,79.00,60.00,1001
+Dress pants,Petite,CLSC,A Dress pants by manufacturer CLSC,79.00,60.00,1001
+Dress pants,Small,CLSC,A Dress pants by manufacturer CLSC,79.00,60.00,1001
+Dress pants,X-Large,CLSC,A Dress pants by manufacturer CLSC,79.00,60.00,1001
+Overalls,Kids,Diesel,A Overalls by manufacturer Diesel,75.00,40.00,1002
+Overalls,Large,Diesel,A Overalls by manufacturer Diesel,75.00,40.00,1002
+Overalls,Medium,Diesel,A Overalls by manufacturer Diesel,75.00,40.00,1002
+Overalls,Petite,Diesel,A Overalls by manufacturer Diesel,75.00,40.00,1002
+Overalls,Small,Diesel,A Overalls by manufacturer Diesel,75.00,40.00,1002
+Overalls,X-Large,Diesel,A Overalls by manufacturer Diesel,75.00,40.00,1002
+Flannel shirt,Kids,Chanel,A Flannel shirt by manufacturer Chanel,51.00,79.00,1001
+Flannel shirt,Large,Chanel,A Flannel shirt by manufacturer Chanel,51.00,79.00,1001
+Flannel shirt,Medium,Chanel,A Flannel shirt by manufacturer Chanel,51.00,79.00,1001
+Flannel shirt,Petite,Chanel,A Flannel shirt by manufacturer Chanel,51.00,79.00,1001
+Flannel shirt,Small,Chanel,A Flannel shirt by manufacturer Chanel,51.00,79.00,1001
+Flannel shirt,X-Large,Chanel,A Flannel shirt by manufacturer Chanel,51.00,79.00,1001
+Sweatshirt,Kids,TinyCottons,A Sweatshirt by manufacturer TinyCottons,73.00,29.00,1005
+Sweatshirt,Large,TinyCottons,A Sweatshirt by manufacturer TinyCottons,73.00,29.00,1005
+Sweatshirt,Medium,TinyCottons,A Sweatshirt by manufacturer TinyCottons,73.00,29.00,1005
+Sweatshirt,Petite,TinyCottons,A Sweatshirt by manufacturer TinyCottons,73.00,29.00,1005
+Sweatshirt,Small,TinyCottons,A Sweatshirt by manufacturer TinyCottons,73.00,29.00,1005
+Sweatshirt,X-Large,TinyCottons,A Sweatshirt by manufacturer TinyCottons,73.00,29.00,1005
+Tank top,Kids,Fred Perry,A Tank top by manufacturer Fred Perry,54.00,99.00,1000
+Tank top,Large,Fred Perry,A Tank top by manufacturer Fred Perry,54.00,99.00,1000
+Tank top,Medium,Fred Perry,A Tank top by manufacturer Fred Perry,54.00,99.00,1000
+Tank top,Petite,Fred Perry,A Tank top by manufacturer Fred Perry,54.00,99.00,1000
+Tank top,Small,Fred Perry,A Tank top by manufacturer Fred Perry,54.00,99.00,1000
+Tank top,X-Large,Fred Perry,A Tank top by manufacturer Fred Perry,54.00,99.00,1000
+Rain jacket,Kids,Izod,A Rain jacket by manufacturer Izod,83.00,58.00,1000
+Rain jacket,Large,Izod,A Rain jacket by manufacturer Izod,83.00,58.00,1000
+Rain jacket,Medium,Izod,A Rain jacket by manufacturer Izod,83.00,58.00,1000
+Rain jacket,Petite,Izod,A Rain jacket by manufacturer Izod,83.00,58.00,1000
+Rain jacket,Small,Izod,A Rain jacket by manufacturer Izod,83.00,58.00,1000
+Rain jacket,X-Large,Izod,A Rain jacket by manufacturer Izod,83.00,58.00,1000
+Rain jacket,Kids,Diesel,A Rain jacket by manufacturer Diesel,84.00,38.00,1004
+Rain jacket,Large,Diesel,A Rain jacket by manufacturer Diesel,84.00,38.00,1004
+Rain jacket,Medium,Diesel,A Rain jacket by manufacturer Diesel,84.00,38.00,1004
+Rain jacket,Petite,Diesel,A Rain jacket by manufacturer Diesel,84.00,38.00,1004
+Rain jacket,Small,Diesel,A Rain jacket by manufacturer Diesel,84.00,38.00,1004
+Rain jacket,X-Large,Diesel,A Rain jacket by manufacturer Diesel,84.00,38.00,1004
+Wool hat,Kids,Polo,A Wool hat by manufacturer Polo,2.00,24.00,1002
+Wool hat,Large,Polo,A Wool hat by manufacturer Polo,2.00,24.00,1002
+Wool hat,Medium,Polo,A Wool hat by manufacturer Polo,2.00,24.00,1002
+Wool hat,Petite,Polo,A Wool hat by manufacturer Polo,2.00,24.00,1002
+Wool hat,Small,Polo,A Wool hat by manufacturer Polo,2.00,24.00,1002
+Wool hat,X-Large,Polo,A Wool hat by manufacturer Polo,2.00,24.00,1002
+Bike short,Kids,Chanel,A Bike short by manufacturer Chanel,12.00,61.00,1005
+Bike short,Large,Chanel,A Bike short by manufacturer Chanel,12.00,61.00,1005
+Bike short,Medium,Chanel,A Bike short by manufacturer Chanel,12.00,61.00,1005
+Bike short,Petite,Chanel,A Bike short by manufacturer Chanel,12.00,61.00,1005
+Bike short,Small,Chanel,A Bike short by manufacturer Chanel,12.00,61.00,1005
+Bike short,X-Large,Chanel,A Bike short by manufacturer Chanel,12.00,61.00,1005
+Sport briefs,Kids,Aeropostale,A Sport briefs by manufacturer Aeropostale,94.00,32.00,1003
+Sport briefs,Large,Aeropostale,A Sport briefs by manufacturer Aeropostale,94.00,32.00,1003
+Sport briefs,Medium,Aeropostale,A Sport briefs by manufacturer Aeropostale,94.00,32.00,1003
+Sport briefs,Petite,Aeropostale,A Sport briefs by manufacturer Aeropostale,94.00,32.00,1003
+Sport briefs,Small,Aeropostale,A Sport briefs by manufacturer Aeropostale,94.00,32.00,1003
+Sport briefs,X-Large,Aeropostale,A Sport briefs by manufacturer Aeropostale,94.00,32.00,1003
+Bathrobe,Kids,Dior,A Bathrobe by manufacturer Dior,18.00,1.00,1001
+Bathrobe,Large,Dior,A Bathrobe by manufacturer Dior,18.00,1.00,1001
+Bathrobe,Medium,Dior,A Bathrobe by manufacturer Dior,18.00,1.00,1001
+Bathrobe,Petite,Dior,A Bathrobe by manufacturer Dior,18.00,1.00,1001
+Bathrobe,Small,Dior,A Bathrobe by manufacturer Dior,18.00,1.00,1001
+Bathrobe,X-Large,Dior,A Bathrobe by manufacturer Dior,18.00,1.00,1001
+Yoga skort,Kids,Nike,A Yoga skort by manufacturer Nike,30.00,84.00,1004
+Yoga skort,Large,Nike,A Yoga skort by manufacturer Nike,30.00,84.00,1004
+Yoga skort,Medium,Nike,A Yoga skort by manufacturer Nike,30.00,84.00,1004
+Yoga skort,Petite,Nike,A Yoga skort by manufacturer Nike,30.00,84.00,1004
+Yoga skort,Small,Nike,A Yoga skort by manufacturer Nike,30.00,84.00,1004
+Yoga skort,X-Large,Nike,A Yoga skort by manufacturer Nike,30.00,84.00,1004
+Cargo short,Kids,Chanel,A Cargo short by manufacturer Chanel,98.00,5.00,1002
+Cargo short,Large,Chanel,A Cargo short by manufacturer Chanel,98.00,5.00,1002
+Cargo short,Medium,Chanel,A Cargo short by manufacturer Chanel,98.00,5.00,1002
+Cargo short,Petite,Chanel,A Cargo short by manufacturer Chanel,98.00,5.00,1002
+Cargo short,Small,Chanel,A Cargo short by manufacturer Chanel,98.00,5.00,1002
+Cargo short,X-Large,Chanel,A Cargo short by manufacturer Chanel,98.00,5.00,1002
+Skinny jean,Kids,Diesel,A Skinny jean by manufacturer Diesel,76.00,81.00,1003
+Skinny jean,Large,Diesel,A Skinny jean by manufacturer Diesel,76.00,81.00,1003
+Skinny jean,Medium,Diesel,A Skinny jean by manufacturer Diesel,76.00,81.00,1003
+Skinny jean,Petite,Diesel,A Skinny jean by manufacturer Diesel,76.00,81.00,1003
+Skinny jean,Small,Diesel,A Skinny jean by manufacturer Diesel,76.00,81.00,1003
+Skinny jean,X-Large,Diesel,A Skinny jean by manufacturer Diesel,76.00,81.00,1003
+Ballet skirt,Kids,Aeropostale,A Ballet skirt by manufacturer Aeropostale,30.00,30.00,1004
+Ballet skirt,Large,Aeropostale,A Ballet skirt by manufacturer Aeropostale,30.00,30.00,1004
+Ballet skirt,Medium,Aeropostale,A Ballet skirt by manufacturer Aeropostale,30.00,30.00,1004
+Ballet skirt,Petite,Aeropostale,A Ballet skirt by manufacturer Aeropostale,30.00,30.00,1004
+Ballet skirt,Small,Aeropostale,A Ballet skirt by manufacturer Aeropostale,30.00,30.00,1004
+Ballet skirt,X-Large,Aeropostale,A Ballet skirt by manufacturer Aeropostale,30.00,30.00,1004
+Jeans,Kids,ZARA,A Jeans by manufacturer ZARA,21.00,87.00,1000
+Jeans,Large,ZARA,A Jeans by manufacturer ZARA,21.00,87.00,1000
+Jeans,Medium,ZARA,A Jeans by manufacturer ZARA,21.00,87.00,1000
+Jeans,Petite,ZARA,A Jeans by manufacturer ZARA,21.00,87.00,1000
+Jeans,Small,ZARA,A Jeans by manufacturer ZARA,21.00,87.00,1000
+Jeans,X-Large,ZARA,A Jeans by manufacturer ZARA,21.00,87.00,1000
+Tank top,Kids,J.Crew,A Tank top by manufacturer J.Crew,56.00,86.00,1004
+Tank top,Large,J.Crew,A Tank top by manufacturer J.Crew,56.00,86.00,1004
+Tank top,Medium,J.Crew,A Tank top by manufacturer J.Crew,56.00,86.00,1004
+Tank top,Petite,J.Crew,A Tank top by manufacturer J.Crew,56.00,86.00,1004
+Tank top,Small,J.Crew,A Tank top by manufacturer J.Crew,56.00,86.00,1004
+Tank top,X-Large,J.Crew,A Tank top by manufacturer J.Crew,56.00,86.00,1004
+Vest top,Kids,Carhartt,A Vest top by manufacturer Carhartt,54.00,91.00,1001
+Vest top,Large,Carhartt,A Vest top by manufacturer Carhartt,54.00,91.00,1001
+Vest top,Medium,Carhartt,A Vest top by manufacturer Carhartt,54.00,91.00,1001
+Vest top,Petite,Carhartt,A Vest top by manufacturer Carhartt,54.00,91.00,1001
+Vest top,Small,Carhartt,A Vest top by manufacturer Carhartt,54.00,91.00,1001
+Vest top,X-Large,Carhartt,A Vest top by manufacturer Carhartt,54.00,91.00,1001
+Bathrobe,Kids,J.Crew,A Bathrobe by manufacturer J.Crew,4.00,35.00,1004
+Bathrobe,Large,J.Crew,A Bathrobe by manufacturer J.Crew,4.00,35.00,1004
+Bathrobe,Medium,J.Crew,A Bathrobe by manufacturer J.Crew,4.00,35.00,1004
+Bathrobe,Petite,J.Crew,A Bathrobe by manufacturer J.Crew,4.00,35.00,1004
+Bathrobe,Small,J.Crew,A Bathrobe by manufacturer J.Crew,4.00,35.00,1004
+Bathrobe,X-Large,J.Crew,A Bathrobe by manufacturer J.Crew,4.00,35.00,1004
+Pajama pants,Kids,J.Crew,A Pajama pants by manufacturer J.Crew,7.00,43.00,1003
+Pajama pants,Large,J.Crew,A Pajama pants by manufacturer J.Crew,7.00,43.00,1003
+Pajama pants,Medium,J.Crew,A Pajama pants by manufacturer J.Crew,7.00,43.00,1003
+Pajama pants,Petite,J.Crew,A Pajama pants by manufacturer J.Crew,7.00,43.00,1003
+Pajama pants,Small,J.Crew,A Pajama pants by manufacturer J.Crew,7.00,43.00,1003
+Pajama pants,X-Large,J.Crew,A Pajama pants by manufacturer J.Crew,7.00,43.00,1003
+Ballet skirt,Kids,Prada,A Ballet skirt by manufacturer Prada,12.00,85.00,1005
+Ballet skirt,Large,Prada,A Ballet skirt by manufacturer Prada,12.00,85.00,1005
+Ballet skirt,Medium,Prada,A Ballet skirt by manufacturer Prada,12.00,85.00,1005
+Ballet skirt,Petite,Prada,A Ballet skirt by manufacturer Prada,12.00,85.00,1005
+Ballet skirt,Small,Prada,A Ballet skirt by manufacturer Prada,12.00,85.00,1005
+Ballet skirt,X-Large,Prada,A Ballet skirt by manufacturer Prada,12.00,85.00,1005
+Bathrobe,Kids,TinyCottons,A Bathrobe by manufacturer TinyCottons,17.00,43.00,1000
+Bathrobe,Large,TinyCottons,A Bathrobe by manufacturer TinyCottons,17.00,43.00,1000
+Bathrobe,Medium,TinyCottons,A Bathrobe by manufacturer TinyCottons,17.00,43.00,1000
+Bathrobe,Petite,TinyCottons,A Bathrobe by manufacturer TinyCottons,17.00,43.00,1000
+Bathrobe,Small,TinyCottons,A Bathrobe by manufacturer TinyCottons,17.00,43.00,1000
+Bathrobe,X-Large,TinyCottons,A Bathrobe by manufacturer TinyCottons,17.00,43.00,1000
+Onesy,Kids,Levis,A Onesy by manufacturer Levis,43.00,53.00,1004
+Onesy,Large,Levis,A Onesy by manufacturer Levis,43.00,53.00,1004
+Onesy,Medium,Levis,A Onesy by manufacturer Levis,43.00,53.00,1004
+Onesy,Petite,Levis,A Onesy by manufacturer Levis,43.00,53.00,1004
+Onesy,Small,Levis,A Onesy by manufacturer Levis,43.00,53.00,1004
+Onesy,X-Large,Levis,A Onesy by manufacturer Levis,43.00,53.00,1004
+Dress pants,Kids,Fred Perry,A Dress pants by manufacturer Fred Perry,64.00,37.00,1005
+Dress pants,Large,Fred Perry,A Dress pants by manufacturer Fred Perry,64.00,37.00,1005
+Dress pants,Medium,Fred Perry,A Dress pants by manufacturer Fred Perry,64.00,37.00,1005
+Dress pants,Petite,Fred Perry,A Dress pants by manufacturer Fred Perry,64.00,37.00,1005
+Dress pants,Small,Fred Perry,A Dress pants by manufacturer Fred Perry,64.00,37.00,1005
+Dress pants,X-Large,Fred Perry,A Dress pants by manufacturer Fred Perry,64.00,37.00,1005
+Vest top,Kids,Aeropostale,A Vest top by manufacturer Aeropostale,72.00,10.00,1005
+Vest top,Large,Aeropostale,A Vest top by manufacturer Aeropostale,72.00,10.00,1005
+Vest top,Medium,Aeropostale,A Vest top by manufacturer Aeropostale,72.00,10.00,1005
+Vest top,Petite,Aeropostale,A Vest top by manufacturer Aeropostale,72.00,10.00,1005
+Vest top,Small,Aeropostale,A Vest top by manufacturer Aeropostale,72.00,10.00,1005
+Vest top,X-Large,Aeropostale,A Vest top by manufacturer Aeropostale,72.00,10.00,1005
+Bathing suit,Kids,Gucci,A Bathing suit by manufacturer Gucci,71.00,68.00,1001
+Bathing suit,Large,Gucci,A Bathing suit by manufacturer Gucci,71.00,68.00,1001
+Bathing suit,Medium,Gucci,A Bathing suit by manufacturer Gucci,71.00,68.00,1001
+Bathing suit,Petite,Gucci,A Bathing suit by manufacturer Gucci,71.00,68.00,1001
+Bathing suit,Small,Gucci,A Bathing suit by manufacturer Gucci,71.00,68.00,1001
+Bathing suit,X-Large,Gucci,A Bathing suit by manufacturer Gucci,71.00,68.00,1001
+Dress socks,Kids,Izod,A Dress socks by manufacturer Izod,93.00,89.00,1005
+Dress socks,Large,Izod,A Dress socks by manufacturer Izod,93.00,89.00,1005
+Dress socks,Medium,Izod,A Dress socks by manufacturer Izod,93.00,89.00,1005
+Dress socks,Petite,Izod,A Dress socks by manufacturer Izod,93.00,89.00,1005
+Dress socks,Small,Izod,A Dress socks by manufacturer Izod,93.00,89.00,1005
+Dress socks,X-Large,Izod,A Dress socks by manufacturer Izod,93.00,89.00,1005
+Beach sling,Kids,Acrylick,A Beach sling by manufacturer Acrylick,30.00,6.00,1005
+Beach sling,Large,Acrylick,A Beach sling by manufacturer Acrylick,30.00,6.00,1005
+Beach sling,Medium,Acrylick,A Beach sling by manufacturer Acrylick,30.00,6.00,1005
+Beach sling,Petite,Acrylick,A Beach sling by manufacturer Acrylick,30.00,6.00,1005
+Beach sling,Small,Acrylick,A Beach sling by manufacturer Acrylick,30.00,6.00,1005
+Beach sling,X-Large,Acrylick,A Beach sling by manufacturer Acrylick,30.00,6.00,1005
+Beach sling,Kids,Nununu,A Beach sling by manufacturer Nununu,79.00,6.00,1003
+Beach sling,Large,Nununu,A Beach sling by manufacturer Nununu,79.00,6.00,1003
+Beach sling,Medium,Nununu,A Beach sling by manufacturer Nununu,79.00,6.00,1003
+Beach sling,Petite,Nununu,A Beach sling by manufacturer Nununu,79.00,6.00,1003
+Beach sling,Small,Nununu,A Beach sling by manufacturer Nununu,79.00,6.00,1003
+Beach sling,X-Large,Nununu,A Beach sling by manufacturer Nununu,79.00,6.00,1003
+Yoga skort,Kids,Armani,A Yoga skort by manufacturer Armani,51.00,35.00,1004
+Yoga skort,Large,Armani,A Yoga skort by manufacturer Armani,51.00,35.00,1004
+Yoga skort,Medium,Armani,A Yoga skort by manufacturer Armani,51.00,35.00,1004
+Yoga skort,Petite,Armani,A Yoga skort by manufacturer Armani,51.00,35.00,1004
+Yoga skort,Small,Armani,A Yoga skort by manufacturer Armani,51.00,35.00,1004
+Yoga skort,X-Large,Armani,A Yoga skort by manufacturer Armani,51.00,35.00,1004
+Yoga skort,Kids,Adidas,A Yoga skort by manufacturer Adidas,19.00,54.00,1000
+Yoga skort,Large,Adidas,A Yoga skort by manufacturer Adidas,19.00,54.00,1000
+Yoga skort,Medium,Adidas,A Yoga skort by manufacturer Adidas,19.00,54.00,1000
+Yoga skort,Petite,Adidas,A Yoga skort by manufacturer Adidas,19.00,54.00,1000
+Yoga skort,Small,Adidas,A Yoga skort by manufacturer Adidas,19.00,54.00,1000
+Yoga skort,X-Large,Adidas,A Yoga skort by manufacturer Adidas,19.00,54.00,1000
+Rain jacket,Kids,Izod,A Rain jacket by manufacturer Izod,91.00,59.00,1001
+Rain jacket,Large,Izod,A Rain jacket by manufacturer Izod,91.00,59.00,1001
+Rain jacket,Medium,Izod,A Rain jacket by manufacturer Izod,91.00,59.00,1001
+Rain jacket,Petite,Izod,A Rain jacket by manufacturer Izod,91.00,59.00,1001
+Rain jacket,Small,Izod,A Rain jacket by manufacturer Izod,91.00,59.00,1001
+Rain jacket,X-Large,Izod,A Rain jacket by manufacturer Izod,91.00,59.00,1001
+Sport briefs,Kids,Nununu,A Sport briefs by manufacturer Nununu,9.00,58.00,1001
+Sport briefs,Large,Nununu,A Sport briefs by manufacturer Nununu,9.00,58.00,1001
+Sport briefs,Medium,Nununu,A Sport briefs by manufacturer Nununu,9.00,58.00,1001
+Sport briefs,Petite,Nununu,A Sport briefs by manufacturer Nununu,9.00,58.00,1001
+Sport briefs,Small,Nununu,A Sport briefs by manufacturer Nununu,9.00,58.00,1001
+Sport briefs,X-Large,Nununu,A Sport briefs by manufacturer Nununu,9.00,58.00,1001
+Bike short,Kids,Hugo Boss,A Bike short by manufacturer Hugo Boss,33.00,3.00,1005
+Bike short,Large,Hugo Boss,A Bike short by manufacturer Hugo Boss,33.00,3.00,1005
+Bike short,Medium,Hugo Boss,A Bike short by manufacturer Hugo Boss,33.00,3.00,1005
+Bike short,Petite,Hugo Boss,A Bike short by manufacturer Hugo Boss,33.00,3.00,1005
+Bike short,Small,Hugo Boss,A Bike short by manufacturer Hugo Boss,33.00,3.00,1005
+Bike short,X-Large,Hugo Boss,A Bike short by manufacturer Hugo Boss,33.00,3.00,1005
+Dress socks,Kids,Izod,A Dress socks by manufacturer Izod,66.00,75.00,1003
+Dress socks,Large,Izod,A Dress socks by manufacturer Izod,66.00,75.00,1003
+Dress socks,Medium,Izod,A Dress socks by manufacturer Izod,66.00,75.00,1003
+Dress socks,Petite,Izod,A Dress socks by manufacturer Izod,66.00,75.00,1003
+Dress socks,Small,Izod,A Dress socks by manufacturer Izod,66.00,75.00,1003
+Dress socks,X-Large,Izod,A Dress socks by manufacturer Izod,66.00,75.00,1003
+Beach sling,Kids,Bellerose,A Beach sling by manufacturer Bellerose,43.00,55.00,1005
+Beach sling,Large,Bellerose,A Beach sling by manufacturer Bellerose,43.00,55.00,1005
+Beach sling,Medium,Bellerose,A Beach sling by manufacturer Bellerose,43.00,55.00,1005
+Beach sling,Petite,Bellerose,A Beach sling by manufacturer Bellerose,43.00,55.00,1005
+Beach sling,Small,Bellerose,A Beach sling by manufacturer Bellerose,43.00,55.00,1005
+Beach sling,X-Large,Bellerose,A Beach sling by manufacturer Bellerose,43.00,55.00,1005

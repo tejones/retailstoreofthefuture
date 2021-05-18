@@ -21,3 +21,23 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+*.ipynb_checkpoints
+*__pycache__
+**/.git/
+**/.idea/
+**/.vscode/
+*.iws
+
+
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+*.so
+
+**/.venv*
+**/venv/
+
+*.priv.*
+*.priv

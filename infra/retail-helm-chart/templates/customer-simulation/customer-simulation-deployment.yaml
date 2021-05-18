@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "customerSimulation.labels" . | nindent 4 }}
+  name: {{ include "customerSimulation.name" . }}
+  
+spec:
+  replicas: {{ .Values.customerSimulationService.replicas }}
+  selector:
+    matchLabels:
+    {{- include "customerSimulation.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+      {{- include "customerSimulation.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccount: {{ include "customerSimulation.serviceAccountName" . }}
+      containers:
+      - name: customer-simulation-service
+        image: {{ .Values.customerSimulationService.image }}
+        env:
+        - name: LOG_LEVEL
+          value: {{  .Values.customerSimulationService.storeHeight | default "info" | quote }}
+        {{- if .Values.customerSimulationService.storeHeight }}
+        - name: STORE_HEIGHT
+          value: {{  .Values.customerSimulationService.storeHeight | quote }}
+        {{- end }}
+        {{- if .Values.customerSimulationService.storeWidth }}
+        - name: STORE_HEIGHT
+          value: {{  .Values.customerSimulationService.storeWidth | quote }}
+        {{- end }}
+        {{- if .Values.customerSimulationService.customersAverageInStore }}
+        - name: CUSTOMERS_AVERAGE_IN_STORE
+          value: {{  .Values.customerSimulationService.customersAverageInStore | quote }}
+        {{- end }}
+        {{- if .Values.customerSimulationService.customersListFile }}
+        - name: CUSTOMERS_LIST_FILE
+          value: {{  .Values.customerSimulationService.customersListFile | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.brokerServer }}
+        - name: MQTT_HOST
+          value: {{  .Values.globalInfra.mqtt.brokerServer | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.brokerPort }}
+        - name: MQTT_PORT
+          value: {{  .Values.globalInfra.mqtt.brokerPort | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.enterTopic }}
+        - name: ENTER_TOPIC
+          value: {{  .Values.globalInfra.mqtt.enterTopic | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.moveTopic }}
+        - name: MOVE_TOPIC
+          value: {{  .Values.globalInfra.mqtt.moveTopic | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.exitTopic }}
+        - name: EXIT_TOPIC
+          value: {{  .Values.globalInfra.mqtt.exitTopic | quote }}
+        {{- end }}
+         {{- if .Values.globalInfra.mqtt.sslEnabled }}
+        - name: MQTT_BROKER_CERT_FILE
+          value: /certs/broker_ca.crt
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.authenticationEnabled }}
+        envFrom:
+        - secretRef:
+            name: mqtt-auth-creds
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.sslEnabled }}
+        volumeMounts:
+        - name: broker-cert
+          readOnly: true
+          mountPath: /certs
+        {{- end }}
+        ports:
+        - containerPort: 80
+        redinessProbe:
+          tcpSocket:
+            port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+      {{- if .Values.globalInfra.mqtt.sslEnabled }}
+      volumes:
+      - name: broker-cert
+        secret:
+          secretName: mqtt-broker-ca
+          defaultMode: 0400
+      {{- end }}
+

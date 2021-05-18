@@ -1,0 +1,303 @@
+[
+    {
+        "department": "Women",
+        "coupons": [
+            {
+                "id": 14,
+                "type": "buy_more",
+                "department": "Women",
+                "discount": 25,
+                "how_many": 3,
+                "start_date": "05/05/2021",
+                "end_date": "05/29/2021",
+                "products": [
+                    {
+                        "id": 12,
+                        "name": "NGESNEALAND - Deep taupe Denim cut-offs for Women",
+                        "category": "Denim cut-offs",
+                        "sizes": "S-XL",
+                        "vendor": "TinyCotto",
+                        "description": "NGESNEALAND - Deep taupe Denim cut-offs for Women by TinyCottons. Available sizes S-XL",
+                        "buy_price": 7.12,
+                        "department": "Women"
+                    }
+                ]
+            },
+            {
+                "id": 15,
+                "type": "buy_all",
+                "department": "Women",
+                "discount": 30,
+                "how_many": 3,
+                "start_date": "05/03/2021",
+                "end_date": "05/26/2021",
+                "products": [
+                    {
+                        "id": 107,
+                        "name": "BUTIN - Charcoal Bathrobe for Women",
+                        "category": "Bathrobe",
+                        "sizes": "32-48",
+                        "vendor": "ZARA",
+                        "description": "BUTIN - Charcoal Bathrobe for Women by ZARA. Available sizes 32-48",
+                        "buy_price": 9.56,
+                        "department": "Women"
+                    },
+                    {
+                        "id": 140,
+                        "name": "LEAN - Field drab Sweatshirt for Women",
+                        "category": "Sweatshirt",
+                        "sizes": "32-48",
+                        "vendor": "Versace",
+                        "description": "LEAN - Field drab Sweatshirt for Women by Versace. Available sizes 32-48",
+                        "buy_price": 8.75,
+                        "department": "Women"
+                    },
+                    {
+                        "id": 158,
+                        "name": "ONWANG - English lavender Dress socks for Women",
+                        "category": "Dress socks",
+                        "sizes": "one-size",
+                        "vendor": "Polo",
+                        "description": "ONWANG - English lavender Dress socks for Women by Polo. Available sizes one-size",
+                        "buy_price": 5.59,
+                        "department": "Women"
+                    }
+                ]
+            },
+            {
+                "id": 97,
+                "type": "just_discount",
+                "department": "Women",
+                "discount": 55,
+                "how_many": 1,
+                "start_date": "05/09/2021",
+                "end_date": "05/19/2021",
+                "products": [
+                    {
+                        "id": 1883,
+                        "name": "TIOVERINHINE - Dark green Pajama pants for Women",
+                        "category": "Pajama pants",
+                        "sizes": "XS-XXL",
+                        "vendor": "Chanel",
+                        "description": "TIOVERINHINE - Dark green Pajama pants for Women by Chanel. Available sizes XS-XXL",
+                        "buy_price": 99.99,
+                        "department": "Women"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "department": "Men",
+        "coupons": [
+            {
+                "id": 641,
+                "type": "department",
+                "department": "Men",
+                "discount": 20,
+                "how_many": -1,
+                "start_date": "05/10/2021",
+                "end_date": "05/30/2021",
+                "products": []
+            },
+            {
+                "id": 835,
+                "type": "just_discount",
+                "department": "Men",
+                "discount": 30,
+                "how_many": 1,
+                "start_date": "05/09/2021",
+                "end_date": "05/19/2021",
+                "products": [
+                    {
+                        "id": 2660,
+                        "name": "STIT - Dodger blue Hawaiian shirt for Men",
+                        "category": "Hawaiian shirt",
+                        "sizes": "28-48",
+                        "vendor": "H & M",
+                        "description": "STIT - Dodger blue Hawaiian shirt for Men by H & M. Available sizes 28-48",
+                        "buy_price": 15.36,
+                        "department": "Men"
+                    }
+                ]
+            },
+            {
+                "id": 835,
+                "type": "just_discount",
+                "department": "Men",
+                "discount": 30,
+                "how_many": 1,
+                "start_date": "05/09/2021",
+                "end_date": "05/19/2021",
+                "products": [
+                    {
+                        "id": 2765,
+                        "name": "ERAINANDIN - CG red Cotton oxford for Men",
+                        "category": "Cotton oxford",
+                        "sizes": "32-48",
+                        "vendor": "Levis",
+                        "description": "ERAINANDIN - CG red Cotton oxford for Men by Levis. Available sizes 32-48",
+                        "buy_price": 12.79,
+                        "department": "Men"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "department": "Girls",
+        "coupons": [
+            {
+                "id": 827,
+                "type": "just_discount",
+                "department": "Girls",
+                "discount": 8,
+                "how_many": 1,
+                "start_date": "05/09/2021",
+                "end_date": "05/16/2021",
+                "products": [
+                    {
+                        "id": 2872,
+                        "name": "ORRERE - Cerulean blue Vest top for Girls",
+                        "category": "Vest top",
+                        "sizes": "one-size",
+                        "vendor": "Hugo Boss",
+                        "description": "ORRERE - Cerulean blue Vest top for Girls by Hugo Boss. Available sizes one-size",
+                        "buy_price": 12.11,
+                        "department": "Girls"
+                    }
+                ]
+            },
+            {
+                "id": 828,
+                "type": "just_discount",
+                "department": "Girls",
+                "discount": 9,
+                "how_many": 1,
+                "start_date": "05/09/2021",
+                "end_date": "05/16/2021",
+                "products": [
+                    {
+                        "id": 2896,
+                        "name": "OURITVER - Cornsilk Suspenders for Girls",
+                        "category": "Suspenders",
+                        "sizes": "XS-XXL",
+                        "vendor": "Gucci",
+                        "description": "OURITVER - Cornsilk Suspenders for Girls by Gucci. Available sizes XS-XXL",
+                        "buy_price": 19.99,
+                        "department": "Girls"
+                    }
+                ]
+            },
+            {
+                "id": 910,
+                "type": "buy_more",
+                "department": "Girls",
+                "discount": 44,
+                "how_many": 3,
+                "start_date": "05/09/2021",
+                "end_date": "05/19/2021",
+                "products": [
+                    {
+                        "id": 2765,
+                        "name": "NOTITHOUL - Cerulean (Crayola) Beach sling for Girls",
+                        "category": "Beach sling",
+                        "sizes": "XS-XXL",
+                        "vendor": "Versace",
+                        "description": "NOTITHOUL - Cerulean (Crayola) Beach sling for Girls by Versace. Available sizes XS-XXL",
+                        "buy_price": 29.99,
+                        "department": "Girls"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "department": "Boys",
+        "coupons": [
+            {
+                "id": 823,
+                "type": "buy_more",
+                "department": "Boys",
+                "discount": 46,
+                "how_many": 4,
+                "start_date": "05/09/2021",
+                "end_date": "05/16/2021",
+                "products": [
+                    {
+                        "id": 2595,
+                        "name": "TIOTHIITHES - French bistre Wool hat for Boys",
+                        "category": "Wool hat",
+                        "sizes": "S-XL",
+                        "vendor": "Prada",
+                        "description": "TIOTHIITHES - French bistre Wool hat for Boys by Prada. Available sizes S-XL",
+                        "buy_price": 5.29,
+                        "department": "Boys"
+                    }
+                ]
+            },
+            {
+                "id": 782,
+                "type": "buy_all",
+                "department": "Boys",
+                "discount": 39,
+                "how_many": 3,
+                "start_date": "05/09/2021",
+                "end_date": "05/16/2021",
+                "products": [
+                    {
+                        "id": 2486,
+                        "name": "ATTEES - Copper penny Short sleeve Henley for Boys",
+                        "category": "Short sleeve Henley",
+                        "sizes": "32-48",
+                        "vendor": "Chanel",
+                        "description": "ATTEES - Copper penny Short sleeve Henley for Boys by Chanel. Available sizes 32-48",
+                        "buy_price": 11.36,
+                        "department": "Boys"
+                    },
+                    {
+                        "id": 2497,
+                        "name": "ANSETH - Carrot orange Tuxedo for Boys",
+                        "category": "Tuxedo",
+                        "sizes": "28-38",
+                        "vendor": "Dior",
+                        "description": "ANSETH - Carrot orange Tuxedo for Boys by Dior. Available sizes 28-38",
+                        "buy_price": 19.99,
+                        "department": "Boys"
+                    },
+                    {
+                        "id": 2502,
+                        "name": "STYOU - Bright lilac Romper for Boys",
+                        "category": "Romper",
+                        "sizes": "S-XL",
+                        "vendor": "Versace",
+                        "description": "STYOU - Bright lilac Romper for Boys by Versace. Available sizes S-XL",
+                        "buy_price": 19.99,
+                        "department": "Boys"
+                    }
+                ]
+            },
+            {
+                "id": 797,
+                "type": "buy_more",
+                "department": "Boys",
+                "discount": 17,
+                "how_many": 2,
+                "start_date": "05/09/2021",
+                "end_date": "05/19/2021",
+                "products": [
+                    {
+                        "id": 2435,
+                        "name": "NDHEND - Blue yonder Jeans for Boys",
+                        "category": "Jeans",
+                        "sizes": "one-size",
+                        "vendor": "Nike",
+                        "description": "NDHEND - Blue yonder Jeans for Boys by Nike. Available sizes one-size",
+                        "buy_price": 29.99,
+                        "department": "Boys"
+                    }
+                ]
+            }
+        ]
+    }
+]

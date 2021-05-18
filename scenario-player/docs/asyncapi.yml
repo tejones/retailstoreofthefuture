@@ -1,0 +1,61 @@
+asyncapi: 2.0.0
+info:
+  title: Customer movement simulator
+  version: 0.1.0
+  description: This service is responsible for simulating customer movement around retail store.
+servers:
+  development:
+    url: localhost
+    protocol: mqtt
+    description: Development mosquitto broker
+channels:
+  customer/enter:
+    publish:
+      message:
+        $ref: '#/components/messages/CustomerEnter'
+  customer/exit:
+    publish:
+      message:
+        $ref: '#/components/messages/CustomerEnter'
+  customer/move:
+    publish:
+      message:
+        $ref: '#/components/messages/CustomerMove'
+components:
+  messages:
+    CustomerEnter:
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+            description: ID of the customer
+          ts:
+            type: integer
+            description: Timestamp (unix time)
+    CustomerExit:
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+            description: ID of the customer
+          ts:
+            type: integer
+            description: Timestamp (unix time)
+    CustomerMove:
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+            description: ID of the customer
+          ts:
+            type: integer
+            description: Timestamp (unix time)
+          x:
+            type: integer
+            description: coordinate x
+          y:
+            type: integer
+            description: coordinate y

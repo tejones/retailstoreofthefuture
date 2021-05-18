@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "postgres.serviceName" . }}
+  labels:
+    {{- include "postgres.labels" . | nindent 4 }}
+spec:
+  type: {{  .Values.postgres.serviceType | default "ClusterIP "}}
+  ports:
+  - port: {{ include "postgres.servicePort" . }}
+    name: postgres-port
+  selector:
+    {{- include "postgres.selectorLabels" . | nindent 4 }}

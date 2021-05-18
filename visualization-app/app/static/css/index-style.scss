@@ -1,0 +1,131 @@
+$phone-width: 70%;
+
+body, html {
+    background: rgb(238,238,238);
+    background: linear-gradient(95deg, rgba(238,238,238,1) 0%, rgba(255,255,255,1) 73%, rgba(198,245,255,1) 75%, rgba(235,251,255,1) 100%);
+    height: 100vh;
+}
+
+#left, #right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    h1 {
+        font-size: 1.2em;
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+#left {
+    width: 75%;
+    // background-color: rgba(68, 0, 255, 0.082);
+
+    #browser {
+        width: 90%;
+        border: 2px solid #88888888;
+        background-color: #EEEEEE;
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 20px;
+        height: 88vh;
+        box-shadow: 10px 10px 15px #88888834;
+        display: flex;
+        align-items: stretch;
+    
+        iframe {
+            margin-top: 30px;
+            width: 100%;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-top: 1px solid #88888888;
+        }
+
+        #bar {
+            position: absolute;
+            padding-left: 5px;
+            padding-top: 6px;
+        }
+
+        .dot {
+            margin-left: 5px;
+            height: 17px;
+            width: 17px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            border-width: 2px;
+            border-style: solid;
+            border-color: rgb(104, 104, 104);
+
+            &.red {
+                background-color: #e2645e;
+                border-color: #cc433c;
+            }
+
+            &.yellow {
+                background-color: #fcc245;
+                border-color: #e6a732;
+            }
+
+            &.green {
+                background-color: #2fc042;
+                border-color: #148824;
+            }
+        }
+    }
+}
+
+#right {
+    right: 0;
+    width: 25%;
+
+    #phone {
+        border-top: 40px;
+        border-right: 3px;
+        border-bottom: 40px;
+        border-left: 3px;
+        border-style: solid;
+        border-radius: 40px;
+        border-color: black;
+        width: $phone-width;
+        height: 55vh;
+        margin: 15vh auto;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: stretch;
+        box-sizing: border-box;
+        
+        header#phone-header {
+            position: absolute;
+            font-size: 12px;
+            width: calc(#{$phone-width} - 6px);
+            color: white;
+            background-color: rgb(36, 35, 35);
+            box-sizing: border-box;
+
+            .left, .right {
+                width: 50%;
+                float: left;
+                padding: 3px;
+                box-sizing: border-box;
+            }
+
+            .right {
+                text-align: right;
+            }
+        }
+
+        iframe {
+            margin-top: 24px;
+            width: 100%;
+        }
+    }
+
+    select {
+        width: $phone-width;
+        display: block;
+        margin: 0 auto;
+    }
+}

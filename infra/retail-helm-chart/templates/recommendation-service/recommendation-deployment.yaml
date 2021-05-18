@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "recommendation.labels" . | nindent 4 }}
+  name: {{ include "recommendation.name" . }}
+
+spec:
+  replicas: {{ .Values.predictionService.replicas }}
+  selector:
+    matchLabels:
+    {{- include "recommendation.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+      {{- include "recommendation.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccount: {{include "recommendation.serviceAccountName" . }}
+      containers:
+      - name: recommendation-service
+        image: {{ .Values.predictionService.image }}
+        env:
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "postgres.configMapName" . }}
+              key: POSTGRES_DB
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "postgres.secretName"  .}}
+              key: POSTGRES_PASSWORD
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "postgres.secretName" . }}
+              key: POSTGRES_USER
+        - name: DB_HOST
+          value: {{ include "postgres.serviceName" . }}
+        - name: DB_PORT
+          value: {{ include "postgres.servicePort" . | toString | quote }}
+        {{- if and .Values.recommendationService.fastApi  }}
+        {{- range .Values.recommendationService.fastApi.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if not .Values.recommendationService.testingNoKafka }}
+        - name: FOCUS_EVENT_TOPIC_NAME
+          value: {{ .Values.globalInfra.kafka.focusEventTopic | quote }}
+        - name: ENTRY_EVENT_TOPIC_NAME
+          value: {{ .Values.globalInfra.kafka.entryEventTopic | quote }}
+        - name: COUPON_PREDICTION_TOPIC_NAME
+          value: {{ .Values.globalInfra.kafka.couponPredictionTopic | quote }}
+        {{- end }}
+        - name: COUPON_SCORER_URL
+          value: {{ printf "http://%s:%s" (include "prediction.serviceName" .) (include "prediction.servicePort" .) | quote }}
+        {{- if .Values.globalInfra.kafka.bootstrapServers }}
+        - name: BOOTSTRAP_SERVERS
+          value: {{ join "," .Values.globalInfra.kafka.bootstrapServers | quote }}
+        {{- end }}
+        {{- if .Values.recommendationService.kafkaClientId }}
+        - name: CLIENT_ID
+          value: {{ .Values.recommendationService.kafkaClientId | quote }}
+        {{- end }}
+        {{- if .Values.recommendationService.kafkaGroupId }}
+        - name: GROUP_ID
+          value: {{  .Values.recommendationService.kafkaGroupId | quote }}
+        {{- end }}
+        {{- if .Values.recommendationService.pollTimeout }}
+        - name: POLL_TIMEOUT
+          value: {{  .Values.recommendationService.pollTimeout | quote }}
+        {{- end }}
+        {{- if .Values.recommendationService.pollTimeout }}
+        - name: AUTO_OFFSET_RESET
+          value: {{  .Values.recommendationService.autoOffsetReset | quote }}
+        {{- end }}
+        ports:
+        - containerPort: 80
+        redinessProbe:
+          tcpSocket:
+            port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 80

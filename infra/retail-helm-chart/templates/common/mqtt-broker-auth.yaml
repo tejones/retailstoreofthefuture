@@ -1,0 +1,12 @@
+{{- if .Values.globalInfra.mqtt.authenticationEnabled }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mqtt-auth-creds
+  labels:
+    {{- include "global.labels" . | nindent 4 }}
+type: Generic
+data:
+  MQTT_USERNAME: {{ .Values.globalInfra.mqtt.user | b64enc }}
+  MQTT_PASSWORD: {{ .Values.globalInfra.mqtt.password | b64enc }}
+{{ end }}

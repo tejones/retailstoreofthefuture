@@ -1,0 +1,12 @@
+{{- if .Values.postgres.serviceAccount.create -}}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "prediction.serviceAccountName" . }}
+  labels:
+    {{- include "prediction.labels" . | nindent 4 }}
+  {{- with .Values.predictionService.serviceAccount.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,28 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "Message sent when a customer stops in a given department.",
+	"properties": {
+		"event_type": {
+			"const": "customer focus"
+		},
+		"event_timestamp": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"payload": {
+			"properties": {
+				"customer_id": {
+					"type": "integer"
+				},
+				"category": {
+					"type": "string",
+					"enum": ["Boys", "Girls", "Men", "Sports", "Women"]
+				}
+			},
+			"required": [
+				"customer_id",
+				"category"
+			]
+		}
+	}
+}

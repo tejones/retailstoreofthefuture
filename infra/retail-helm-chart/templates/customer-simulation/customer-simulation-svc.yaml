@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "customerSimulation.serviceName" . }}
+  labels:
+    {{- include "customerSimulation.labels" . | nindent 4 }}
+spec:
+  type: {{  .Values.customerSimulationService.serviceType | default "ClusterIP" }}
+  ports:
+  - name: http
+    port: {{ include "customerSimulation.servicePort" . }}
+    targetPort: 80
+
+  selector:
+    {{- include "customerSimulation.selectorLabels" . | nindent 4 }}
