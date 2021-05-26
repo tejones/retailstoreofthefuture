@@ -1,4 +1,5 @@
-# Functionality 
+# Recommendation Service
+
 This service creates MQTT consumers to listen to "entry event" and "focus event".
 
 **Entry event** is generated (externally), whenever a customer enters the store.
@@ -10,8 +11,8 @@ This service's responsibility is to:
 
 * fetch customer context (purchase history, demographics, etc.) from "the central" (datacenter), when the service
   receives *entry event*
-* invoke/call prediction service to decide if the customer is willing to use promotion coupons from given department,
-  when the service receives *focus event* and send prediction result to a dedicated MQTT topic.
+* invoke/call prediction service to decide if the customer is willing to use coupons from a given department,
+  when the service receives *focus event* and sends the prediction result to a dedicated MQTT topic.
 
 ## Table of contents
 
@@ -28,7 +29,8 @@ This service's responsibility is to:
   * [Testing without MQTT](#testing-without-mqtt)
   * [Docker image](#docker-image)
   * [Mock event endpoints](#mock-event-endpoints)
-  * [Cache - DB](#cache---db)
+
+# Functionality
 
 ## Event payloads
 
@@ -169,7 +171,6 @@ In order to do the actual prediction, a REST call is made.
 **TBD**
 (See: [prediction.schema.json](schema/prediction.schema.json))
 
-
 # Development
 
 ## Dependencies
@@ -188,22 +189,21 @@ The service reads the following **environment variables**:
 |------------------------|-----------------------------------------|--------------:|
 | MQTT_HOST              | comma-separated list of MQTT brokers    |    	    	 - |
 | MQTT_PORT              | MQTT brokers' port                      |    	    	 - |
-| MQTT_USERNAME          | MQTT user username                      | None              |
-| MQTT_PASSWORD          | MQTT user password                      | None              |
-| MQTT_BROKER_CERT_FILE  | path to MQTT ssl cert file              | None              |
+| MQTT_USERNAME          | MQTT user username                      | None          |
+| MQTT_PASSWORD          | MQTT user password                      | None          |
+| MQTT_BROKER_CERT_FILE  | path to MQTT ssl cert file              | None          |
 | ENTRY_EVENT_TOPIC_NAME | topic for entry events              	   |    	    	 - |
 | FOCUS_EVENT_TOPIC_NAME | topic for focus events              	   |    	    	 - |
 | COUPON_PREDICTION_TOPIC_NAME | topic for sending prediction results |   	   	 - |
 
-(Parameters with `-` in "Default" column are required.)
+(Parameters with `-` in the "Default" column are required.)
 
 Use [log_config.py](./app/utils/log_config.py) to **configure logging behaviour**. 
 By default, console and file handlers are used. The file appender writes to `messages.log`.
 
-
 ## Running the service
 
-For my development I created a project with dedicated virtual environment (Python 3.8, all the dependencies installed
+For development, I created a project with a dedicated virtual environment (Python 3.8, all the dependencies installed
 there).
 
 The code reads sensitive information (tokens, secrets) from environment variables. They need to be set accordingly in
@@ -211,13 +211,12 @@ advance.
 `.environment.variables.sh` can be used for that purpose. Then, in order to run the service the following commands can be
 used:
 
-```
+```bash
 $ . .environment.variables.sh
 $ . venv/bin/activate
 (venv)$ uvicorn app.main:app --host 0.0.0.0 --reload --reload-dir app
 ```
 > Please, note `reload-dir` switch. Without it the reloader goes into an infinite loop because it detects log file changes (messages.log).
-
 
 ## Testing without MQTT
 For testing purposes, there are two endpoints that simulate events ("entry event", "focus event"),
@@ -227,6 +226,7 @@ In order for the service not to create real MQTT consumers and producers,
 set `TESTING_NO_MQTT` environment variable to "true".
 
 This way, event processing logic can be tested without MQTT, for example:
+
 ```bash
 curl -X 'POST' \
   'http://127.0.0.1:8000/mock_entry' \
@@ -252,7 +252,8 @@ See https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker
 for detail on configuring the container (http port, log level, etc.)
 
 In order to build the image use:
-```
+
+```bash
 docker build -t recommendation-service:0.0.1 .
 ```
 
@@ -260,16 +261,17 @@ docker build -t recommendation-service:0.0.1 .
 > your needs.
 
 To run the service as a Docker container run:
-```
-docker run -d -e LOG_LEVEL="warning"  --name recommendaition-service recommendation-service:0.0.1
 
+```bash
+docker run -d -e LOG_LEVEL="warning"  --name recommendaition-service recommendation-service:0.0.1
 ```
 
 ## Mock event endpoints
 For testing purposes, there are two endpoints that simulate events ("entry event", "focus event"),
-as if they would appear on dedicated MQTT topic.
+as if they would appear on a dedicated MQTT topic.
 
 This way, event processing logic can be tested without MQTT, for example:
+
 ```bash
 curl -X 'POST' \
   'http://127.0.0.1:8000/mock_entry' \
@@ -283,8 +285,10 @@ curl -X 'POST' \
   }
 }'
 ```
+
 or:
-```
+
+```bash
 curl -X 'POST' \
   'http://127.0.0.1:8000/mock_focus' \
   -H 'accept: application/json' \
@@ -298,68 +302,3 @@ curl -X 'POST' \
   }
 }'
 ```
-
-## Cache - DB
-
-This component uses PostgreSQL as a cache. It stores coupons and customer data.
-
-DB tables:
-
-```sql
-
-CREATE TABLE coupon_info (
-  coupon_id INT,
-  coupon_type VARCHAR(16),
-  department VARCHAR(10),
-  discount INT,
-  how_many_products_required INT,
-  start_date VARCHAR(10),
-  end_date VARCHAR(10),
-  product_mean_price REAL,
-  products_available INT,
-  PRIMARY KEY (coupon_id)
-);
-
-CREATE_TABLE product_info (
-    product_id INT,
-    name VARCHAR(256),
-    category VARCHAR(50),
-    sizes VARCHAR(50),
-    vendor VARCHAR(50),
-    description VARCHAR(256), 
-    buy_price REAL,
-    department VARCHAR(10),
-    PRIMARY KEY (product_id)
-);
-
-CREATE_TABLE coupon_product (
-    coupon_id INT,
-    product_id INT,
-    FOREIGN KEY (coupon_id) REFERENCES coupon_info(coupon_id),
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-)
-
-CREATE TABLE customer_info (
-  ustomer_id INT,
-  gender VARCHAR(1),
-  age INT,
-  mean_buy_price REAL,
-  total_coupons_used: INT,
-  mean_discount_received: REAL,
-  unique_products_bought INT,
-  unique_products_bought_with_coupons: INT,
-  total_items_bought:
-  INT, PRIMARY KEY (customer_id)
-);
-```
-
-How to fill DB with data:
-
-```sql
-COPY coupon_info FROM '<<DATA_PATH>>/coupon_info.csv' DELIMITER ',' CSV HEADER;
-COPY product_info FROM '<<DATA_PATH>>/products.csv' DELIMITER ',' CSV HEADER;
-COPY coupon_product FROM '<<DATA_PATH>>/coupon_product.csv' DELIMITER ',' CSV HEADER;
-COPY customer_info FROM '<<DATA_PATH>>/customer_info.csv' DELIMITER ',' CSV HEADER;
-```
-
-CSV files are available in the [../training-with-artificial-data/data_0409_0/data4db/](../training-with-artificial-data/data_0409_0/data4db/) path
