@@ -2,20 +2,29 @@
 
 REST application which outputs coupon redemption predictions
 
+## Table of contents
 
+* [Development](#development)
+  * [Dependencies](#dependencies)
+  * [Service configuration](#service-configuration)
+  * [Running the service](#running-the-service)
+* [Prediction example](#prediction-example)
+* [Docker image](#docker-image)
 
 ## Development
 
 ### Dependencies
 Dependencies of the project are contained in requirements.txt file. All the packages are publicly available.
 
-All the packages can be installed with: 
-```
+All the packages can be installed with:
+
+```shell
 pip install -f requirements.txt
 ```
 
 For development purposes creating a dedicated virtual environment is helpful (Python 3.8, all the dependencies installed there):
-```
+
+```shell
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -30,7 +39,7 @@ advance.
 `.environment.variables.sh` can be used for that purpose. Then, in order to run the service the following commands can be
 used:
 
-```
+```shell
 $ . .environment.variables.sh
 $ . .venv/bin/activate
 (venv)$ uvicorn app.main:app --host 0.0.0.0 --reload
@@ -38,7 +47,7 @@ $ . .venv/bin/activate
 
 ## Prediction example
 
-```
+```shell
 curl -X 'POST' \
   'http://10.91.117.45:8002/score' \
   -H 'accept: application/json' \
@@ -80,7 +89,7 @@ curl -X 'POST' \
 
 Example response:
 
-```
+```shell
 [
   {
     "coupon_id": 2,
@@ -102,7 +111,8 @@ See https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker
 for detail on configuring the container (http port, log level, etc.)
 
 In order to build the image use:
-```
+
+```shell
 docker build -t prediction-service:0.0.1 .
 ```
 
@@ -110,7 +120,7 @@ docker build -t prediction-service:0.0.1 .
 > your needs.
 
 To run the service as a Docker container run:
-```
-docker run -d -p 8000:80 -e LOG_LEVEL="warning" prediction-service:0.0.1
 
+```shell
+docker run -d -p 8000:80 -e LOG_LEVEL="warning" prediction-service:0.0.1
 ```

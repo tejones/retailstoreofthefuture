@@ -23,6 +23,17 @@ There are also the entrance and exit points shown.
 
 ## Table of contents
 
+* [Functionality](#functionality)
+  * [Table of contents](#table-of-contents)
+* [Usage](#usage)
+  * [Dependencies](#dependencies)
+  * [Service configuration](#service-configuration)
+  * [Running the service](#running-the-service)
+    * [Development](#development)
+    * [Production](#production)
+  * [App interfaces](#app-interfaces)
+  * [Using the UI](#using-the-ui)
+
 # Usage
 
 This is a web service (implemented with FastAPI). By default, it works on port 8000. (See instructions for details on configuring and running the service.)
@@ -46,17 +57,16 @@ This application assumes running MQTT broker.
 
 The service reads the following **environment variables**:
 
-| Variable              | Description                           |  Default      |
-|-----------------------|---------------------------------------|--------------:|
-| CUSTOMERS_LIST_FILE   |                                       | app/resources/customers.json |
-| MQTT_HOST             |                                       | -             |
-| MQTT_PORT             |               	                    | 1883          |
-| MQTT_NAME             |                	                    | demoVisClient |
-| ENTER_TOPIC           |                                       | customer/enter|
-| MOVE_TOPIC            |                                       | customer/move |
-| EXIT_TOPIC            |                                       | customer/exit |
+| Variable              | Description  |  Default                     |
+|-----------------------|--------------|-----------------------------:|
+| CUSTOMERS_LIST_FILE   |              | app/resources/customers.json |
+| MQTT_HOST             |              | -                            |
+| MQTT_PORT             |              | 1883                         |
+| MQTT_NAME             |              | demoVisClient                |
+| ENTER_TOPIC           |              | customer/enter               |
+| MOVE_TOPIC            |              | customer/move                |
+| EXIT_TOPIC            |              | customer/exit                |
 | SCENARIO_PLAYER_SCENARIO_ENDPOINT | full address (ex: `http://localhost:8004/scenario`) to the scenario-player's `scenario` endpoint | - |
-
 
 (Parameters with `-` in "Default" column are required.)
 
@@ -70,16 +80,17 @@ By default, console and file handlers are used. The file appender writes to `mes
 `environment.variables.sh` can be used for that purpose. Then, in order to run the service the following commands can be
 used:
 
-```
+```shell
 $ . .environment.variables.sh
 $ . venv/bin/activate
 (venv)$ uvicorn app.main:app --host 0.0.0.0 --reload --reload-dir app
 ```
+
 > Please, note `reload-dir` switch. Without it the reloader goes into an infinite loop because it detects log file changes (messages.log).
 
 ### Production
 
-// To be done
+The service is made to be run in an OpenShift environment. The deployment process is described in (infra)[../infra] path.
 
 ## App interfaces
 
