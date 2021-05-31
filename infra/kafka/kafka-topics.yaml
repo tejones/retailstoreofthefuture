@@ -1,0 +1,42 @@
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: entry-topic
+  labels:
+    strimzi.io/cluster: retail-store
+spec:
+  topicName: entry-topic
+  config:
+    retention.ms: 604800000
+    segment.bytes: 1073741824
+  partitions: 6
+  replicas: 3
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: prediction-topic
+  labels:
+    strimzi.io/cluster: retail-store
+spec:
+  topicName: prediction-topic
+  config:
+    retention.ms: 604800000
+    segment.bytes: 1073741824
+  partitions: 6
+  replicas: 3
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: focus-topic
+  labels:
+    strimzi.io/cluster: retail-store
+spec:
+  topicName: focus-topic
+  config:
+    retention.ms: 604800000
+    segment.bytes: 1073741824
+  partitions: 6
+  replicas: 3
