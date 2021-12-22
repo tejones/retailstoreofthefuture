@@ -1,31 +1,31 @@
-# Retail Infra
+# Build and deployment
 
-## Before you start
+## Table of contents
 
-This instruction assumes that AMQ Streams (Kafka service) and AMQ Broker (MQTT service) are up and running.
-
-If this is not true for your setup, please check the [KAFKA_MQTT.md file](./KAFKA_MQTT.md).
+* [Building images on Openshift Container Platform](#building-images-on-openshift-container-platform)
+* [Deploy the solution using Helm Charts](#deploy-the-solution-using-helm-charts)
 
 ## Building images on Openshift Container Platform
 
-If you require a private repository access you must create a secret containing Github Deploy Key
+If you require private repository access you must create a secret containing Github Deploy Key
 
-```bash
+```shell
 oc create secret generic retail-git-ssh-key --from-file=ssh-privatekey=<path_to_private_key> --type=kubernetes.io/ssh-auth
 ```
 
 Create BuildConfigs and ImageTags: 
 
-```bash
+```shell
 oc apply -f ocp-buildconfigs.yaml
 ```
 
 Verify build configs have been created:
 
-```bash
+```shell
 oc get buildconfigs
 ```
-```bash
+
+```shell
 NAME                           TYPE     FROM             LATEST
 prediction-service-build       Docker   Git@develop-pl   0
 recommendation-service-build   Docker   Git@develop-pl   0
@@ -33,17 +33,19 @@ recommendation-service-build   Docker   Git@develop-pl   0
 
 Verify ImageTags have been created in your project:
 
-```bash
+```shell
 oc get is
 ```
 
-```bash
+```shell
 NAME                     IMAGE REPOSITORY                                                                                TAGS     UPDATED
 prediction-service       default-route-openshift-image-registry.apps.red.ocp.public/retail/prediction-service          
 recommendation-service   default-route-openshift-image-registry.apps.red.ocp.public/retail/recommendation-service      
 ```
+
 Manually trigger the images builds:
-```bash
+
+```shell
 oc start-build customer-simulation-service
 oc start-build prediction-service
 oc start-build recommendation-service
@@ -52,10 +54,12 @@ oc start-build visualization-service
 
 Wait for the builds to complete:
 
-```bash
+
+```shell
 oc get builds --watch
 ```
-```
+
+```shell
 NAME                             TYPE     FROM             STATUS    STARTED               DURATION
 prediction-service-build-1       Docker   Git@develop-pl   Running   5 seconds ago   
 prediction-service-build-1       Docker   Git@72d19cf      Running   12 seconds ago   
@@ -71,37 +75,29 @@ prediction-service-build-1       Docker   Git@72d19cf      Complete   About a mi
 
 See if the ImageTags have been updated:
 
-```bash
+```shell
 oc get is
 ```
-```
+
+```shell
 NAME                     IMAGE REPOSITORY                                                                           TAGS     UPDATED
 prediction-service       default-route-openshift-image-registry.apps.red.ocp.public/retail/prediction-service       latest   1 minutes ago
 recommendation-service   default-route-openshift-image-registry.apps.red.ocp.public/retail/recommendation-service   latest   1 minutes ago
 ```
 
 ## Deploy the solution using Helm Charts
-
 Edit the `values.yaml` file and configure your workload parameters:
 
-```bash
+```shell
 vim retail-helm-chart/values.yaml
 ```
 
-**Make sure that keys:**
+Install the Chart with Helm:
 
-```
-globalInfra.kafka.bootstrapServers
-globalInfra.mqtt.brokerServer
-```
-
-**point at the proper services.**
-
-Install the Chart with Helm: 
-
-```bash
+```shell
 helm install retail retail-helm-chart/
 ```
+
 ```
 NAME: retail
 LAST DEPLOYED: 2021-04-07 14:52:49.839391 +0000 UTC m=+0.078141486
@@ -109,9 +105,9 @@ NAMESPACE: retail
 STATUS: deployed
 ```
 
-Verify all pods are Running and in a Ready:
+Verify all pods are Running:
 
-```bash
+```shell
 oc get all
 ```
 
