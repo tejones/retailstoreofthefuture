@@ -54,6 +54,7 @@ oc start-build visualization-service
 
 Wait for the builds to complete:
 
+
 ```shell
 oc get builds --watch
 ```
