@@ -1,0 +1,24 @@
+---
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: ex-aao
+spec:
+  deploymentPlan:    
+    image: placeholder
+    jolokiaAgentEnabled: false
+    journalType: nio
+    managementRBACEnabled: true
+    messageMigration: false
+    persistenceEnabled: false
+    requireLogin: false
+    size: 2
+  adminPassword: admin
+  adminUser: admin
+  console:
+    expose: true
+  acceptors:
+    - expose: true
+      name: mqtt
+      port: 1883
+      protocols: mqtt
