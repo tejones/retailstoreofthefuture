@@ -9,8 +9,8 @@ spec:
     sourceSecret:
       name: retail-git-ssh-key
     git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: develop-pl
+      uri: 'git@github.com:karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
     contextDir: recommendation-service/
   strategy:
     type: Docker
@@ -37,8 +37,8 @@ spec:
     sourceSecret:
       name: retail-git-ssh-key
     git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: develop-pl
+      uri: 'git@github.com:karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
     contextDir: prediction-service/
   strategy:
     type: Docker
@@ -65,8 +65,8 @@ spec:
     sourceSecret:
       name: retail-git-ssh-key
     git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: develop-pl
+      uri: 'git@github.com:karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
     contextDir: visualization-app/
   strategy:
     type: Docker
@@ -93,8 +93,8 @@ spec:
     sourceSecret:
       name: retail-git-ssh-key
     git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: develop-pl
+      uri: 'git@github.com:karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
     contextDir: scenario-player/
   strategy:
     type: Docker
@@ -112,4 +112,3 @@ spec:
     local: false
 
 ---
-

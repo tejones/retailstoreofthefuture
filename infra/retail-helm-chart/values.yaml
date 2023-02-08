@@ -8,14 +8,14 @@ openshift: true
 globalInfra:
   kafka:
     bootstrapServers:
-    - retail-kafka-kafka-bootstrap.retail-infra.svc.cluster.local:9092
+      - retail-kafka-kafka-bootstrap.retail-infra.svc.cluster.local:9092
     
     # Kafka topic name for entry events
     entryEventTopic: "entryTopic"
 
     # Kafka topic name for focus events
     focusEventTopic: "focusTopic"
-  
+
     # Kafka topic name for prediction results
     couponPredictionTopic: "predictionTopic"
   
@@ -56,13 +56,13 @@ postgres:
   image: quay.io/bitnami/postgresql:latest
 
   # postgresql database user  
-  postgresUser: dupa
+  postgresUser: cacheUser
 
   # postgresql user's password
-  postgresPassword: dupaStrongPass
+  postgresPassword: cachePass
   
   # postgresql database name
-  postgresDB: dupa-db
+  postgresDB: cacheDb
 
   # postgresql service type, default: ClusterIP
   # serviceType: ClusterIP
@@ -74,10 +74,10 @@ postgres:
     # create separate service account for postgres
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
 
   # specify limits and requests for the postgresql
-  resources: {}
+  resources: { }
 
 recommendationService:
   # recommendation service docker image
@@ -105,21 +105,21 @@ recommendationService:
   # pollTimeout: 0.1
   
   # fastAPI environment variables, see https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker for reference
-  fastApi: 
+  fastApi:
     env:
-    - name: LOG_LEVEL
-      value: info
-    - name: MAX_WORKERS
-      value: 1
+      - name: LOG_LEVEL
+        value: info
+      - name: MAX_WORKERS
+        value: 1
 
   serviceAccount:
     # create separate service account for recommendation service
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
   
   # specify limits and requests for the recommendation service
-  resources: {}
+  resources: { }
 
 predictionService:
   # prediction service docker image
@@ -137,19 +137,19 @@ predictionService:
   # fastAPI environment variables, see https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker for reference
   fastApi:
     env:
-    - name: LOG_LEVEL
-      value: info
-    - name: MAX_WORKERS
-      value: 1
+      - name: LOG_LEVEL
+        value: info
+      - name: MAX_WORKERS
+        value: 1
 
   serviceAccount:
     # create separate service account for prediction service
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
 
   # specify limits and requests for the prediction service
-  resources: {}
+  resources: { }
 
 customerSimulationService:
   # customer simulation service docker image
@@ -168,7 +168,7 @@ customerSimulationService:
     # create separate service account for customer simulation service
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
 
 
   # set a log level for customer simulation service
@@ -176,7 +176,6 @@ customerSimulationService:
   
   # override the default customer lit file location: /app/app/resources/customers.json
   # customersListFile: ""
-
 
 visualization:
   # visualization simulation service docker image
@@ -192,5 +191,4 @@ visualization:
     # create separate service account for customer simulation service
     create: true
     # additional service account annotations
-    annotations: {}
-
+    annotations: { }
