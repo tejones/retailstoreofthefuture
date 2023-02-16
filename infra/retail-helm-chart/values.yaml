@@ -192,3 +192,32 @@ visualization:
     create: true
     # additional service account annotations
     annotations: { }
+
+decisionService:
+  # decision service docker image
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/decision-service:latest
+
+  # number of decision service replicas
+  replicas: 1
+
+  # decision service type, default: ClusterIP
+  # serviceType: NodePort
+
+  # decision service port, default: 80
+  # servicePort: 8080
+
+  arguments:
+    - name: mp_messaging_incoming_jeden_topic
+      value: "{{ .Values.globalInfra.mqtt.moveTopic }}"
+    - name: mp_messaging_incoming_jeden_host
+      value: "{{ .Values.globalInfra.mqtt.brokerServer }}"
+    - name: mp_messaging_incoming_jeden_port
+      value: "{{ .Values.globalInfra.mqtt.brokerPort | quote }}"
+    - name: kafka_bootstrap_servers
+      value: "{{ first .Values.globalInfra.kafka.bootstrapServers }}"
+
+  serviceAccount:
+    # create separate service account for decision service
+    create: true
+    # additional service account annotations
+    annotations: {}
