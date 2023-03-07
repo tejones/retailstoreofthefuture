@@ -8,20 +8,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-    {{- include "postgres.selectorLabels" . | nindent 6 }}
+      {{- include "postgres.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-      {{- include "postgres.selectorLabels" . | nindent 8 }}
+        {{- include "postgres.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccount: {{ include "postgres.serviceAccountName" . }}
       containers:
-      - name: postgresql
-        image: {{ .Values.postgres.image }}
-        envFrom:
-        - secretRef:
-            name: {{ include "postgres.secretName" . }}
-        - configMapRef:
-            name: {{ include "postgres.configMapName" . }}
-        ports:
-        - containerPort: 5432
+        - name: postgresql
+          image: {{ .Values.postgres.image }}
+          envFrom:
+            - secretRef:
+                name: {{ include "postgres.secretName" . }}
+            - configMapRef:
+                name: {{ include "postgres.configMapName" . }}
+          ports:
+            - containerPort: 5432

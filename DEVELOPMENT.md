@@ -88,7 +88,7 @@ You may need this setup to test:
 
 #### Setup
 
-To **run the container** with mosquitto borker:
+To **run the container** with mosquitto broker:
 
 ```shell
 docker run -d --rm --name mosquitto -p 1883:1883 eclipse-mosquitto
@@ -157,44 +157,41 @@ CREATE TABLE coupon_info (
   PRIMARY KEY (coupon_id)
 );
 
-CREATE_TABLE product_info (
+CREATE TABLE product_info (
     product_id INT,
     name VARCHAR(256),
     category VARCHAR(50),
     sizes VARCHAR(50),
     vendor VARCHAR(50),
-    description VARCHAR(256), 
+    description VARCHAR(256),
     buy_price REAL,
     department VARCHAR(10),
     PRIMARY KEY (product_id)
 );
 
-CREATE_TABLE coupon_product (
+CREATE TABLE coupon_product (
     coupon_id INT,
     product_id INT,
     FOREIGN KEY (coupon_id) REFERENCES coupon_info(coupon_id),
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-)
+    FOREIGN KEY (product_id) REFERENCES product_info(product_id)
+);
 
 CREATE TABLE customer_info (
-  ustomer_id INT,
+  customer_id INT,
   gender VARCHAR(1),
   age INT,
   mean_buy_price REAL,
-  total_coupons_used: INT,
-  mean_discount_received: REAL,
+  total_coupons_used INT,
+  mean_discount_received REAL,
   unique_products_bought INT,
-  unique_products_bought_with_coupons: INT,
-  total_items_bought:
-  INT, PRIMARY KEY (customer_id)
+  unique_products_bought_with_coupons INT,
+  total_items_bought INT, 
+  PRIMARY KEY (customer_id)
 );
 ```
 
-Fill DB with data:
+You could use the data prepared with [training-with-artificial-data](training-with-artificial-data) project.
 
-```sql
-COPY coupon_info FROM '<<DATA_PATH>>/coupon_info.csv' DELIMITER ',' CSV HEADER;
-COPY product_info FROM '<<DATA_PATH>>/products.csv' DELIMITER ',' CSV HEADER;
-COPY coupon_product FROM '<<DATA_PATH>>/coupon_product.csv' DELIMITER ',' CSV HEADER;
-COPY customer_info FROM '<<DATA_PATH>>/customer_info.csv' DELIMITER ',' CSV HEADER;
-```
+There is a pregenerated data set (csv files) accompanied by python scripts to create the tables and load it into
+the database in the [cachedb-load-data](cachedb-load-data) directory. The [README doc](cachedb-load-data/README.md) 
+file contains usage information (including instruction for running the scripts in a docker container).

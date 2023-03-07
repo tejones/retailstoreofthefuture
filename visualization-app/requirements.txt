@@ -2,7 +2,7 @@ setuptools~=39.2.0
 fastapi==0.63
 uvicorn[standard]==0.13.4
 pydantic~=1.8.1
-jinja2~=2.11.3
 aiofiles
 fastapi-mqtt~=0.3.0
 requests
+Jinja2==3.0.3

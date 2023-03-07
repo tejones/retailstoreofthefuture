@@ -1,4 +1,4 @@
-# AMQ Borker
+# AMQ Broker
 
 This demo uses MQTT as the means of communication between devices and services on the Edge.
 

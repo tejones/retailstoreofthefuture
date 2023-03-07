@@ -3,9 +3,9 @@
 ## Prerequisites
 Operators must be available in the deployment namespace/project
 1. Red Hat Integration - AMQ Streams
-1. Red Hat Integration - AMQ Borker
+2. Red Hat Integration - AMQ Broker
 
-**NOTE**: AMQ Borker Operator is namespace-scoped
+**NOTE**: AMQ Broker Operator is namespace-scoped
 
 ## Create dedicated project for infra
 ```
@@ -48,32 +48,33 @@ $ oc run -ti --rm kafka-producer --image=quay.io/strimzi/kafka:latest-kafka-2.7.
 --topic focus-topic
 ```
 
-When you see a command propt type whatever you like and see if the messages are propagated to the Kafka consumer:
+When you see a command prompt type whatever you like and see if the messages are propagated to the Kafka consumer:
 
 Producer:
 ```
-[pkolakowski@bastion ~]$ oc run -ti --rm kafka-producer --image=quay.io/strimzi/kafka:latest-kafka-2.7.0 -- \
+$ oc run -ti --rm kafka-producer --image=quay.io/strimzi/kafka:latest-kafka-2.7.0 -- \
 ./bin/kafka-console-producer.sh --bootstrap-server retail-store-kafka-bootstrap:9092 \
 --topic focus-topic 
 If you don't see a command prompt, try pressing enter.
->Dupa
->dupa dupa 123
->Intel sratata
+>test
+>test test 123
+>one two three
 >
 ```
 
 Consumer:
 ```
-[pkolakowski@bastion ~]$ oc run -ti --rm kafka-consumer --image=quay.io/strimzi/kafka:latest-kafka-2.7.0 -- \
+$ oc run -ti --rm kafka-consumer --image=quay.io/strimzi/kafka:latest-kafka-2.7.0 -- \
 ./bin/kafka-console-consumer.sh --bootstrap-server retail-store-kafka-bootstrap:9092 \
 --topic focus-topic                                                                                                         
 If you don't see a command prompt, try pressing enter.
-Dupa
-dupa dupa 123
-Intel sratata
+test
+test test 123
+one two three
 ```
 
 Default topic names:
+
 | Event Type | Topic Name       |
 |------------|------------------|
 | Entry      | entry-topic      |
@@ -86,7 +87,6 @@ Create MQTT Broker cluster
 ```
 $ oc apply -f mqtt/
 ```
-
 
 
 Verify all pods are up and running

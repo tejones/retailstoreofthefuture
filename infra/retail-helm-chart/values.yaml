@@ -8,7 +8,7 @@ openshift: true
 globalInfra:
   kafka:
     bootstrapServers:
-      - retail-kafka-kafka-bootstrap.retail-infra.svc.cluster.local:9092
+      - retail-store-kafka-bootstrap.retail-infra.svc.cluster.local:9092
     
     # Kafka topic name for entry events
     entryEventTopic: "entryTopic"
@@ -36,7 +36,7 @@ globalInfra:
     password: password
 
     # name or IP address of the MQTT broker 
-    brokerServer: ex-aao-mqtt-notls-0-svc.retail-infra.svc.cluster.local
+    brokerServer: ex-aao-mqtt-0-svc.retail-infra.svc.cluster.local
     
     # port that MQTT broker is listening on, default: 1883
     brokerPort: 1883
@@ -53,7 +53,7 @@ globalInfra:
 
 postgres:
   # postgres image used for cache 
-  image: quay.io/bitnami/postgresql:latest
+  image: docker.io/bitnami/postgresql:15.2.0-debian-11-r0
 
   # postgresql database user  
   postgresUser: cacheUser
@@ -72,7 +72,7 @@ postgres:
 
   serviceAccount:
     # create separate service account for postgres
-    create: true
+    create: false
     # additional service account annotations
     annotations: { }
 
@@ -84,7 +84,7 @@ recommendationService:
   image: image-registry.openshift-image-registry.svc:5000/rsotf/recommendation-service:latest
   
   # number of recommendation service replicas
-  replicas: 2
+  replicas: 1
 
   # recommendation service type, default: ClusterIP
   # serviceType: ClusterIP
@@ -101,7 +101,7 @@ recommendationService:
   # see: auto.offset.reset setting in Kafka, default: "latest"
   # autoOffsetReset: "latest"
   
-  # time spent waiting for messages in in poll (s), default: 0.1
+  # time spent waiting for messages in poll (s), default: 0.1
   # pollTimeout: 0.1
   
   # fastAPI environment variables, see https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker for reference
@@ -114,7 +114,7 @@ recommendationService:
 
   serviceAccount:
     # create separate service account for recommendation service
-    create: true
+    create: false
     # additional service account annotations
     annotations: { }
   
@@ -126,7 +126,7 @@ predictionService:
   image: image-registry.openshift-image-registry.svc:5000/rsotf/prediction-service:latest
   
   # number of prediction service replicas
-  replicas: 2
+  replicas: 1
 
   # prediction service type, default: ClusterIP
   # serviceType: NodePort
@@ -144,7 +144,7 @@ predictionService:
 
   serviceAccount:
     # create separate service account for prediction service
-    create: true
+    create: false
     # additional service account annotations
     annotations: { }
 
@@ -166,7 +166,7 @@ customerSimulationService:
 
   serviceAccount:
     # create separate service account for customer simulation service
-    create: true
+    create: false
     # additional service account annotations
     annotations: { }
 
@@ -177,6 +177,7 @@ customerSimulationService:
   # override the default customer lit file location: /app/app/resources/customers.json
   # customersListFile: ""
 
+# TODO other components use "service" postfix
 visualization:
   # visualization simulation service docker image
   image: image-registry.openshift-image-registry.svc:5000/rsotf/visualization-service:latest
@@ -188,9 +189,13 @@ visualization:
   # servicePort: 8080
 
   serviceAccount:
-    # create separate service account for customer simulation service
-    create: true
-    # additional service account annotations
+    create: false
+    annotations: { }
+
+cachedbLoader:
+  image: image-registry.openshift-image-registry.svc:5000/rsotf/cachedb-loader
+  serviceAccount:
+    create: false
     annotations: { }
 
 decisionService:
@@ -218,6 +223,6 @@ decisionService:
 
   serviceAccount:
     # create separate service account for decision service
-    create: true
+    create: false
     # additional service account annotations
-    annotations: {}
+    annotations: { }

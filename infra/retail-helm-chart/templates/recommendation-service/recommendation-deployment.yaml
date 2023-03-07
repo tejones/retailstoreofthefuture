@@ -9,16 +9,16 @@ spec:
   replicas: {{ .Values.predictionService.replicas }}
   selector:
     matchLabels:
-    {{- include "recommendation.selectorLabels" . | nindent 6 }}
+      {{- include "recommendation.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-      {{- include "recommendation.selectorLabels" . | nindent 8 }}
+        {{- include "recommendation.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccount: {{include "recommendation.serviceAccountName" . }}
       containers:
       - name: recommendation-service
-        image: {{ .Values.predictionService.image }}
+        image: {{ .Values.recommendationService.image }}
         env:
         - name: DB_NAME
           valueFrom:
@@ -77,11 +77,11 @@ spec:
         {{- end }}
         ports:
         - containerPort: 80
-        redinessProbe:
+        readinessProbe:
           tcpSocket:
             port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 10
+          initialDelaySeconds: 5
+          periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /healthcheck

@@ -4,7 +4,7 @@ metadata:
   labels:
     {{- include "customerSimulation.labels" . | nindent 4 }}
   name: {{ include "customerSimulation.name" . }}
-  
+
 spec:
   replicas: {{ .Values.customerSimulationService.replicas }}
   selector:
@@ -75,11 +75,11 @@ spec:
         {{- end }}
         ports:
         - containerPort: 80
-        redinessProbe:
+        readinessProbe:
           tcpSocket:
             port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 10
+          initialDelaySeconds: 5
+          periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
