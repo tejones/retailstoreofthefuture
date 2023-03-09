@@ -2,7 +2,7 @@
 Expand the name of the chart.
 */}}
 {{- define "customerSimulation.name" -}}
-{{- .Values.customerSimulation.nameOverride | default "customer-simulation" | trunc 63 | trimSuffix "-" }}
+{{- .Values.customerSimulationService.nameOverride | default "customer-simulation" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*

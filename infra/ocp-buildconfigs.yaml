@@ -112,7 +112,7 @@ spec:
     type: Git
     git:
       uri: 'https://github.com/karol-brejna-i/retailstoreofthefuture.git'
-      ref: init-cache-db
+      ref: develop
     contextDir: cachedb-load-data/
   strategy:
     type: Docker
@@ -135,7 +135,6 @@ metadata:
   labels:
     build: decision-service-build
   name: decision-service-build
-  namespace: s2i-test
 spec:
   output:
     to:

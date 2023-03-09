@@ -35,12 +35,14 @@ oc get buildconfigs
 ```
 
 ```shell
-NAME                            TYPE     FROM                LATEST
-cachedb-loader                  Docker   Git@init-cache-db   0
-customer-simulation-service     Docker   Git@develop-pl      0
-prediction-service              Docker   Git@develop-pl      0
-recommendation-service          Docker   Git@develop-pl      0
-visualization-service           Docker   Git@develop-pl      0
+NAME                          TYPE     FROM                LATEST
+cachedb-loader                Docker   Git@develop         0
+customer-simulation-service   Docker   Git@develop         0
+decision-service-build        Source   Git                 0
+image-build                   Docker                       0
+prediction-service            Docker   Git@develop         0
+recommendation-service        Docker   Git@develop         0
+visualization-service         Docker   Git@develop         0
 ```
 
 Verify ImageTags have been created in your project:
@@ -50,22 +52,26 @@ oc get imagestreams
 ```
 
 ```shell
-NAME                            IMAGE REPOSITORY                                                                                           TAGS     UPDATED
-cachedb-loader                  default-route-openshift-image-registry.apps.rojo.igk.internal/retail-infra/cachedb-loader
-customer-simulation-service     default-route-openshift-image-registry.apps.rojo.igk.internal/retail-infra/customer-simulation-service
-prediction-service              default-route-openshift-image-registry.apps.rojo.igk.internal/retail-infra/prediction-service
-recommendation-service          default-route-openshift-image-registry.apps.rojo.igk.internal/retail-infra/recommendation-service
-visualization                   default-route-openshift-image-registry.apps.rojo.igk.internal/retail-infra/visualization
+NAME                          IMAGE REPOSITORY                                                                                  TAGS   UPDATED
+cachedb-loader                default-route-openshift-image-registry.apps.rojo.igk.internal/rsotf/cachedb-loader
+customer-simulation-service   default-route-openshift-image-registry.apps.rojo.igk.internal/rsotf/customer-simulation-service
+decision-service              default-route-openshift-image-registry.apps.rojo.igk.internal/rsotf/decision-service
+decision-service-build        default-route-openshift-image-registry.apps.rojo.igk.internal/rsotf/decision-service-build
+prediction-service            default-route-openshift-image-registry.apps.rojo.igk.internal/rsotf/prediction-service
+recommendation-service        default-route-openshift-image-registry.apps.rojo.igk.internal/rsotf/recommendation-service
+visualization-service         default-route-openshift-image-registry.apps.rojo.igk.internal/rsotf/visualization-service```
 ```
 
 Manually trigger the images builds:
 
 ```shell
+oc start-build cachedb-loader
 oc start-build customer-simulation-service
+oc start-build decision-service
+oc start-build decision-service-build
 oc start-build prediction-service
 oc start-build recommendation-service
 oc start-build visualization-service
-oc start-build cachedb-loader
 ```
 
 Wait for the builds to complete:
@@ -75,17 +81,21 @@ oc get builds --watch
 ```
 
 ```shell
-NAME                             TYPE     FROM             STATUS    STARTED               DURATION
-prediction-service-build-1       Docker   Git@develop-pl   Running   5 seconds ago
-prediction-service-build-1       Docker   Git@72d19cf      Running   12 seconds ago
-recommendation-service-build-1   Docker   Git@develop-pl   Running   6 seconds ago   
-recommendation-service-build-1   Docker   Git@72d19cf      Running   15 seconds ago
-recommendation-service-build-1   Docker   Git@72d19cf      Running   About a minute ago   
-recommendation-service-build-1   Docker   Git@72d19cf      Running   About a minute ago   
-recommendation-service-build-1   Docker   Git@72d19cf      Complete   About a minute ago
-prediction-service-build-1       Docker   Git@72d19cf      Running    About a minute ago
-prediction-service-build-1       Docker   Git@72d19cf      Running    About a minute ago
-prediction-service-build-1       Docker   Git@72d19cf      Complete   About a minute ago
+NAME                            TYPE     FROM          STATUS    STARTED         DURATION
+cachedb-loader-1                Docker   Git@develop   Running   9 seconds ago
+customer-simulation-service-1   Docker   Git@develop   Running   9 seconds ago
+decision-service-build-1        Source   Git@a001c2c   Running   9 seconds ago
+prediction-service-1            Docker   Git@develop   Running   9 seconds ago
+recommendation-service-1        Docker   Git@develop   Running   9 seconds ago
+visualization-service-1         Docker   Git@develop   Running   7 seconds ago
+customer-simulation-service-1   Docker   Git@04bcf6f   Running   11 seconds ago
+prediction-service-1            Docker   Git@04bcf6f   Running   12 seconds ago
+cachedb-loader-1                Docker   Git@04bcf6f   Running   14 seconds ago
+visualization-service-1         Docker   Git@04bcf6f   Running   13 seconds ago
+recommendation-service-1        Docker   Git@04bcf6f   Running   16 seconds ago
+cachedb-loader-1                Docker   Git@04bcf6f   Running   59 seconds ago
+cachedb-loader-1                Docker   Git@04bcf6f   Running   59 seconds ago
+cachedb-loader-1                Docker   Git@04bcf6f   Complete   About a minute ago   1m3s
 ```
 
 See if the ImageTags have been updated:
