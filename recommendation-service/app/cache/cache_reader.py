@@ -14,7 +14,7 @@ class DBPool:
 
     @classmethod
     async def create(cls, dbname=config.DB_NAME, user=config.DB_USER, password=config.DB_PASSWORD,
-            host=config.DB_HOST, port=config.DB_PORT):
+                     host=config.DB_HOST, port=config.DB_PORT):
         dsn = f'dbname={dbname} user={user} password={password} host={host} port={port}'
         pool = await aiopg.create_pool(dsn)
         return DBPool(pool)

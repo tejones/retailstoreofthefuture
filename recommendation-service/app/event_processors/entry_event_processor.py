@@ -20,4 +20,5 @@ class EntryEventProcessor:
             return
         logger.info(f'calling Get Client Context service with {entry_event.customer_id}')
         self._context_service_client.get_context(customer_id=entry_event.customer_id)
+        # XXX TODO looks like EntryEventProcessor is a mock; make it work or describe why it's not needed
         return 7
