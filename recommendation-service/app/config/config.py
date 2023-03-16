@@ -12,10 +12,9 @@ def validate_and_crash(variable, message):
 
 logger.info('Reading environment variables...')
 
-# XXX TODO make these parameters required again for production!
-ENTRY_EVENT_TOPIC_NAME = os.getenv('ENTRY_EVENT_TOPIC_NAME')
-FOCUS_EVENT_TOPIC_NAME = os.getenv('FOCUS_EVENT_TOPIC_NAME')
-COUPON_PREDICTION_TOPIC_NAME = os.getenv('COUPON_PREDICTION_TOPIC_NAME')
+ENTER_TOPIC = os.getenv('ENTER_TOPIC')
+FOCUS_TOPIC = os.getenv('FOCUS_TOPIC')
+COUPON_PREDICTION_TOPIC = os.getenv('COUPON_PREDICTION_TOPIC')
 MQTT_HOST = os.getenv('MQTT_HOST')
 MQTT_PORT = os.getenv('MQTT_PORT', 1881)
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
@@ -41,9 +40,9 @@ DB_PORT = os.getenv('DB_PORT')
 
 REQUIRED_PARAM_MESSAGE = 'Cannot read {} env variable. Please, make sure it is set before starting the service.'
 
-validate_and_crash(ENTRY_EVENT_TOPIC_NAME, REQUIRED_PARAM_MESSAGE.format('ENTRY_EVENT_TOPIC_NAME'))
-validate_and_crash(FOCUS_EVENT_TOPIC_NAME, REQUIRED_PARAM_MESSAGE.format('FOCUS_EVENT_TOPIC_NAME'))
-validate_and_crash(COUPON_PREDICTION_TOPIC_NAME, REQUIRED_PARAM_MESSAGE.format('COUPON_PREDICTION_TOPIC_NAME'))
+validate_and_crash(ENTER_TOPIC, REQUIRED_PARAM_MESSAGE.format('ENTER_TOPIC'))
+validate_and_crash(FOCUS_TOPIC, REQUIRED_PARAM_MESSAGE.format('FOCUS_TOPIC'))
+validate_and_crash(COUPON_PREDICTION_TOPIC, REQUIRED_PARAM_MESSAGE.format('COUPON_PREDICTION_TOPIC'))
 validate_and_crash(COUPON_SCORER_URL, REQUIRED_PARAM_MESSAGE.format('COUPON_SCORER_URL'))
 validate_and_crash(MQTT_HOST, REQUIRED_PARAM_MESSAGE.format('MQTT_HOST'))
 validate_and_crash(DB_HOST, REQUIRED_PARAM_MESSAGE.format('DB_HOST'))

@@ -22,4 +22,5 @@ fileHandler.setFormatter(logFormatter)
 logger.addHandler(fileHandler)
 
 # Configuration done
+logger.info(f"Configuring logger with LOG_LEVEL={LOG_LEVEL}")
 logger.debug("Logger configured...")

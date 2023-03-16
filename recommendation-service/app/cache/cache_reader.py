@@ -60,6 +60,8 @@ class CacheReader:
             async with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
                 await cur.execute(query)
                 customer = dict(await cur.fetchone())
+
+        logger.debug(f'Customer {customer_id} read from cache: {customer}')
         return Customer(**customer)
 
     async def read_coupons(self, department: str):

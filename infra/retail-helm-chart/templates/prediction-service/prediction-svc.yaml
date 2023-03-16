@@ -10,6 +10,5 @@ spec:
   - name: http
     port: {{ include "prediction.servicePort" . }}
     targetPort: 80
-
   selector:
     {{- include "prediction.selectorLabels" . | nindent 4 }}

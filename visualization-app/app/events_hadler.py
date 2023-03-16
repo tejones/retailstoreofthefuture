@@ -15,7 +15,7 @@ TOPIC_EVENT_TYPE_MAPPING = {
 }
 
 
-class EventsHendler:
+class EventsHandler:
     @staticmethod
     def handle_event(topic, payload, app_state):
         payload = payload if type(payload) == str else payload.decode()

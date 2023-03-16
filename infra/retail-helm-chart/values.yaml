@@ -50,6 +50,15 @@ globalInfra:
     # MQTT topic for exit events
     exitTopic: "retail/mqttExitTopic"
 
+    # MQTT topic for focus events
+    focusTopic: "retail/mqttFocusTopic"
+
+    # MQTT topic for customer browsing events
+    browseTopic: "retail/mqttBrowseTopic"
+
+    # MQTT topic for prediction results
+    couponsTopic: "retail/mqttCouponsTopic"
+
 
 postgres:
   # postgres image used for cache 
@@ -91,18 +100,6 @@ recommendationService:
 
   # recommendation service port. default: 80
   # servicePort: 8080
-
-  # optional identifier of a Kafka consumer, default: "kafkaClients"
-  # kafkaClientId: "kafkaClients"
-  
-  # consumer group name, default: "None"
-  # kafkaGroupId: "consumergroup" 
-  
-  # see: auto.offset.reset setting in Kafka, default: "latest"
-  # autoOffsetReset: "latest"
-  
-  # time spent waiting for messages in poll (s), default: 0.1
-  # pollTimeout: 0.1
   
   # fastAPI environment variables, see https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker for reference
   fastApi:

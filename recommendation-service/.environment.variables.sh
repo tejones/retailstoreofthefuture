@@ -1,10 +1,9 @@
-export COUPON_PREDICTION_TOPIC_NAME='PREDICTION_RESULTS'
 export MQTT_HOST='localhost'
 export MQTT_PORT='1883'
 
-export ENTRY_EVENT_TOPIC_NAME='customer/enter'
-export FOCUS_EVENT_TOPIC_NAME='customer/focus'
-export COUPON_PREDICTION_TOPIC_NAME='customer/prediction'
+export ENTER_TOPIC='customer/enter'
+export FOCUS_TOPIC='customer/focus'
+export COUPON_PREDICTION_TOPIC='customer/prediction'
 
 export COUPON_SCORER_URL='http://127.0.0.1:8002/score'
 

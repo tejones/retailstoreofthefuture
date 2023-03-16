@@ -67,7 +67,6 @@ Manually trigger the images builds:
 ```shell
 oc start-build cachedb-loader
 oc start-build customer-simulation-service
-oc start-build decision-service
 oc start-build decision-service-build
 oc start-build prediction-service
 oc start-build recommendation-service
@@ -96,6 +95,7 @@ recommendation-service-1        Docker   Git@04bcf6f   Running   16 seconds ago
 cachedb-loader-1                Docker   Git@04bcf6f   Running   59 seconds ago
 cachedb-loader-1                Docker   Git@04bcf6f   Running   59 seconds ago
 cachedb-loader-1                Docker   Git@04bcf6f   Complete   About a minute ago   1m3s
+...
 ```
 
 See if the ImageTags have been updated:

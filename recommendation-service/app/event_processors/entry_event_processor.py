@@ -13,11 +13,14 @@ class EntryEventProcessor:
         self._context_service_client = context_service_client
 
     async def process(self, message: str):
+        logger.info(f'Process entry (message: {message}')
         try:
             entry_event = EntryEvent.parse_raw(message)
         except ValidationError as e:
             logger.error(f'Could not parse entry event message: "{message}": {e}')
             return
+
+        logger.debug(f"EntryEvent: {EntryEvent}")
         logger.info(f'calling Get Client Context service with {entry_event.customer_id}')
         self._context_service_client.get_context(customer_id=entry_event.customer_id)
         # XXX TODO looks like EntryEventProcessor is a mock; make it work or describe why it's not needed

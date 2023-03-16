@@ -9,7 +9,7 @@ spec:
   ports:
   - name: http
     port: {{ include "decision.servicePort" . }}
-    targetPort: 80
+    targetPort: 8080
 
   selector:
     {{- include "decision.selectorLabels" . | nindent 4 }}

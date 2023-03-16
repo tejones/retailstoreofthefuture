@@ -57,16 +57,18 @@ This application assumes running MQTT broker.
 
 The service reads the following **environment variables**:
 
-| Variable              | Description  |  Default                     |
-|-----------------------|--------------|-----------------------------:|
-| CUSTOMERS_LIST_FILE   |              | app/resources/customers.json |
-| MQTT_HOST             |              | -                            |
-| MQTT_PORT             |              | 1883                         |
-| MQTT_NAME             |              | demoVisClient                |
-| ENTER_TOPIC           |              | customer/enter               |
-| MOVE_TOPIC            |              | customer/move                |
-| EXIT_TOPIC            |              | customer/exit                |
-| SCENARIO_PLAYER_SCENARIO_ENDPOINT | full address (ex: `http://localhost:8004/scenario`) to the scenario-player's `scenario` endpoint | - |
+| Variable                          | Description                                                                                      |                   Default |
+|-----------------------------------|--------------------------------------------------------------------------------------------------|--------------------------:|
+| MQTT_HOST                         |                                                                                                  |                         - |
+| MQTT_PORT                         |                                                                                                  |                      1883 |
+| MQTT_NAME                         |                                                                                                  |             demoVisClient |
+| MQTT_PASSWORD                     |                                                                                                  |                           |
+| ENTER_TOPIC                       |                                                                                                  |            customer/enter |
+| MOVE_TOPIC                        |                                                                                                  |             customer/move |
+| EXIT_TOPIC                        |                                                                                                  |             customer/exit |
+| BROWSING_TOPIC                    |                                                                                                  |         customer/browsing |
+| COUPON_PREDICTION_TOPIC           |                                                                                                  |       customer/prediction |
+| SCENARIO_PLAYER_SCENARIO_ENDPOINT | full address (ex: `http://localhost:8004/scenario`) to the scenario-player's `scenario` endpoint |                         - |
 
 (Parameters with `-` in "Default" column are required.)
 
@@ -77,7 +79,7 @@ By default, console and file handlers are used. The file appender writes to `mes
 
 ### Development
 
-`environment.variables.sh` can be used for that purpose. Then, in order to run the service the following commands can be
+`.environment.variables.sh` can be used for that purpose. Then, in order to run the service the following commands can be
 used:
 
 ```shell
@@ -121,3 +123,12 @@ the client's phone application. "Events log" allows following the messages sent 
 pins on the plan. "Movement" pin lets you create points where the customer occurs for a short while. "Focus" points will generate multiple "Movement"
 points to simulate the client's focus on the product. Next, select Customer step time (how long does it take to move between "movement" points).
 Now start the simulation.
+
+
+## To do
+* describe the usage of certificates (MQTT_BROKER_CERT_FILE)
+* explain usage of the CUSTOMERS_LIST_FILE, COUPONS_LIST_FILE parameters (or remove them)
+* add BROWSING_TOPIC, COUPON_PREDICTION_TOPIC to "App interfaces" section (and explain its usage)
+* add env variables descriptions in "Service configuration" section
+* update "Production" section to be more specific 
+  (possibly, remove OpenShift references as the service can be run in any environment)

@@ -9,11 +9,14 @@ POSTGRES_PW = os.getenv('POSTGRES_PW', 'cachePass')
 POSTGRES_DB = os.getenv('POSTGRES_DB', 'cacheDb')
 POSTGRES_HST = os.getenv('POSTGRES_HST', 'localhost')
 DATA_PATH = os.getenv('DATA_PATH', 'data')
+RECREATE_DATABASE = os.getenv('RECREATE_DATABASE', 'False')
+RECREATE_DATABASE = RECREATE_DATABASE.lower() in ['1', 'yes', 'true']
 # print out the values
 print(f"POSTGRES_USR: {POSTGRES_USR}")
 print(f"POSTGRES_PW: {POSTGRES_PW}")
 print(f"POSTGRES_DB: {POSTGRES_DB}")
 print(f"POSTGRES_HST: {POSTGRES_HST}")
+print(f"RECREATE_DATABASE: {RECREATE_DATABASE}")
 
 PRODUCT_INFO_TABLE_DDL = \
     """
@@ -95,24 +98,28 @@ def get_connection(db, user, password, host):
 
 
 def drop_all(conn):
+    print("Dropping database")
     cur = conn.cursor()
     cur.execute(f'DROP DATABASE IF EXISTS "{POSTGRES_DB}"')
     cur.close()
 
 
 def create_user(conn):
+    print("Creating user")
     cur = conn.cursor()
     cur.execute(f'CREATE USER "{POSTGRES_USR}" WITH PASSWORD \'{POSTGRES_PW}\'')
     cur.close()
 
 
 def create_database(conn):
+    print("Creating database")
     cur = conn.cursor()
     cur.execute(f'CREATE DATABASE "{POSTGRES_DB}"')
     cur.close()
 
 
 def create_tables(conn):
+    print("Creating tables")
     cur = conn.cursor()
     result = cur.execute(PRODUCT_INFO_TABLE_DDL)
     result = cur.execute(COUPON_INFO_TABLE_DDL)
@@ -122,6 +129,7 @@ def create_tables(conn):
 
 
 def load_data(conn):
+    print("Loading data")
     cur = conn.cursor()
     cur.execute(LOAD_DATA_SQL)
     cur.close()
@@ -136,10 +144,12 @@ if __name__ == '__main__':
     # connect to the default database
     db_connection = get_connection('postgres', POSTGRES_USR, POSTGRES_PW, POSTGRES_HST)
     print("Connection established")
-    drop_all(db_connection)
+    if RECREATE_DATABASE:
+        print("Recreating DB")
+        drop_all(db_connection)
 
-    create_database(db_connection)
-    print("Database created")
+        create_database(db_connection)
+        print("Database created")
 
     # connect to the database
     db_connection = get_connection(POSTGRES_DB, POSTGRES_USR, POSTGRES_PW, POSTGRES_HST)

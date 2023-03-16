@@ -40,7 +40,7 @@ The service assumes the following data will be provided with given event types (
 
 The service listens for MQTT messages.
 
-Topic: configurable - `ENTRY_EVENT_TOPIC_NAME` environment variable
+Topic: configurable - `ENTER_TOPIC` environment variable
 
 Payload:
 
@@ -65,7 +65,7 @@ Example payload:
 
 The service listens for MQTT messages.
 
-Topic: configurable - `FOCUS_EVENT_TOPIC_NAME` environment variable
+Topic: configurable - `FOCUS_TOPIC` environment variable
 
 Payload:
 
@@ -97,7 +97,7 @@ ATTOW, supported categories are 'Boys', 'Girls', 'Men', 'Sports', 'Women'.
 
 The service produces MQTT messages with the prediction.
 
-Topic: configurable - `COUPON_PREDICTION_TOPIC_NAME` environment variable
+Topic: configurable - `COUPON_PREDICTION_TOPIC` environment variable
 
 Payload:
 
@@ -185,16 +185,16 @@ All the packages can be installed with:
 
 The service reads the following **environment variables**:
 
-| Variable               | Description                             |  Default      |
-|------------------------|-----------------------------------------|--------------:|
-| MQTT_HOST              | comma-separated list of MQTT brokers    |    	    	 - |
-| MQTT_PORT              | MQTT brokers' port                      |    	    	 - |
-| MQTT_USERNAME          | MQTT user username                      | None          |
-| MQTT_PASSWORD          | MQTT user password                      | None          |
-| MQTT_BROKER_CERT_FILE  | path to MQTT ssl cert file              | None          |
-| ENTRY_EVENT_TOPIC_NAME | topic for entry events              	   |    	    	 - |
-| FOCUS_EVENT_TOPIC_NAME | topic for focus events              	   |    	    	 - |
-| COUPON_PREDICTION_TOPIC_NAME | topic for sending prediction results |   	   	 - |
+| Variable                | Description                          | Default |
+|-------------------------|--------------------------------------|--------:|
+| MQTT_HOST               | comma-separated list of MQTT brokers |       - |
+| MQTT_PORT               | MQTT brokers' port                   |    	  - |
+| MQTT_USERNAME           | MQTT user username                   |    None |
+| MQTT_PASSWORD           | MQTT user password                   |    None |
+| MQTT_BROKER_CERT_FILE   | path to MQTT ssl cert file           |    None |
+| ENTER_TOPIC             | topic for entry events               |       - |
+| FOCUS_TOPIC             | topic for focus events               |  	  - |
+| COUPON_PREDICTION_TOPIC | topic for sending prediction results |  	  - |
 
 (Parameters with `-` in the "Default" column are required.)
 
@@ -277,13 +277,7 @@ curl -X 'POST' \
   'http://127.0.0.1:8000/mock_entry' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "event_type": "entry event",
-  "event_timestamp": "2021-03-18T08:29:02.160Z",
-  "payload": {
-    "customer_id": 3
-  }
-}'
+  -d '{"id": "127", "ts": 192322800}'
 ```
 
 or:
@@ -293,12 +287,5 @@ curl -X 'POST' \
   'http://127.0.0.1:8000/mock_focus' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "event_type": "focus event",
-  "event_timestamp": "2021-03-18T08:29:02.160Z",
-  "payload": {
-    "customer_id": 8,
-    "category": "Women" 
-  }
-}'
+  -d '{"id": "127", "ts": 192322800, "dep": "Boys"}'
 ```

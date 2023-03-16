@@ -20,8 +20,8 @@ from app.data_models import Scenario, CustomerDescription, CouponsByDepartment
 from app.log_config import configure_logger
 from app.config import SCENARIO_PLAYER_SCENARIO_ENDPOINT, CUSTOMERS_LIST_FILE, CUSTOMER_ENTER_TOPIC,\
     CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, CUSTOMER_BROWSING_TOPIC, MQTT_HOST, MQTT_PORT, MQTT_USERNAME,\
-    MQTT_PASSWORD, MQTT_BROKER_CERT_FILE, COUPONS_LIST_FILE, COUPON_PREDICTION_TOPIC_NAME
-from app.events_hadler import EventsHendler
+    MQTT_PASSWORD, MQTT_BROKER_CERT_FILE, COUPONS_LIST_FILE, COUPON_PREDICTION_TOPIC
+from app.events_hadler import EventsHandler
 
 # from app.store_initializer import init_c
 configure_logger()
@@ -148,7 +148,7 @@ async def phone(request: Request, customer_id: int):
     """
     logger.warn('THIS ENDPOINT DOES NOT SEND MQTT MESSAGE!')
     logger.warn('THIS ENDPOINT DOES EVERYTHINK WHAT THIS APP WILL DO IF THE MESSAGE WOULD OCCURE')
-    EventsHendler.handle_event(CUSTOMER_BROWSING_TOPIC,
+    EventsHandler.handle_event(CUSTOMER_BROWSING_TOPIC,
         f'{{"id": "{customer_id}", "ts": "{int(time.time())}", "dep": "Unknown"}}', app.state)
     return PlainTextResponse('OK')
 
@@ -219,29 +219,29 @@ def connect(client, flags, rc, properties):
 
 @fast_mqtt.subscribe(CUSTOMER_ENTER_TOPIC)
 async def entry_message(client, topic, payload, qos, properties):
-    EventsHendler.handle_event(topic, payload, app.state)
+    EventsHandler.handle_event(topic, payload, app.state)
     return 0
 
 
 @fast_mqtt.subscribe(CUSTOMER_EXIT_TOPIC)
 async def exit_message(client, topic, payload, qos, properties):
-    EventsHendler.handle_event(topic, payload, app.state)
+    EventsHandler.handle_event(topic, payload, app.state)
     return 0
 
 
 @fast_mqtt.subscribe(CUSTOMER_MOVE_TOPIC)
 async def move_message(client, topic, payload, qos, properties):
-    EventsHendler.handle_event(topic, payload, app.state)
+    EventsHandler.handle_event(topic, payload, app.state)
     return 0
 
 
 @fast_mqtt.subscribe(CUSTOMER_BROWSING_TOPIC)
 async def browsing_message(client, topic, payload, qos, properties):
-    EventsHendler.handle_event(topic, payload, app.state)
+    EventsHandler.handle_event(topic, payload, app.state)
     return 0
 
 
-@fast_mqtt.subscribe(COUPON_PREDICTION_TOPIC_NAME)
+@fast_mqtt.subscribe(COUPON_PREDICTION_TOPIC)
 async def prediction_message(client, topic, payload, qos, properties):
-    EventsHendler.handle_predictions(topic, payload, app.state)
+    EventsHandler.handle_predictions(topic, payload, app.state)
     return 0

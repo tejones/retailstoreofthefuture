@@ -41,6 +41,14 @@ spec:
         - name: EXIT_TOPIC
           value: {{  .Values.globalInfra.mqtt.exitTopic | quote }}
         {{- end }}
+        {{- if .Values.globalInfra.mqtt.browseTopic }}
+        - name: BROWSING_TOPIC
+          value: {{  .Values.globalInfra.mqtt.browseTopic | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.couponsTopic }}
+        - name: COUPON_PREDICTION_TOPIC
+          value: {{  .Values.globalInfra.mqtt.couponsTopic | quote }}
+        {{- end }}
         {{- if .Values.globalInfra.mqtt.sslEnabled }}
         - name: MQTT_BROKER_CERT_FILE
           value: /certs/broker_ca.crt
