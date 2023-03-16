@@ -154,7 +154,13 @@ customerSimulationService:
   
   # number of customer simulations service replicas
   replicas: 1
-  
+
+  fastApi:
+    env:
+      - name: LOG_LEVEL
+        value: info
+      - name: MAX_WORKERS
+        value: 1
   # customer simulation service type, default: ClusterIP
   # serviceType: ClusterIP
 
@@ -184,6 +190,13 @@ visualization:
 
   # visualization service port. default: 80
   # servicePort: 8080
+
+  fastApi:
+    env:
+      - name: LOG_LEVEL
+        value: info
+      - name: MAX_WORKERS
+        value: 1
 
   serviceAccount:
     create: true

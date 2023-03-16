@@ -19,6 +19,12 @@ spec:
       - name: gui
         image: {{ .Values.visualization.image }}
         env:
+        {{- if and .Values.visualization.fastApi  }}
+        {{- range .Values.visualization.fastApi.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote}}
+        {{- end }}
+        {{- end }}
         - name: SCENARIO_PLAYER_SCENARIO_ENDPOINT
           value: "http://{{  include "customerSimulation.serviceName" . }}:{{include "customerSimulation.servicePort" . }}/scenario"
         {{- if .Values.globalInfra.mqtt.brokerServer }}
