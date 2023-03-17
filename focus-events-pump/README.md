@@ -78,15 +78,16 @@ The service reads the following **environment variables**:
 | MQTT_USERNAME           | MQTT user username                   |    None |
 | MQTT_PASSWORD           | MQTT user password                   |    None |
 | MQTT_BROKER_CERT_FILE   | path to MQTT ssl cert file           |    None |
-| FOCUS_TOPIC             | topic for focus events               |    	  - |
-| PERIODIC_TASKS_INTERVAL | repeat publication every n seconds   |    	  1 |
+| FOCUS_TOPIC             | topic for focus events               |       - |
+| PERIODIC_TASKS_INTERVAL | repeat publication every n seconds   |       1 |
 | GENERATOR_AUTO_START    | start generating when the app starts |    True |
 | LOG_LEVEL               | logging level                        |    INFO |
+| LOG_FILENAME            | log file name                        |      '' |
 
 (Parameters with `-` in the "Default" column are required.)
 
-Use [log_config.py](./app/config/log_config.py) to **configure logging behaviour**.
-By default, console and file handlers are used. The file appender writes to `messages.log`.
+Use env variables [log_config.py](./app/config/log_config.py) to **configure logging behaviour**.
+By default, console is used for logging. File handler is added if `LOG_FILENAME` is provided.
 
 ## Running the service
 

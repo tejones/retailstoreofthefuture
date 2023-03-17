@@ -16,3 +16,5 @@ export DB_USER='postgres'
 export DB_PASSWORD='postgres'
 export DB_HOST='localhost'
 export DB_PORT='5432'
+
+export LOG_LEVEL=INFO

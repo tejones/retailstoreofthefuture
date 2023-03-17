@@ -1,24 +1,25 @@
 import logging
 import os
 
-
-# TODO move to config
-LOG_FILENAME = "messages.log"
+LOG_FILENAME = os.getenv('LOG_FILENAME', '')
 LOG_FORMAT = "%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]\t%(message)s"
-LOG_LEVEL = os.environ.get('LOG_LEVEL', 'DEBUG').upper()
+LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO').upper()
+LOGGER_NAME = 'app'
 
 assert LOG_LEVEL in ['DEBUG', 'INFO', 'WARNING', 'ERROR']
 
 
-def configure_logger():
+def configure_logger(logger_name=LOGGER_NAME):
     logging.basicConfig(format=LOG_FORMAT, level=LOG_LEVEL)
     # Basic console logger
-    logger = logging.getLogger("app")
+    logger = logging.getLogger(logger_name)
     # File logger
-    log_formatter = logging.Formatter(LOG_FORMAT)
-    file_handler = logging.FileHandler(LOG_FILENAME, encoding='UTF-8')
-    file_handler.setFormatter(log_formatter)
-    logger.addHandler(file_handler)
-    # Configuration done
+    if LOG_FILENAME:
+        logger.info("Configuring file logger...")
+        fileHandler = logging.FileHandler(LOG_FILENAME, encoding='UTF-8')
+        logFormatter = logging.Formatter(LOG_FORMAT)
+        fileHandler.setFormatter(logFormatter)
+        logger.addHandler(fileHandler)
+
     logger.debug("Logger configured...")
     return logger

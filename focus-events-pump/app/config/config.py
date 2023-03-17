@@ -30,7 +30,6 @@ PERIODIC_TASKS_INTERVAL = float(os.getenv('PERIODIC_TASKS_INTERVAL', 1.0))
 GENERATOR_AUTO_START = get_bool_env('GENERATOR_AUTO_START', True)
 
 HIDDEN_CONSTANTS_KEYS = ['DB_PASSWORD', 'MQTT_PASSWORD']
-
 dump_constants(logger.info, HIDDEN_CONSTANTS_KEYS)
 
 REQUIRED_PARAM_MESSAGE = 'Cannot read {} env variable. Please, make sure it is set before starting the service.'

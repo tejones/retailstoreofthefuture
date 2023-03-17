@@ -1,14 +1,6 @@
 import os
-import sys
 
-from app import logger
-
-
-def validate_and_crash(variable, message):
-    if not variable:
-        logger.error(message)
-        sys.exit(message)
-
+from app import logger, validate_and_crash, get_bool_env, dump_constants
 
 logger.info('Reading environment variables...')
 
@@ -29,9 +21,10 @@ CUSTOMER_ENTER_TOPIC = os.getenv('ENTER_TOPIC', 'customer/enter')
 CUSTOMER_EXIT_TOPIC = os.getenv('EXIT_TOPIC', 'customer/exit')
 CUSTOMER_MOVE_TOPIC = os.getenv('MOVE_TOPIC', 'customer/move')
 
-TESTING_MOCK_MQTT = os.getenv('TESTING_MOCK_MQTT', 'false')
-TESTING_MOCK_MQTT = TESTING_MOCK_MQTT.lower() in ['1', 'yes', 'true']
+TESTING_MOCK_MQTT = get_bool_env('TESTING_MOCK_MQTT', False)
 
+HIDDEN_CONSTANTS_KEYS = ['MQTT_PASSWORD']
+dump_constants(logger.info, HIDDEN_CONSTANTS_KEYS)
 
 REQUIRED_PARAM_MESSAGE = 'Cannot read {} env variable. Please, make sure it is set before starting the service.'
-validate_and_crash(MQTT_HOST, REQUIRED_PARAM_MESSAGE.format('MQTT_HOST'))
+validate_and_crash(logger.error, MQTT_HOST, REQUIRED_PARAM_MESSAGE.format('MQTT_HOST'))

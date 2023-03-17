@@ -17,14 +17,10 @@ from websockets.exceptions import ConnectionClosedOK
 
 from app import logger
 from app.data_models import Scenario, CustomerDescription, CouponsByDepartment
-from app.log_config import configure_logger
 from app.config import SCENARIO_PLAYER_SCENARIO_ENDPOINT, CUSTOMERS_LIST_FILE, CUSTOMER_ENTER_TOPIC,\
     CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, CUSTOMER_BROWSING_TOPIC, MQTT_HOST, MQTT_PORT, MQTT_USERNAME,\
     MQTT_PASSWORD, MQTT_BROKER_CERT_FILE, COUPONS_LIST_FILE, COUPON_PREDICTION_TOPIC
 from app.events_hadler import EventsHandler
-
-# from app.store_initializer import init_c
-configure_logger()
 
 app = FastAPI()
 

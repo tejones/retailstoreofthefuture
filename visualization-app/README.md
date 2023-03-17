@@ -57,23 +57,25 @@ This application assumes running MQTT broker.
 
 The service reads the following **environment variables**:
 
-| Variable                          | Description                                                                                      |                   Default |
-|-----------------------------------|--------------------------------------------------------------------------------------------------|--------------------------:|
-| MQTT_HOST                         |                                                                                                  |                         - |
-| MQTT_PORT                         |                                                                                                  |                      1883 |
-| MQTT_NAME                         |                                                                                                  |             demoVisClient |
-| MQTT_PASSWORD                     |                                                                                                  |                           |
-| ENTER_TOPIC                       |                                                                                                  |            customer/enter |
-| MOVE_TOPIC                        |                                                                                                  |             customer/move |
-| EXIT_TOPIC                        |                                                                                                  |             customer/exit |
-| BROWSING_TOPIC                    |                                                                                                  |         customer/browsing |
-| COUPON_PREDICTION_TOPIC           |                                                                                                  |       customer/prediction |
-| SCENARIO_PLAYER_SCENARIO_ENDPOINT | full address (ex: `http://localhost:8004/scenario`) to the scenario-player's `scenario` endpoint |                         - |
+| Variable                          | Description                                                                                      |             Default |
+|-----------------------------------|--------------------------------------------------------------------------------------------------|--------------------:|
+| MQTT_HOST                         |                                                                                                  |                   - |
+| MQTT_PORT                         |                                                                                                  |                1883 |
+| MQTT_NAME                         |                                                                                                  |       demoVisClient |
+| MQTT_PASSWORD                     |                                                                                                  |                     |
+| ENTER_TOPIC                       |                                                                                                  |      customer/enter |
+| MOVE_TOPIC                        |                                                                                                  |       customer/move |
+| EXIT_TOPIC                        |                                                                                                  |       customer/exit |
+| BROWSING_TOPIC                    |                                                                                                  |   customer/browsing |
+| COUPON_PREDICTION_TOPIC           |                                                                                                  | customer/prediction |
+| SCENARIO_PLAYER_SCENARIO_ENDPOINT | full address (ex: `http://localhost:8004/scenario`) to the scenario-player's `scenario` endpoint |                   - |
+| LOG_LEVEL                         | logging level                                                                                    |                INFO |
+| LOG_FILENAME                      | log file name                                                                                    |                  '' |
 
 (Parameters with `-` in "Default" column are required.)
 
-Use [log_config.py](./app/utils/log_config.py) to **configure logging behaviour**. 
-By default, console and file handlers are used. The file appender writes to `messages.log`.
+Use env variables [log_config.py](./app/log_config.py) to **configure logging behaviour**.
+By default, console is used for logging. File handler is added if `LOG_FILENAME` is provided.
 
 ## Running the service
 

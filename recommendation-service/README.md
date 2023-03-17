@@ -193,13 +193,16 @@ The service reads the following **environment variables**:
 | MQTT_PASSWORD           | MQTT user password                   |    None |
 | MQTT_BROKER_CERT_FILE   | path to MQTT ssl cert file           |    None |
 | ENTER_TOPIC             | topic for entry events               |       - |
-| FOCUS_TOPIC             | topic for focus events               |  	  - |
-| COUPON_PREDICTION_TOPIC | topic for sending prediction results |  	  - |
+| FOCUS_TOPIC             | topic for focus events               |       - |
+| COUPON_PREDICTION_TOPIC | topic for sending prediction results |       - |
+| LOG_LEVEL               | logging level                        |    INFO |
+| LOG_FILENAME            | log file name                        |      '' |
 
 (Parameters with `-` in the "Default" column are required.)
 
-Use [log_config.py](./app/utils/log_config.py) to **configure logging behaviour**. 
-By default, console and file handlers are used. The file appender writes to `messages.log`.
+Use env variables [log_config.py](./app/config/log_config.py) to **configure logging behaviour**.
+By default, console is used for logging. File handler is added if `LOG_FILENAME` is provided.
+
 
 ## Running the service
 

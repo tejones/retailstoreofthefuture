@@ -30,23 +30,25 @@ All the packages can be installed with:
 
 The service reads the following **environment variables**:
 
-| Variable              | Description    |  Default      |
-|-----------------------|----------------|--------------:|
-| STORE_HEIGHT          |                | 10            |
-| STORE_WIDTH           |                | 6             |
-| CUSTOMERS_AVERAGE_IN_STORE |  			   | 6             |
-| CUSTOMERS_LIST_FILE   |                | customers.csv |
-| MQTT_HOST             |                | -             |
-| MQTT_PORT             |                | 1883          |
-| MQTT_NAME             |                | demoClient    |
-| ENTER_TOPIC           |                | customer/enter|
-| MOVE_TOPIC            |                | customer/move |
-| EXIT_TOPIC            |                | customer/exit |
+| Variable                   | Description   |        Default |
+|----------------------------|---------------|---------------:|
+| STORE_HEIGHT               |               |             10 |
+| STORE_WIDTH                |               |              6 |
+| CUSTOMERS_AVERAGE_IN_STORE |               |              6 |
+| CUSTOMERS_LIST_FILE        |               |  customers.csv |
+| MQTT_HOST                  |               |              - |
+| MQTT_PORT                  |               |           1883 |
+| MQTT_NAME                  |               |     demoClient |
+| ENTER_TOPIC                |               | customer/enter |
+| MOVE_TOPIC                 |               |  customer/move |
+| EXIT_TOPIC                 |               |  customer/exit |
+| LOG_LEVEL                  | logging level |           INFO |
+| LOG_FILENAME               | log file name |             '' |
 
 (Parameters with `-` in the "Default" column are required.)
 
-Use [log_config.py](./app/utils/log_config.py) to **configure logging behaviour**. 
-By default, console and file handlers are used. The file appender writes to `messages.log`.
+Use env variables [log_config.py](./app/log_config.py) to **configure logging behaviour**.
+By default, console is used for logging. File handler is added if `LOG_FILENAME` is provided.
 
 ## Running the service
 
