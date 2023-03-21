@@ -17,7 +17,7 @@ spec:
       serviceAccount: {{ include "visualization.serviceAccountName" . }}
       containers:
       - name: gui
-        image: {{ .Values.visualization.image }}
+        image: {{ tpl .Values.visualization.image . }}
         env:
         {{- if and .Values.visualization.fastApi  }}
         {{- range .Values.visualization.fastApi.env }}

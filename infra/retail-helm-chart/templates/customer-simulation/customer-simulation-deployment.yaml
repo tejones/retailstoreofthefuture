@@ -18,7 +18,7 @@ spec:
       serviceAccount: {{ include "customerSimulation.serviceAccountName" . }}
       containers:
       - name: customer-simulation-service
-        image: {{ .Values.customerSimulationService.image }}
+        image: {{ tpl .Values.customerSimulationService.image . }}
         env:
         {{- if and .Values.customerSimulationService.fastApi  }}
         {{- range .Values.customerSimulationService.fastApi.env }}

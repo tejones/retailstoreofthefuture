@@ -18,7 +18,7 @@ spec:
       serviceAccount: {{ include "prediction.serviceAccountName" . }}
       containers:
       - name: prediction-service
-        image: {{ .Values.predictionService.image }}
+        image: {{ tpl .Values.predictionService.image . }}
         env:
         {{- if and .Values.predictionService.fastApi  }}
         {{- range .Values.predictionService.fastApi.env }}

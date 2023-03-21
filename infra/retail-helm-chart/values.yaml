@@ -6,6 +6,11 @@
 openshift: true
 
 globalInfra:
+
+  namespace: rsotf
+  imageRegistry: image-registry.openshift-image-registry.svc
+  registryPort: "5000"
+
   kafka:
     bootstrapServers:
       - retail-store-kafka-bootstrap.retail-infra.svc.cluster.local:9092
@@ -90,7 +95,7 @@ postgres:
 
 recommendationService:
   # recommendation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/recommendation-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/recommendation-service:latest"
   
   # number of recommendation service replicas
   replicas: 1
@@ -120,7 +125,7 @@ recommendationService:
 
 predictionService:
   # prediction service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/prediction-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/prediction-service:latest"
   
   # number of prediction service replicas
   replicas: 1
@@ -150,7 +155,7 @@ predictionService:
 
 customerSimulationService:
   # customer simulation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/customer-simulation-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/customer-simulation-service:latest"
   
   # number of customer simulations service replicas
   replicas: 1
@@ -183,7 +188,7 @@ customerSimulationService:
 # TODO other components use "service" postfix
 visualization:
   # visualization simulation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/visualization-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/visualization-service:latest"
   
   # visualization service type, default: ClusterIP
   # serviceType: ClusterIP
@@ -203,14 +208,14 @@ visualization:
     annotations: { }
 
 cachedbLoader:
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/cachedb-loader
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/cachedb-loader"
   serviceAccount:
     create: true
     annotations: { }
 
 decisionService:
   # decision service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/decision-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/decision-service:latest"
 
   # number of decision service replicas
   replicas: 1

@@ -21,7 +21,7 @@ spec:
       serviceAccount: {{ include "cachedbLoader.serviceAccountName" . }}
       containers:
       - name: cachedb-loader
-        image: {{ .Values.cachedbLoader.image }}
+        image: {{ tpl .Values.cachedbLoader.image . }}
         env:
           - name: POSTGRES_DB
             valueFrom:

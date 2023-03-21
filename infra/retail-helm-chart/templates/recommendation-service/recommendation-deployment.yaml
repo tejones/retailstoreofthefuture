@@ -18,7 +18,7 @@ spec:
       serviceAccount: {{include "recommendation.serviceAccountName" . }}
       containers:
       - name: recommendation-service
-        image: {{ .Values.recommendationService.image }}
+        image: {{ tpl .Values.recommendationService.image . }}
         env:
         - name: DB_NAME
           valueFrom:

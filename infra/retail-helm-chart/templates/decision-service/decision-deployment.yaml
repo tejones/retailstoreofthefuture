@@ -18,7 +18,7 @@ spec:
       serviceAccount: {{ include "decision.serviceAccountName" . }}
       containers:
       - name: decision-service
-        image: {{ .Values.decisionService.image }}
+        image: {{ tpl .Values.decisionService.image . }}
         env:
         {{- if and .Values.decisionService.arguments  }}
         {{- range .Values.decisionService.arguments }}
