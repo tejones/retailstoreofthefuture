@@ -4,7 +4,7 @@ This demo uses MQTT as the means of communication between devices and services o
 
 Here, we are using AMQ Broker from Red Hat Integration (https://access.redhat.com/products/red-hat-amq/)
 
-The AMQ Broker is a messaging broker that includes support ofthe MQTT protocol. 
+The AMQ Broker is a messaging broker that includes support of the MQTT protocol.
 It is based on the Apache ActiveMQ project.
 
 This short guide provides instructions for installing AMQ Broker on OpenShift, with the assumption that the [AMQ Broker Operator for RHEL 8](https://catalog.redhat.com/software/containers/amq7/amq-broker-rhel8-operator/5de6676fdd19c71643b76be6) has already been installed.
@@ -17,8 +17,6 @@ $ oc new-project retail-infra
 ```
 
 Or use an existing project to deploy the broker.
-
-    NOTE: AMQ Broker Operator is namespace-scoped
 
 
 ## Install the Broker
@@ -51,7 +49,6 @@ spec:
 ```
 
 Please, note that the `image` field is set to `placeholder` and will be replaced by the operator with the actual (latest) image name. (See [the producer documentation](https://access.redhat.com/documentation/en-us/red_hat_amq_broker/7.10/html/deploying_amq_broker_on_openshift/deploying-broker-on-ocp-using-operator_broker-ocp#proc_br-deploying-basic-broker-operator_broker-ocp) for details.)
-
 
 
 You can use the following command to create the broker:

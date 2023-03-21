@@ -103,11 +103,11 @@ Verify MQTT Broker is working properly
 
 1. Run Mosquitto Subscriber and subscribe to focusTopic
 ```
-$ oc run -it --rm mosquitto-subscriber --image=quay.io/nilvana/mosquitto -- \
+$ oc run -it --rm mosquitto-subscriber --image=quay.io/official-images/eclipse-mosquitto -- \
 mosquitto_sub -h ex-aao-mqtt-0-svc -p 1883 -t focusTopic
 ```
 2. Run Mosquitto Producer and see if messages are propagated to the subscriber
 ```
-oc run -it --rm  --restart=Never mosquitto-producer --image=quay.io/nilvana/mosquitto -- \
+oc run -it --rm  --restart=Never mosquitto-producer --image=quay.io/official-images/eclipse-mosquitto -- \
 mosquitto_pub -L mqtt://ex-aao-mqtt-2-svc:1883/focusTopic -m "Test message Intel123"
 ```
