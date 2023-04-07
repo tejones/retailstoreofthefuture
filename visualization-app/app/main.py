@@ -1,46 +1,29 @@
 import asyncio
-import uuid
 import json
-import random
-import requests
-import ssl
 import time
+import uuid
 
-from gmqtt.mqtt.constants import MQTTv311
-
+import requests
 from fastapi import FastAPI, Request, WebSocket
 from fastapi.responses import PlainTextResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi_mqtt import MQTTConfig, FastMQTT
 from websockets.exceptions import ConnectionClosedOK
 
 from app import logger
+from app.config import SCENARIO_PLAYER_SCENARIO_ENDPOINT, CUSTOMERS_LIST_FILE, CUSTOMER_ENTER_TOPIC, \
+    CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, CUSTOMER_BROWSING_TOPIC, COUPONS_LIST_FILE, COUPON_PREDICTION_TOPIC
 from app.data_models import Scenario, CustomerDescription, CouponsByDepartment
-from app.config import SCENARIO_PLAYER_SCENARIO_ENDPOINT, CUSTOMERS_LIST_FILE, CUSTOMER_ENTER_TOPIC,\
-    CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, CUSTOMER_BROWSING_TOPIC, MQTT_HOST, MQTT_PORT, MQTT_USERNAME,\
-    MQTT_PASSWORD, MQTT_BROKER_CERT_FILE, COUPONS_LIST_FILE, COUPON_PREDICTION_TOPIC
 from app.events_hadler import EventsHandler
+from app.utils import initialize_mqtt
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
-logger.debug(f'MQTT host: {MQTT_HOST}:{MQTT_PORT} | user: {MQTT_USERNAME}')
-
-context = False
-
-if MQTT_BROKER_CERT_FILE is not None:
-    context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
-    context.load_verify_locations(MQTT_BROKER_CERT_FILE)
-
-mqtt_config = MQTTConfig(host=MQTT_HOST, port=MQTT_PORT, username=MQTT_USERNAME, password=MQTT_PASSWORD, version=MQTTv311, ssl=context)
-
-fast_mqtt = FastMQTT(
-    config=mqtt_config
-)
-fast_mqtt.init_app(app)
+logger.info("Initializing MQTT...")
+mqtt = initialize_mqtt(app)
 
 
 async def pulse():
@@ -62,7 +45,7 @@ async def startup_event():
     app.state.customers = []
     with open(CUSTOMERS_LIST_FILE) as file:
         app.state.customers = [CustomerDescription(**customer) for customer in json.load(file)]
-        
+
     app.state.coupons = []
     with open(COUPONS_LIST_FILE) as file:
         app.state.coupons = [CouponsByDepartment(**coupon) for coupon in json.load(file)]
@@ -117,7 +100,7 @@ async def new_scenario(scenario: Scenario) -> PlainTextResponse:
     Create new scenario - pass the request
     """
     logger.info('Passing...')
-    requests.post(SCENARIO_PLAYER_SCENARIO_ENDPOINT, data = json.dumps(scenario.dict()))
+    requests.post(SCENARIO_PLAYER_SCENARIO_ENDPOINT, data=json.dumps(scenario.dict()))
     return PlainTextResponse('OK')
 
 
@@ -140,12 +123,12 @@ async def phone(request: Request):
 @app.get('/api/assistance/{customer_id}', response_class=HTMLResponse)
 async def phone(request: Request, customer_id: int):
     """
-    Customer calls asistance
+    Customer calls assistance
     """
     logger.warn('THIS ENDPOINT DOES NOT SEND MQTT MESSAGE!')
-    logger.warn('THIS ENDPOINT DOES EVERYTHINK WHAT THIS APP WILL DO IF THE MESSAGE WOULD OCCURE')
+    logger.warn('THIS ENDPOINT DOES EVERYTHING WHAT THIS APP WILL DO IF THE MESSAGE WOULD OCCUR')
     EventsHandler.handle_event(CUSTOMER_BROWSING_TOPIC,
-        f'{{"id": "{customer_id}", "ts": "{int(time.time())}", "dep": "Unknown"}}', app.state)
+                               f'{{"id": "{customer_id}", "ts": "{int(time.time())}", "dep": "Unknown"}}', app.state)
     return PlainTextResponse('OK')
 
 
@@ -208,36 +191,36 @@ async def websocket_predictions(websocket: WebSocket, customer_id: str):
 logger.info('Defining MQTT handlers...')
 
 
-@fast_mqtt.on_connect()
+@mqtt.on_connect()
 def connect(client, flags, rc, properties):
     logger.warning(f'Connected: , {client}, {flags}, {rc}, {properties}')
 
 
-@fast_mqtt.subscribe(CUSTOMER_ENTER_TOPIC)
+@mqtt.subscribe(CUSTOMER_ENTER_TOPIC)
 async def entry_message(client, topic, payload, qos, properties):
     EventsHandler.handle_event(topic, payload, app.state)
     return 0
 
 
-@fast_mqtt.subscribe(CUSTOMER_EXIT_TOPIC)
+@mqtt.subscribe(CUSTOMER_EXIT_TOPIC)
 async def exit_message(client, topic, payload, qos, properties):
     EventsHandler.handle_event(topic, payload, app.state)
     return 0
 
 
-@fast_mqtt.subscribe(CUSTOMER_MOVE_TOPIC)
+@mqtt.subscribe(CUSTOMER_MOVE_TOPIC)
 async def move_message(client, topic, payload, qos, properties):
     EventsHandler.handle_event(topic, payload, app.state)
     return 0
 
 
-@fast_mqtt.subscribe(CUSTOMER_BROWSING_TOPIC)
+@mqtt.subscribe(CUSTOMER_BROWSING_TOPIC)
 async def browsing_message(client, topic, payload, qos, properties):
     EventsHandler.handle_event(topic, payload, app.state)
     return 0
 
 
-@fast_mqtt.subscribe(COUPON_PREDICTION_TOPIC)
+@mqtt.subscribe(COUPON_PREDICTION_TOPIC)
 async def prediction_message(client, topic, payload, qos, properties):
     EventsHandler.handle_predictions(topic, payload, app.state)
     return 0

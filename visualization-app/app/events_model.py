@@ -8,7 +8,7 @@ class CustomerEvent(BaseModel):
     """
      id: --ID representing customer--,
      ts: --timestamp of the event in seconds in epoch--,
-    dep: --name of the department where the event occured (optional)--,
+    dep: --name of the department where the event occurred (optional)--,
       x: --x coordinate of location sensor that fired--,
       y: --y coordinate of location sensor that fired--,
     """

@@ -18,7 +18,7 @@ class Location(BaseModel):
 
 
 class Step(BaseModel):
-    type: str # TODO: introduce enum/Literal
+    type: str  # TODO: introduce enum/Literal
     location: Location
     timestamp: Optional[datetime]
 

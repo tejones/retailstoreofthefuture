@@ -105,10 +105,10 @@ In this case, the scenario will start with the current time and step timestamps 
 
 ### **customer/exit** Channel
 
-| Name | Type | Description | Accepted values |
-|---|---|---|---|
-| id | string | ID of the customer | ...|
-| ts | integer | Timestamp of the event, in seconds since epoch | ...|
+| Name | Type    | Description                                    | Accepted values |
+|------|---------|------------------------------------------------|-----------------|
+| id   | string  | ID of the customer                             | ...             |
+| ts   | integer | Timestamp of the event, in seconds since epoch | ...             |
 
 Example of payload:
 
@@ -121,10 +121,10 @@ Example of payload:
 
 ### **customer/exit** Channel
 
-| Name | Type | Description | Accepted values |
-|---|---|---|---|
-| id | string | ID of the customer | ...|
-| ts | integer | Timestamp (unix time) | ...|
+| Name | Type    | Description           | Accepted values |
+|------|---------|-----------------------|-----------------|
+| id   | string  | ID of the customer    | ...             |
+| ts   | integer | Timestamp (unix time) | ...             |
 
 Example of payload:
 
@@ -137,12 +137,12 @@ Example of payload:
 
 ### **customer/move** Channel
 
-| Name | Type | Description | Accepted values |
-|---|---|---|---|
-| id | string | ID of the customer | ...|
-| ts | integer | Timestamp (unix time) | ...|
-| x | integer | coordinate x | ...|
-| y | integer | coordinate y | ...|
+| Name | Type    | Description           | Accepted values |
+|------|---------|-----------------------|-----------------|
+| id   | string  | ID of the customer    | ...             |
+| ts   | integer | Timestamp (unix time) | ...             |
+| x    | integer | coordinate x          | ...             |
+| y    | integer | coordinate y          | ...             |
 
 Example of payload:
 

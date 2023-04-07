@@ -1,4 +1,6 @@
 import os
+import uuid
+
 from app import logger
 from app.config import get_bool_env, validate_and_crash, dump_constants
 
@@ -12,6 +14,10 @@ MQTT_PORT = os.getenv('MQTT_PORT', 1881)
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
 MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
 MQTT_BROKER_CERT_FILE = os.getenv('MQTT_BROKER_CERT_FILE')
+MQTT_CLIENT_ID = os.getenv('MQTT_CLIENT_ID', 'recSvc')
+MQTT_CLIENT_ID = f'{MQTT_CLIENT_ID}_{uuid.uuid4()}'
+# use 'MQTTv311' if your broker does not support MQTTv5
+MQTT_PROTOCOL_VERSION = os.getenv('MQTT_PROTOCOL_VERSION', 'MQTTv5')
 
 COUPON_SCORER_URL = os.getenv('COUPON_SCORER_URL')
 CLIENT_CONTEXT_URL = os.getenv('CLIENT_CONTEXT_URL', 'http://XXX')

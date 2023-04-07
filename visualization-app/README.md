@@ -59,10 +59,11 @@ The service reads the following **environment variables**:
 
 | Variable                          | Description                                                                                      |             Default |
 |-----------------------------------|--------------------------------------------------------------------------------------------------|--------------------:|
-| MQTT_HOST                         |                                                                                                  |                   - |
-| MQTT_PORT                         |                                                                                                  |                1883 |
-| MQTT_NAME                         |                                                                                                  |       demoVisClient |
-| MQTT_PASSWORD                     |                                                                                                  |                     |
+| MQTT_HOST                         | MQTT broker host                                                                                 |                   - |
+| MQTT_PORT                         | MQTT broker port                                                                                 |                1883 |
+| MQTT_USERNAME                     | username for MQTT authentication                                                                 |                     |
+| MQTT_PASSWORD                     | password for MQTT authentication                                                                 |                     |
+| MQTT_CLIENT_ID                    | MQTT client ID prefix                                                                            |       demoVisClient |
 | ENTER_TOPIC                       |                                                                                                  |      customer/enter |
 | MOVE_TOPIC                        |                                                                                                  |       customer/move |
 | EXIT_TOPIC                        |                                                                                                  |       customer/exit |

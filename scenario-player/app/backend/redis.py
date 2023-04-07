@@ -9,6 +9,7 @@ from app.scenario.scenario_model import Scenario, Step, Location
 
 TIMELINE_KEY = f'TIMELINE:CURRENT'
 SCENARIO_KEY = 'SCENARIO'
+TIMESTAMP_FORMAT = '%Y-%m-%d %H:%M:%S.%f%z'
 
 
 class RedisTimelineBackend(BaseTimelineBackend):
@@ -28,15 +29,15 @@ class RedisTimelineBackend(BaseTimelineBackend):
         Initialize the backend (for example, connect to the DB, etc.)
         :return:
         """
-        logger.info("initializing redis backend...")
+        logger.info("Connecting to Redis...")
         logger.info(f'{self.connection_url}, {self.database},{self.redis_password}')
         try:
             self.redis = await aioredis.create_redis_pool(address=self.connection_url, db=self.database,
-                                                          password=self.redis_password,
-                                                          encoding='utf-8')
+                                                          password=self.redis_password, encoding='utf-8')
         except Exception as e:
-            logger.error(f"Error while talking to redis: {e}")
-            # raise
+            logger.error(f"Error while connecting to redis: {e}")
+            logger.exception(e)
+            raise e
 
     ###
     # scenario related
@@ -44,7 +45,8 @@ class RedisTimelineBackend(BaseTimelineBackend):
 
     @staticmethod
     def marshall_step(p: Step):
-        return f'{p.timestamp}|{p.type}|{p.location.x}|{p.location.y}'
+        tmpstmp = p.timestamp.strftime(TIMESTAMP_FORMAT)
+        return f'{tmpstmp}|{p.type}|{p.location.x}|{p.location.y}'
 
     def serialize_steps(self, steps: List[Step]):
         return [self.marshall_step(x) for x in steps]
@@ -64,6 +66,7 @@ class RedisTimelineBackend(BaseTimelineBackend):
                 result = scenario_key
         except Exception as e:
             logger.error(f"Error while talking to redis: {e}")
+            logger.exception(e)
 
         return result
 
@@ -73,7 +76,8 @@ class RedisTimelineBackend(BaseTimelineBackend):
 
     @staticmethod
     def marshall_event(client_id: str, p: Step):
-        return f'{client_id}|{p.location.x}|{p.location.y}|{p.type}|{p.timestamp}'
+        tmpstmp = p.timestamp.strftime(TIMESTAMP_FORMAT)
+        return f'{client_id}|{p.location.x}|{p.location.y}|{p.type}|{tmpstmp}'
 
     @staticmethod
     def unmarshall_event(s: str):
@@ -82,9 +86,9 @@ class RedisTimelineBackend(BaseTimelineBackend):
 
         client_id = parts[0]
         loc = Location(x=int(parts[1]), y=int(parts[2]))
+        timestamp = datetime.strptime(parts[4], TIMESTAMP_FORMAT)
 
-        return client_id, Step(location=loc, type=parts[3],
-                               timestamp=datetime.strptime(parts[4], '%Y-%m-%d %H:%M:%S.%f'))
+        return client_id, Step(location=loc, type=parts[3], timestamp=timestamp)
 
     async def add_to_timeline(self, customer_id: str, step: Step):
         """
@@ -99,10 +103,11 @@ class RedisTimelineBackend(BaseTimelineBackend):
 
         try:
             event_representation = self.marshall_event(customer_id, step)
-            logger.debug(f'marshalled event_representation: {event_representation}')
+            logger.warning(f'marshalled event_representation: {event_representation}')
             result = await self.redis.zadd(TIMELINE_KEY, int(step.timestamp.timestamp()), event_representation)
         except Exception as e:
             logger.error(f"Error while talking to redis: {e}")
+            logger.exception(e)
 
         return result
 
@@ -115,10 +120,12 @@ class RedisTimelineBackend(BaseTimelineBackend):
 
         try:
             events = await self.redis.zrangebyscore(TIMELINE_KEY, min=unix_time, max=unix_time)
+            logger.info("events: " + str(events))
             result = [self.unmarshall_event(e) for e in events]
             mop = await self.redis.zremrangebyscore(TIMELINE_KEY, min=unix_time, max=unix_time)
         except Exception as e:
             logger.error(f"Error while talking to redis: {e}")
+            logger.exception(e)
             logger.error(type(e))
 
         return result

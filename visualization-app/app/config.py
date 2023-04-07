@@ -1,4 +1,5 @@
 import os
+import uuid
 
 from app import logger, validate_and_crash, dump_constants
 
@@ -9,10 +10,13 @@ COUPONS_LIST_FILE = os.getenv('COUPONS_LIST_FILE', 'app/resources/coupons.json')
 
 MQTT_HOST = os.getenv('MQTT_HOST')
 MQTT_PORT = int(os.getenv('MQTT_PORT', 1883))
-MQTT_NAME = os.getenv('MQTT_NAME', 'demoVisClient')
+MQTT_CLIENT_ID = os.getenv('MQTT_CLIENT_ID', 'demoVisClient')
+MQTT_CLIENT_ID = f'{MQTT_CLIENT_ID}_{uuid.uuid4()}'
 MQTT_USERNAME = os.getenv('MQTT_USERNAME', None)
 MQTT_PASSWORD = os.getenv('MQTT_PASSWORD', None)
 MQTT_BROKER_CERT_FILE = os.getenv('MQTT_BROKER_CERT_FILE', None)
+# use 'MQTTv311' if your broker does not support MQTTv5
+MQTT_PROTOCOL_VERSION = os.getenv('MQTT_PROTOCOL_VERSION', 'MQTTv5')
 
 CUSTOMER_ENTER_TOPIC = os.getenv('ENTER_TOPIC', 'customer/enter')
 CUSTOMER_EXIT_TOPIC = os.getenv('EXIT_TOPIC', 'customer/exit')

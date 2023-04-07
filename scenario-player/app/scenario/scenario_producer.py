@@ -27,7 +27,7 @@ class ScenarioProducer(object):
 
         last_step = None
 
-        # go trough draft's steps
+        # go through draft's steps
         for i, s in enumerate(scenario_draft.path):
             step = s.copy(update={'type': STEP_TYPE_MOVE})
             step.timestamp = self.compute_timestamp(last_step, s) if last_step else start_timestamp

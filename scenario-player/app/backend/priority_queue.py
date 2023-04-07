@@ -49,7 +49,7 @@ class PQueueTimelineBackend:
                     result.append(element[1])
 
                 earliest_element = self.peek()
-                # if there is no elements left or if the next element is to new, break
+                # if there is no elements left or if the next element is too new, break
                 if not earliest_element or earliest_element[0] > unix_time:
                     break
 

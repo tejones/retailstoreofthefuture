@@ -46,6 +46,7 @@ class FocusEventProcessor:
 
         # for sc in scored_coupons:
         # Get products for the recommended coupon
+        # TODO: check if coupons were returned in the first place
         sc = scored_coupons[0]
         products = await self._cache_reader.read_products(coupon_id=sc.coupon_id)
         coupon_info = next(c for c in available_coupons if c.coupon_id == sc.coupon_id)

@@ -8,6 +8,7 @@ from fastapi.responses import PlainTextResponse
 
 from app import logger
 from app.backend.priority_queue import PQueueTimelineBackend
+from app.config import USE_REDIS_BACKEND, REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, REDIS_DB
 from app.controller import TimelineController
 from app.publisher.mqtt_publisher import MQTTEventPublisher
 from app.scenario.scenario_deployer import ScenarioDeployer
@@ -17,15 +18,14 @@ from app.simulator.simulation_engine import CustomerSimulator
 
 app = FastAPI()
 
-# For bigger scale and volume, use Redis backend
-USE_REDIS_BACKEND = False
-
 
 async def init_backend():
     if USE_REDIS_BACKEND:
+        logger.info("Initializing Redis backend...")
         # XXX TODO add error handling
         from app.backend.redis import RedisTimelineBackend
-        backend = RedisTimelineBackend('redis://127.0.0.1:6379', database=0, redis_password='redis123')
+        connection_string = f'redis://{REDIS_HOST}:{REDIS_PORT}'
+        backend = RedisTimelineBackend(connection_string, database=REDIS_DB, redis_password=REDIS_PASSWORD)
     else:
         backend = PQueueTimelineBackend()
 
