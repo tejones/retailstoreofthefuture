@@ -1,23 +1,43 @@
 from datetime import datetime
 from typing import List, Tuple
 
-import aioredis
+from redis import asyncio as aioredis
 
-from app import logger
+from app import logger, get_bool_env
 from app.backend.base import BaseTimelineBackend
-from app.scenario.scenario_model import Scenario, Step, Location
+from app.scenario.scenario_model import Scenario, Step, Location, UtcDatetime
 
 TIMELINE_KEY = f'TIMELINE:CURRENT'
 SCENARIO_KEY = 'SCENARIO'
+# TODO consider datetime.datetime.fromisoformat (Python 3.7+) and datetime.datetime.isoformat
 TIMESTAMP_FORMAT = '%Y-%m-%d %H:%M:%S.%f%z'
+
+# while persisting the scenario, overwrite the existing one
+# (otherwise new scenario steps will be appended to the existing one)
+SCENARIO_OVERWRITE = get_bool_env('SCENARIO_OVERWRITE', True)
+
+TIMELINE_FUNCTIONS = """\
+#!lua name=timeline
+local function get_elements(keys, args)
+    local key = keys[1]
+    local min_score = args[1]
+    local max_score = args[2]
+    local n = args[3]
+    redis.log(redis.LOG_DEBUG, 'get_elements: ' .. key .. ' ' .. min_score .. ' ' .. max_score .. ' ' .. n)
+    local elements = redis.call('ZRANGEBYSCORE', key, min_score, max_score, 'LIMIT', 0, n)
+    if #elements > 0 then
+        redis.log(redis.LOG_DEBUG, 'get_elements: removing ' .. #elements .. ' elements')
+        redis.call('ZREM', key, unpack(elements))
+    end
+    return elements
+end
+redis.register_function('get_elements', get_elements)
+"""
 
 
 class RedisTimelineBackend(BaseTimelineBackend):
 
     def __init__(self, connection_url: str = 'redis://localhost', database: int = 0, redis_password: str = None):
-        """
-        Initialize internal fields.
-        """
         super().__init__()
         self.connection_url = connection_url
         self.database = database
@@ -25,15 +45,20 @@ class RedisTimelineBackend(BaseTimelineBackend):
         self.redis = None
 
     async def initialize(self):
-        """
-        Initialize the backend (for example, connect to the DB, etc.)
-        :return:
-        """
         logger.info("Connecting to Redis...")
         logger.info(f'{self.connection_url}, {self.database},{self.redis_password}')
         try:
-            self.redis = await aioredis.create_redis_pool(address=self.connection_url, db=self.database,
-                                                          password=self.redis_password, encoding='utf-8')
+            self.redis = aioredis.from_url(self.connection_url, db=self.database, password=self.redis_password,
+                                           encoding='utf-8', decode_responses=True)
+
+            # check if the server has the timeline module loaded
+            modules = await self.redis.function_list()
+            found = next((True for module in modules if 'timeline' in module), False)
+            if not found:
+                logger.warning(f"Redis module 'timeline' not found. Attempting to load it here.")
+                module = await self.redis.function_load(TIMELINE_FUNCTIONS, replace=True)
+                logger.info(f"Redis module loaded: {module}")
+
         except Exception as e:
             logger.error(f"Error while connecting to redis: {e}")
             logger.exception(e)
@@ -56,11 +81,16 @@ class RedisTimelineBackend(BaseTimelineBackend):
         result = None
         try:
             scenario_key = f'{namespace}:{scenario.customer.customer_id}'
+
+            if SCENARIO_OVERWRITE:
+                logger.info(f'Overwriting scenario {scenario_key}')
+                await self.redis.delete(scenario_key)
+
             values = self.serialize_steps(scenario.path)
             length = len(values)
 
             if length >= 1:
-                logger.info(f'Sending multiple values ... {values}')
+                logger.debug(f'Sending multiple values ... {values}')
                 result = await self.redis.rpush(scenario_key, *values)
 
                 result = scenario_key
@@ -103,29 +133,27 @@ class RedisTimelineBackend(BaseTimelineBackend):
 
         try:
             event_representation = self.marshall_event(customer_id, step)
-            logger.warning(f'marshalled event_representation: {event_representation}')
-            result = await self.redis.zadd(TIMELINE_KEY, int(step.timestamp.timestamp()), event_representation)
+            logger.debug(f'marshalled event_representation: {event_representation}')
+            result = await self.redis.zadd(TIMELINE_KEY, {event_representation: self.get_epoch_ms(step.timestamp)})
         except Exception as e:
             logger.error(f"Error while talking to redis: {e}")
             logger.exception(e)
 
         return result
 
-    async def get_events(self, unix_time: int) -> List[Tuple[str, Step]]:
-        logger.debug(f'get events from redis for timestamp {unix_time}')
+    async def get_events(self, for_timestamp: UtcDatetime, from_timestamp: UtcDatetime,
+                         batch_size: int) -> List[Tuple[str, Step]]:
+        logger.debug(f'get events from redis for timestamp {for_timestamp} (from {from_timestamp})')
         """
         Get events definitions for a given point in time
         """
         result = []
-
-        try:
-            events = await self.redis.zrangebyscore(TIMELINE_KEY, min=unix_time, max=unix_time)
-            logger.info("events: " + str(events))
+        min = self.get_epoch_ms(from_timestamp)
+        epoch = self.get_epoch_ms(for_timestamp)
+        events = await self.redis.fcall('get_elements', 1, TIMELINE_KEY, min, epoch, batch_size)
+        if events:
+            logger.debug(f'removed {len(events)} events from timeline')
+            logger.debug(f'events: {events}')
             result = [self.unmarshall_event(e) for e in events]
-            mop = await self.redis.zremrangebyscore(TIMELINE_KEY, min=unix_time, max=unix_time)
-        except Exception as e:
-            logger.error(f"Error while talking to redis: {e}")
-            logger.exception(e)
-            logger.error(type(e))
 
         return result

@@ -1,5 +1,5 @@
-from datetime import datetime, timedelta, timezone
 import math
+from datetime import datetime, timedelta, timezone
 
 from app import logger
 from app.scenario.scenario_model import Scenario, Step, Location, STEP_TYPE_MOVE, STEP_TYPE_FOCUS

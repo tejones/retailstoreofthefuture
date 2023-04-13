@@ -41,7 +41,7 @@ globalInfra:
     password: password
 
     # name or IP address of the MQTT broker 
-    brokerServer: ex-aao-mqtt-0-svc.retail-infra.svc.cluster.local
+    brokerServer: ex-aao-mqtt-0-svc
     
     # port that MQTT broker is listening on, default: 1883
     brokerPort: 1883

@@ -124,6 +124,8 @@ async def deploy_scenario(payload: Scenario,
 @app.get('/state')
 async def get_current_state(timestamp: datetime) -> List[CustomerState]:
     logger.info(f'get_current_state as for {timestamp}')
+    # TODO XXX: get_current_state uses backend.get_events(epoch) which not only gets events but also
+    #  removes them from the queue. This is not what we want here.
     return await app.state.timeline_controller.get_current_state(timestamp)
 
 
