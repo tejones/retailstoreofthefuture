@@ -241,3 +241,29 @@ decisionService:
     create: true
     # additional service account annotations
     annotations: { }
+
+fepumpService:
+  # decide if the service should be deployed
+  deploy: true
+
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/focus-events-pump:latest"
+
+  replicas: 1
+
+  fastApi:
+    env:
+      - name: LOG_LEVEL
+        value: info
+
+  config:
+    env:
+      - name: GENERATOR_AUTO_START
+        value: false
+      - name: PERIODIC_TASKS_INTERVAL
+        value: 1.0
+
+  serviceAccount:
+    create: true
+    annotations: { }
+
+  resources: { }

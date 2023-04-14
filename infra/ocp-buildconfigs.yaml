@@ -201,3 +201,30 @@ metadata:
 spec:
   lookupPolicy:
     local: false
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: focus-events-pump
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
+    contextDir: focus-events-pump/
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'focus-events-pump:latest'
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: focus-events-pump
+spec:
+  lookupPolicy:
+    local: false
+---

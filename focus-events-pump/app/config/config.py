@@ -11,6 +11,8 @@ MQTT_PORT = os.getenv('MQTT_PORT', 1881)
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
 MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
 MQTT_BROKER_CERT_FILE = os.getenv('MQTT_BROKER_CERT_FILE')
+# use 'MQTTv311' if your broker does not support MQTTv5
+MQTT_PROTOCOL_VERSION = os.getenv('MQTT_PROTOCOL_VERSION', 'MQTTv5')
 
 DB_NAME = os.getenv('DB_NAME')
 DB_USER = os.getenv('DB_USER')

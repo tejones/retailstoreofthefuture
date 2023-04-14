@@ -22,5 +22,8 @@ if LOG_FILENAME:
     fileHandler.setFormatter(logFormatter)
     logger.addHandler(fileHandler)
 
+noisy_logger = logging.getLogger('apscheduler.executors')
+noisy_logger.setLevel(logging.WARNING)
+
 # Configuration done
 logger.debug("Logger configured...")

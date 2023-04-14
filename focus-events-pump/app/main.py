@@ -1,8 +1,10 @@
+import uvicorn
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 
 from app import logger
+from app.config import show_banner
 from app.config.config import PERIODIC_TASKS_INTERVAL, DEPARTMENTS, FOCUS_TOPIC, GENERATOR_AUTO_START
 from app.generator import FocusEventGenerator
 from app.mqtt.mqtt import initialize_mqtt
@@ -27,6 +29,11 @@ async def healthcheck():
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+
+@app.get("/state")
+async def get_state():
+    return {"state": "started" if app.state.generator_enabled else "stopped"}
 
 
 @app.post('/start')
@@ -60,7 +67,7 @@ def tick():
     if not app.state.generator_enabled:
         logger.debug("Generator is disabled")
     else:
-        logger.info("Publishing a new event")
+        logger.debug("Publishing a new event")
         event = app.state.message_generator.generate()
         payload = event.json(by_alias=True, exclude_none=True).encode()
         logger.debug(f"event: {payload}")
@@ -74,8 +81,14 @@ async def init_app():
     logger.info("Initializing the app")
     app.state.message_generator = FocusEventGenerator(DEPARTMENTS)
     app.state.generator_enabled = GENERATOR_AUTO_START
+    if not app.state.generator_enabled:
+        show_banner(logger.warning, "Generator is disabled. Use /start to enable it.")
 
     logger.info("Starting the scheduler")
     scheduler = AsyncIOScheduler()
     scheduler.add_job(tick, 'interval', seconds=PERIODIC_TASKS_INTERVAL)
     scheduler.start()
+
+# For debugging
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

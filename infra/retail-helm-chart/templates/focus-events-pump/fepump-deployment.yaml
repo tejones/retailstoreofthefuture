@@ -1,0 +1,93 @@
+{{- if .Values.fepumpService.deploy -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "fepump.labels" . | nindent 4 }}
+  name: {{ include "fepump.name" . }}
+
+spec:
+  replicas: {{ .Values.fepumpService.replicas }}
+  selector:
+    matchLabels:
+      {{- include "fepump.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "fepump.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccount: {{include "fepump.serviceAccountName" . }}
+      containers:
+      - name: fepump-service
+        image: {{ tpl .Values.fepumpService.image . }}
+        env:
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "postgres.configMapName" . }}
+              key: POSTGRES_DB
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "postgres.secretName"  .}}
+              key: POSTGRES_PASSWORD
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "postgres.secretName" . }}
+              key: POSTGRES_USER
+        - name: DB_HOST
+          value: {{ include "postgres.serviceName" . }}
+        - name: DB_PORT
+          value: {{ include "postgres.servicePort" . | toString | quote }}
+        {{- if and .Values.fepumpService.fastApi  }}
+        {{- range .Values.fepumpService.fastApi.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if and .Values.fepumpService.config  }}
+        {{- range .Values.fepumpService.config.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.brokerServer }}
+        - name: MQTT_HOST
+          value: {{  .Values.globalInfra.mqtt.brokerServer | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.brokerPort }}
+        - name: MQTT_PORT
+          value: {{  .Values.globalInfra.mqtt.brokerPort  | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.focusTopic }}
+        - name: FOCUS_TOPIC
+          value: {{  .Values.globalInfra.mqtt.focusTopic | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.sslEnabled }}
+        - name: MQTT_BROKER_CERT_FILE
+          value: /certs/broker_ca.crt
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.authenticationEnabled }}
+        envFrom:
+        - secretRef:
+            name: mqtt-auth-creds
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.sslEnabled }}
+        volumeMounts:
+        - name: broker-cert
+          readOnly: true
+          mountPath: /certs
+        {{- end }}
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 80
+{{- end -}}

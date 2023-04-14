@@ -216,3 +216,12 @@ spec:
       kind: ImageStreamTag
       name: 'prediction-service:latest'
 ```
+
+## Optional components
+
+The helm chart contains optional components
+that can be enabled by setting the corresponding flag (`deploy`) to `true` in the `values.yaml` file.
+
+
+These components include:
+- [focus-event-pump](../focus-events-pump) - used for load testing Recommendation Service.

@@ -19,6 +19,15 @@ def dump_constants(logger_func, hidden_keys):
         logger_func(f'{k} = {value}')
 
 
+def show_banner(logger_func, lines: str | list[str]):
+    logger_func('#' * 64)
+    if isinstance(lines, str):
+        lines = [lines]
+    for line in lines:
+        logger_func(f'# {line}')
+    logger_func('#' * 64)
+
+
 def validate_and_crash(logger_func, variable, message):
     if not variable:
         logger_func(message)
