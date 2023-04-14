@@ -1,4 +1,5 @@
 import os
+import uuid
 
 from app import logger
 from app.config import dump_constants, validate_and_crash, get_bool_env
@@ -6,6 +7,7 @@ from app.config import dump_constants, validate_and_crash, get_bool_env
 logger.info('Reading environment variables...')
 
 FOCUS_TOPIC = os.getenv('FOCUS_TOPIC')
+COMMAND_TOPIC = os.getenv('COMMAND_TOPIC', 'focusEventPump/command')
 MQTT_HOST = os.getenv('MQTT_HOST')
 MQTT_PORT = os.getenv('MQTT_PORT', 1881)
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
@@ -13,6 +15,8 @@ MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
 MQTT_BROKER_CERT_FILE = os.getenv('MQTT_BROKER_CERT_FILE')
 # use 'MQTTv311' if your broker does not support MQTTv5
 MQTT_PROTOCOL_VERSION = os.getenv('MQTT_PROTOCOL_VERSION', 'MQTTv5')
+MQTT_CLIENT_ID = os.getenv('MQTT_CLIENT_ID', 'recSvc')
+MQTT_CLIENT_ID = f'{MQTT_CLIENT_ID}_{uuid.uuid4()}'
 
 DB_NAME = os.getenv('DB_NAME')
 DB_USER = os.getenv('DB_USER')

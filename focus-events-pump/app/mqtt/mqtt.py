@@ -4,7 +4,7 @@ import ssl
 
 from app import logger
 from app.config import config
-from app.config.config import MQTT_PROTOCOL_VERSION
+from app.config.config import MQTT_PROTOCOL_VERSION, MQTT_CLIENT_ID
 from app.mqtt.dummy_mqtt import DummyMQTT
 
 
@@ -25,7 +25,7 @@ def initialize_mqtt(fastapi_app):
             password=config.MQTT_PASSWORD,
             version=protocol_version,
             ssl=context)
-        mqtt = FastMQTT(config=mqtt_config)
+        mqtt = FastMQTT(config=mqtt_config, client_id=MQTT_CLIENT_ID)
         mqtt.init_app(fastapi_app)
 
     else:

@@ -5,7 +5,8 @@ from fastapi.responses import PlainTextResponse
 
 from app import logger
 from app.config import show_banner
-from app.config.config import PERIODIC_TASKS_INTERVAL, DEPARTMENTS, FOCUS_TOPIC, GENERATOR_AUTO_START
+from app.config.config import PERIODIC_TASKS_INTERVAL, DEPARTMENTS, FOCUS_TOPIC, GENERATOR_AUTO_START, COMMAND_TOPIC, \
+    MQTT_CLIENT_ID
 from app.generator import FocusEventGenerator
 from app.mqtt.mqtt import initialize_mqtt
 
@@ -37,26 +38,22 @@ async def get_state():
 
 
 @app.post('/start')
-async def start_generator():
+async def start():
     logger.info('start_generator')
-    result = "OK"
-    if app.state.generator_enabled:
-        result = "Generator is already enabled"
-    else:
-        app.state.generator_enabled = True
+    result = "OK" if change_generator_state(True) else "Generator is already enabled"
 
+    # let other instances know that we want to start
+    mqtt.publish(COMMAND_TOPIC, 'START')
     return PlainTextResponse(result)
 
 
 @app.post('/stop')
-async def stop_generator():
+async def stop():
     logger.info('stop_generator')
-    result = "OK"
-    if not app.state.generator_enabled:
-        result = "Generator is already disabled"
-    else:
-        app.state.generator_enabled = False
+    result = "OK" if change_generator_state(False) else "Generator is already disabled"
 
+    # let other instances know that we want to stop
+    mqtt.publish(COMMAND_TOPIC, 'STOP')
     return PlainTextResponse(result)
 
 
@@ -74,6 +71,15 @@ def tick():
         mqtt.publish(FOCUS_TOPIC, payload)
 
 
+def change_generator_state(on_off: bool):
+    logger.info('change_generator_state to ' + ('on' if on_off else 'off'))
+    if app.state.generator_enabled == on_off:
+        return False
+    else:
+        app.state.generator_enabled = on_off
+        return True
+
+
 #####
 # App startup and shutdown
 @app.on_event('startup')
@@ -88,6 +94,31 @@ async def init_app():
     scheduler = AsyncIOScheduler()
     scheduler.add_job(tick, 'interval', seconds=PERIODIC_TASKS_INTERVAL)
     scheduler.start()
+
+
+@mqtt.subscribe(COMMAND_TOPIC + '/#')
+async def command_message(client, topic, payload, qos, properties):
+    logger.info(f"Received message on topic {topic}: {payload}")
+    # strip the command topic and the leading slash from the actual topic
+    specific_id = topic[len(COMMAND_TOPIC):]
+    if specific_id.startswith('/'):
+        specific_id = specific_id[1:]
+
+    # act only on the specific id or on all (no id specified)
+    if not specific_id or specific_id == MQTT_CLIENT_ID:
+        # convert payload to string and make upper case
+        command = payload.decode().upper()
+        if command == 'START':
+            logger.info("Starting...")
+            change_generator_state(True)
+        elif command == 'STOP':
+            logger.info("Stopping...")
+            change_generator_state(False)
+        else:
+            logger.warning(f"Unknown command {command}")
+    else:
+        logger.info(f"Skipping message for id {specific_id}")
+    return 0
 
 # For debugging
 if __name__ == "__main__":

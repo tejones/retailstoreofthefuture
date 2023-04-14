@@ -44,9 +44,9 @@ variable is set to `False`.
 
 Message publication can be paused and resumed by sending a POST request to `/stop` and `/start` endpoints respectively.
 
-### HTTP endpoints
+### Interfaces
 
-The service exposes the following HTTP endpoints:
+The service exposes the following **HTTP endpoints**:
 
 | Method | Path         | Function                       |
 |--------|--------------|--------------------------------|
@@ -54,6 +54,15 @@ The service exposes the following HTTP endpoints:
 | POST   | /start       | start message publications     |
 | POST   | /stop        | pause message publications     |
 | GET    | /state       | check generator status         |
+
+
+The service uses **MQTT topics** defined by the following(see [Service configuration](#service-configuration)):
+* `COMMAND_TOPIC` - the topic that the service listens to for incoming commands. The commands are used to control
+  the service's behavior. `start` and `stop` commands are supported. Using this way to 
+    control the service is especially useful when the service is deployed in a Kubernetes cluster and has multiple 
+    replicas. With one MQTT message, all the instances can be instructed to start/stop message production.
+* `FOCUS_TOPIC` - the topic that the service publishes focus events to.
+
 
 ## Development
 
@@ -72,18 +81,19 @@ pip install -r requirements.txt
 
 The service reads the following **environment variables**:
 
-| Variable                | Description                          | Default |
-|-------------------------|--------------------------------------|--------:|
-| MQTT_HOST               | comma-separated list of MQTT brokers |       - |
-| MQTT_PORT               | MQTT brokers' port                   |    1883 |
-| MQTT_USERNAME           | MQTT user username                   |    None |
-| MQTT_PASSWORD           | MQTT user password                   |    None |
-| MQTT_BROKER_CERT_FILE   | path to MQTT ssl cert file           |    None |
-| FOCUS_TOPIC             | topic for focus events               |       - |
-| PERIODIC_TASKS_INTERVAL | repeat publication every n seconds   |       1 |
-| GENERATOR_AUTO_START    | start generating when the app starts |    True |
-| LOG_LEVEL               | logging level                        |    INFO |
-| LOG_FILENAME            | log file name                        |      '' |
+| Variable                | Description                          |                Default |
+|-------------------------|--------------------------------------|-----------------------:|
+| MQTT_HOST               | comma-separated list of MQTT brokers |                      - |
+| MQTT_PORT               | MQTT brokers' port                   |                   1883 |
+| MQTT_USERNAME           | MQTT user username                   |                   None |
+| MQTT_PASSWORD           | MQTT user password                   |                   None |
+| MQTT_BROKER_CERT_FILE   | path to MQTT ssl cert file           |                   None |
+| FOCUS_TOPIC             | topic for focus events               |                      - |
+| COMMAND_TOPIC           | topic name for incoming commands     | focusEventPump/command |
+| PERIODIC_TASKS_INTERVAL | repeat publication every n seconds   |                      1 |
+| GENERATOR_AUTO_START    | start generating when the app starts |                   True |
+| LOG_LEVEL               | logging level                        |                   INFO |
+| LOG_FILENAME            | log file name                        |                     '' |
 
 (Parameters with `-` in the "Default" column are required.)
 
@@ -107,8 +117,7 @@ To increase the load, you can run multiple instances of the service, then.
 
 The code reads sensitive information (tokens, secrets) from environment variables. They need to be set accordingly in
 advance. `environment.variables.sh` can be used for that purpose. Then, in order to run the service the following
-commands can be
-used:
+commands can be used:
 
 ```shell
 $ . .environment.variables.sh
@@ -117,7 +126,7 @@ $ . venv/bin/activate
 ```
 
 > Please, note `reload-dir` switch. Without it the reloader goes into an infinite loop because it detects log file
-> changes (messages.log).
+> changes.
 
 ## Testing without MQTT
 
