@@ -1,0 +1,9 @@
+**/.idea/
+*.iws
+**/__pycache__/
+*.py[cod]
+*$py.class
+**/.venv*
+**/venv/
+*.priv
+*.priv.*

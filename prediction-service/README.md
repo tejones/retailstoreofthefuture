@@ -47,69 +47,87 @@ $ . .venv/bin/activate
 
 ## Prediction example
 
+
 ```shell
-curl -X 'POST' \
-  'http://10.91.117.45:8002/score' \
+curl -s -X 'POST' \
+  'http://localhost:8000/score' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "customer": {
-    "customer_id": 54,
-    "age": "old",
-    "credit": 1,
-    "gender": "F",
-    "mean_product_price": 13.63,
-    "unique_coupons_used": 369,
-    "mean_discount_used": 11.93,
-    "unique_items_bought": 1934,
-    "total_items_bought": 42265
+  "customer":{
+    "customer_id":1,
+    "gender":"M",
+    "age":79,
+    "mean_buy_price":11.62,
+    "total_coupons_used":285,
+    "mean_discount_received":9.16,
+    "unique_products_bought":866,
+    "unique_products_bought_with_coupons":232,
+    "total_items_bought":1102
   },
-  "coupons": [
+  "coupons":[
     {
-      "coupon_id": 1,
-      "mean_item_selling_price": 7.06,
-      "coupon_discount": 50,
-      "category": "",
-      "how_many_products": 2,
-      "coupon_type": "buy_more",
-      "days_valid": 24
+      "coupon_id":7,
+      "coupon_type":"buy_all",
+      "department":"Boys",
+      "discount":49.0,
+      "how_many_products_required":3,
+      "product_mean_price":8.79,
+      "products_available":3,
+      "start_date":"2010-01-01",
+      "end_date":"2010-01-09"
     },
     {
-      "coupon_id": 2,
-      "mean_item_selling_price": 7.06,
-      "coupon_discount": 3.78,
-      "category": "",
-      "how_many_products": 2,
-      "coupon_type": "buy_all",
-      "days_valid": 20
+      "coupon_id":8,
+      "coupon_type":"buy_more",
+      "department":"Boys",
+      "discount":20.0,
+      "how_many_products_required":3,
+      "product_mean_price":7.44,
+      "products_available":1,
+      "start_date":"2010-01-01",
+      "end_date":"2010-01-12"
+    },
+    {
+      "coupon_id":9,
+      "coupon_type":"just_discount",
+      "department":"Boys",
+      "discount":23.0,
+      "how_many_products_required":1,
+      "product_mean_price":6.12,
+      "products_available":1,
+      "start_date":"2010-01-01",
+      "end_date":"2010-01-29"
     }
   ]
-}'
+}' | jq .
 ```
 
 Example response:
 
-```shell
+```json
 [
   {
-    "coupon_id": 2,
-    "customer_id": 54,
-    "prediction": 0.0409353164
+    "coupon_id": "8",
+    "customer_id": "1",
+    "prediction": 0.6108783426
   },
   {
-    "coupon_id": 1,
-    "customer_id": 54,
-    "prediction": 0.0311633506
+    "coupon_id": "9",
+    "customer_id": "1",
+    "prediction": 0.5151725303
+  },
+  {
+    "coupon_id": "7",
+    "customer_id": "1",
+    "prediction": 0.3721197586
   }
 ]
+
 ```
 
 ## Docker image
 The docker image for the service is [Dockerfile](Dockerfile).
-It is based on FastAPI "official" image. 
-See https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker 
-for detail on configuring the container (http port, log level, etc.)
-
 In order to build the image use:
 
 ```shell

@@ -251,10 +251,6 @@ curl -X 'POST' \
 
 ## Docker image
 The docker image for the service is [Dockerfile](Dockerfile).
-It is based on FastAPI "official" image. 
-See https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker 
-for detail on configuring the container (http port, log level, etc.)
-
 In order to build the image use:
 
 ```bash
