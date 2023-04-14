@@ -17,7 +17,7 @@ class PredictionProducer:
 
     async def publish(self, customer_id: str, coupon_info: CacheCoupon, products: List[CacheProduct]):
         message = self._create_message(customer_id, coupon_info, products)
-        logger.info(f'Publishing message: {message}')
+        logger.debug(f'Publishing message: {message}')
         self._mqtt.publish(self._topic_name, message)
 
     def _create_message(self, customer_id: str, coupon_info: CacheCoupon, products: List[CacheProduct]) -> str:

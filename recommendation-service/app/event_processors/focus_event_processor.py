@@ -58,7 +58,7 @@ class FocusEventProcessor:
             products=products
         )
 
-        logger.info(f'1 message has been published')
+        logger.debug(f'1 message has been published')
 
         # TODO construct response
         return 'Done'
