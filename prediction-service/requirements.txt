@@ -1,6 +1,7 @@
-fastapi==0.63.0
+fastapi==0.94.1
+pydantic~=1.10.6
 pandas==1.1.5
 pytest==6.2.3
 requests==2.25.1
 scikit-learn==0.24.1
-uvicorn[standard]==0.13.4
+uvicorn==0.21.1

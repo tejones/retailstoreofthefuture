@@ -1,0 +1,15 @@
+{{- if .Values.fepumpService.deploy -}}
+{{- if .Values.postgres.serviceAccount.create -}}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "fepump.serviceAccountName" . }}
+  labels:
+    {{- include "fepump.labels" . | nindent 4 }}
+  {{- with .Values.fepumpService.serviceAccount.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}
+{{- end -}}
+

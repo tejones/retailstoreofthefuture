@@ -38,10 +38,10 @@ could be changed, added, or removed.
 The training part is made in the jupyter notebooks using Intel DAAL libraries.
 
 All scripts and necessary components are available in
-(training-with-artificial-data)[./training-with-artificial-data] path.
+[training-with-artificial-data](./training-with-artificial-data) path.
 
 There was a special data generator created for training purposes. It is placed in the
-(artificial-data-generator)[./artificial-data-generator] path.
+[artificial-data-generator](./artificial-data-generator) path.
 
 ### Prediction Service
 
@@ -62,7 +62,7 @@ The response is interpreted, processed, and sent to the suitable MQTT topic.
 ### Customers simulator
 
 This simulator was made for demo purposes. It can simulate customers' movement through the store.
-See more details in the [README file](scenario-player/README.md)
+See more details in the [README file](scenario-player/README.md).
 
 ### Visualization app
 
@@ -81,8 +81,8 @@ Each component has its own instructions describing the development, deployment, 
 Please find the particular component README for details.
 
 As shown in the diagram, there are additional, external components used in this solution. You can set up
-your own development environment using containers. The development instruction can be found (here)[DEVELOPMENT.md].
+your own development environment using containers. The development instruction can be found [here](DEVELOPMENT.md).
 
 ## Deployment and production
 
-The solution is adapted to run in an OpenShift environment. The deployment process is described in (infra)[./infra] path.
+The solution is adapted to run in an OpenShift environment. The deployment process is described in [infra](./infra) path.

@@ -6,16 +6,21 @@
 openshift: true
 
 globalInfra:
+
+  namespace: rsotf
+  imageRegistry: image-registry.openshift-image-registry.svc
+  registryPort: "5000"
+
   kafka:
     bootstrapServers:
-    - retail-kafka-kafka-bootstrap.retail-infra.svc.cluster.local:9092
+      - retail-store-kafka-bootstrap.retail-infra.svc.cluster.local:9092
     
     # Kafka topic name for entry events
     entryEventTopic: "entryTopic"
 
     # Kafka topic name for focus events
     focusEventTopic: "focusTopic"
-  
+
     # Kafka topic name for prediction results
     couponPredictionTopic: "predictionTopic"
   
@@ -36,7 +41,7 @@ globalInfra:
     password: password
 
     # name or IP address of the MQTT broker 
-    brokerServer: ex-aao-mqtt-notls-0-svc.retail-infra.svc.cluster.local
+    brokerServer: ex-aao-mqtt-0-svc
     
     # port that MQTT broker is listening on, default: 1883
     brokerPort: 1883
@@ -50,19 +55,28 @@ globalInfra:
     # MQTT topic for exit events
     exitTopic: "retail/mqttExitTopic"
 
+    # MQTT topic for focus events
+    focusTopic: "retail/mqttFocusTopic"
+
+    # MQTT topic for customer browsing events
+    browseTopic: "retail/mqttBrowseTopic"
+
+    # MQTT topic for prediction results
+    couponsTopic: "retail/mqttCouponsTopic"
+
 
 postgres:
   # postgres image used for cache 
-  image: quay.io/bitnami/postgresql:latest
+  image: docker.io/bitnami/postgresql:15.2.0-debian-11-r0
 
   # postgresql database user  
-  postgresUser: dupa
+  postgresUser: cacheUser
 
   # postgresql user's password
-  postgresPassword: dupaStrongPass
+  postgresPassword: cachePass
   
   # postgresql database name
-  postgresDB: dupa-db
+  postgresDB: cacheDb
 
   # postgresql service type, default: ClusterIP
   # serviceType: ClusterIP
@@ -74,59 +88,47 @@ postgres:
     # create separate service account for postgres
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
 
   # specify limits and requests for the postgresql
-  resources: {}
+  resources: { }
 
 recommendationService:
   # recommendation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/recommendation-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/recommendation-service:latest"
   
   # number of recommendation service replicas
-  replicas: 2
+  replicas: 1
 
   # recommendation service type, default: ClusterIP
   # serviceType: ClusterIP
 
   # recommendation service port. default: 80
   # servicePort: 8080
-
-  # optional identifier of a Kafka consumer, default: "kafkaClients"
-  # kafkaClientId: "kafkaClients"
-  
-  # consumer group name, default: "None"
-  # kafkaGroupId: "consumergroup" 
-  
-  # see: auto.offset.reset setting in Kafka, default: "latest"
-  # autoOffsetReset: "latest"
-  
-  # time spent waiting for messages in in poll (s), default: 0.1
-  # pollTimeout: 0.1
   
   # fastAPI environment variables, see https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker for reference
-  fastApi: 
+  fastApi:
     env:
-    - name: LOG_LEVEL
-      value: info
-    - name: MAX_WORKERS
-      value: 1
+      - name: LOG_LEVEL
+        value: info
+      - name: MAX_WORKERS
+        value: 1
 
   serviceAccount:
     # create separate service account for recommendation service
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
   
   # specify limits and requests for the recommendation service
-  resources: {}
+  resources: { }
 
 predictionService:
   # prediction service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/prediction-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/prediction-service:latest"
   
   # number of prediction service replicas
-  replicas: 2
+  replicas: 1
 
   # prediction service type, default: ClusterIP
   # serviceType: NodePort
@@ -137,27 +139,33 @@ predictionService:
   # fastAPI environment variables, see https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker for reference
   fastApi:
     env:
-    - name: LOG_LEVEL
-      value: info
-    - name: MAX_WORKERS
-      value: 1
+      - name: LOG_LEVEL
+        value: info
+      - name: MAX_WORKERS
+        value: 1
 
   serviceAccount:
     # create separate service account for prediction service
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
 
   # specify limits and requests for the prediction service
-  resources: {}
+  resources: { }
 
 customerSimulationService:
   # customer simulation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/customer-simulation-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/customer-simulation-service:latest"
   
   # number of customer simulations service replicas
   replicas: 1
-  
+
+  fastApi:
+    env:
+      - name: LOG_LEVEL
+        value: info
+      - name: MAX_WORKERS
+        value: 1
   # customer simulation service type, default: ClusterIP
   # serviceType: ClusterIP
 
@@ -168,7 +176,7 @@ customerSimulationService:
     # create separate service account for customer simulation service
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
 
 
   # set a log level for customer simulation service
@@ -177,10 +185,10 @@ customerSimulationService:
   # override the default customer lit file location: /app/app/resources/customers.json
   # customersListFile: ""
 
-
+# TODO other components use "service" postfix
 visualization:
   # visualization simulation service docker image
-  image: image-registry.openshift-image-registry.svc:5000/rsotf/visualization-service:latest
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/visualization-service:latest"
   
   # visualization service type, default: ClusterIP
   # serviceType: ClusterIP
@@ -188,9 +196,74 @@ visualization:
   # visualization service port. default: 80
   # servicePort: 8080
 
+  fastApi:
+    env:
+      - name: LOG_LEVEL
+        value: info
+      - name: MAX_WORKERS
+        value: 1
+
   serviceAccount:
-    # create separate service account for customer simulation service
+    create: true
+    annotations: { }
+
+cachedbLoader:
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/cachedb-loader"
+  serviceAccount:
+    create: true
+    annotations: { }
+
+decisionService:
+  # decision service docker image
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/decision-service:latest"
+
+  # number of decision service replicas
+  replicas: 1
+
+  # decision service type, default: ClusterIP
+  # serviceType: NodePort
+
+  # decision service port, default: 80
+  # servicePort: 8080
+
+  arguments:
+    - name: mp_messaging_incoming_jeden_topic
+      value: "{{ .Values.globalInfra.mqtt.moveTopic }}"
+    - name: mp_messaging_incoming_jeden_host
+      value: "{{ .Values.globalInfra.mqtt.brokerServer }}"
+    - name: mp_messaging_incoming_jeden_port
+      value: "{{ .Values.globalInfra.mqtt.brokerPort | quote }}"
+    - name: kafka_bootstrap_servers
+      value: "{{ first .Values.globalInfra.kafka.bootstrapServers }}"
+
+  serviceAccount:
+    # create separate service account for decision service
     create: true
     # additional service account annotations
-    annotations: {}
+    annotations: { }
 
+fepumpService:
+  # decide if the service should be deployed
+  deploy: true
+
+  image: "{{ .Values.globalInfra.imageRegistry }}:{{ .Values.globalInfra.registryPort }}/{{ .Values.globalInfra.namespace }}/focus-events-pump:latest"
+
+  replicas: 1
+
+  fastApi:
+    env:
+      - name: LOG_LEVEL
+        value: info
+
+  config:
+    env:
+      - name: GENERATOR_AUTO_START
+        value: false
+      - name: PERIODIC_TASKS_INTERVAL
+        value: 1.0
+
+  serviceAccount:
+    create: true
+    annotations: { }
+
+  resources: { }

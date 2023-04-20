@@ -8,27 +8,24 @@ from fastapi.responses import PlainTextResponse
 
 from app import logger
 from app.backend.priority_queue import PQueueTimelineBackend
+from app.config import USE_REDIS_BACKEND, REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, REDIS_DB
 from app.controller import TimelineController
-from app.log_config import configure_logger
 from app.publisher.mqtt_publisher import MQTTEventPublisher
 from app.scenario.scenario_deployer import ScenarioDeployer
 from app.scenario.scenario_model import Scenario, CustomerState
 from app.scenario.scenario_producer import ScenarioProducer
 from app.simulator.simulation_engine import CustomerSimulator
 
-configure_logger()
-
 app = FastAPI()
-
-# For bigger scale and volume, use Redis backend
-USE_REDIS_BACKEND = False
 
 
 async def init_backend():
     if USE_REDIS_BACKEND:
+        logger.info("Initializing Redis backend...")
         # XXX TODO add error handling
         from app.backend.redis import RedisTimelineBackend
-        backend = RedisTimelineBackend('redis://127.0.0.1:6379', database=0, redis_password='redis123')
+        connection_string = f'redis://{REDIS_HOST}:{REDIS_PORT}'
+        backend = RedisTimelineBackend(connection_string, database=REDIS_DB, redis_password=REDIS_PASSWORD)
     else:
         backend = PQueueTimelineBackend()
 
@@ -127,6 +124,8 @@ async def deploy_scenario(payload: Scenario,
 @app.get('/state')
 async def get_current_state(timestamp: datetime) -> List[CustomerState]:
     logger.info(f'get_current_state as for {timestamp}')
+    # TODO XXX: get_current_state uses backend.get_events(epoch) which not only gets events but also
+    #  removes them from the queue. This is not what we want here.
     return await app.state.timeline_controller.get_current_state(timestamp)
 
 

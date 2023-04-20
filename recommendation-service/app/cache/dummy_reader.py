@@ -30,7 +30,7 @@ class DummyCacheReader:
     async def read_coupons(self, department: str):
         assert department in config.DEPARTMENTS
         coupon = Coupon(
-            id=1,
+            coupon_id=1,
             coupon_type='buy_all',
             department=department,
             discount=30,
@@ -50,6 +50,6 @@ class DummyCacheReader:
             sizes='One Size',
             vendor='Mango',
             description='***',
-            buy_price='12.45',
+            buy_price=12.45,
             department='Women'
         )]

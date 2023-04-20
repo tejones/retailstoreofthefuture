@@ -9,16 +9,16 @@ spec:
   replicas: {{ .Values.predictionService.replicas }}
   selector:
     matchLabels:
-    {{- include "recommendation.selectorLabels" . | nindent 6 }}
+      {{- include "recommendation.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-      {{- include "recommendation.selectorLabels" . | nindent 8 }}
+        {{- include "recommendation.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccount: {{include "recommendation.serviceAccountName" . }}
       containers:
       - name: recommendation-service
-        image: {{ .Values.predictionService.image }}
+        image: {{ tpl .Values.recommendationService.image . }}
         env:
         - name: DB_NAME
           valueFrom:
@@ -45,43 +45,50 @@ spec:
           value: {{ .value | quote }}
         {{- end }}
         {{- end }}
-        {{- if not .Values.recommendationService.testingNoKafka }}
-        - name: FOCUS_EVENT_TOPIC_NAME
-          value: {{ .Values.globalInfra.kafka.focusEventTopic | quote }}
-        - name: ENTRY_EVENT_TOPIC_NAME
-          value: {{ .Values.globalInfra.kafka.entryEventTopic | quote }}
-        - name: COUPON_PREDICTION_TOPIC_NAME
-          value: {{ .Values.globalInfra.kafka.couponPredictionTopic | quote }}
-        {{- end }}
         - name: COUPON_SCORER_URL
-          value: {{ printf "http://%s:%s" (include "prediction.serviceName" .) (include "prediction.servicePort" .) | quote }}
-        {{- if .Values.globalInfra.kafka.bootstrapServers }}
-        - name: BOOTSTRAP_SERVERS
-          value: {{ join "," .Values.globalInfra.kafka.bootstrapServers | quote }}
+          value: {{ printf "http://%s:%s/score" (include "prediction.serviceName" .) (include "prediction.servicePort" .) | quote }}
+        {{- if .Values.globalInfra.mqtt.brokerServer }}
+        - name: MQTT_HOST
+          value: {{  .Values.globalInfra.mqtt.brokerServer | quote }}
         {{- end }}
-        {{- if .Values.recommendationService.kafkaClientId }}
-        - name: CLIENT_ID
-          value: {{ .Values.recommendationService.kafkaClientId | quote }}
+        {{- if .Values.globalInfra.mqtt.brokerPort }}
+        - name: MQTT_PORT
+          value: {{  .Values.globalInfra.mqtt.brokerPort  | quote }}
         {{- end }}
-        {{- if .Values.recommendationService.kafkaGroupId }}
-        - name: GROUP_ID
-          value: {{  .Values.recommendationService.kafkaGroupId | quote }}
+        {{- if .Values.globalInfra.mqtt.enterTopic }}
+        - name: ENTER_TOPIC
+          value: {{  .Values.globalInfra.mqtt.enterTopic | quote }}
         {{- end }}
-        {{- if .Values.recommendationService.pollTimeout }}
-        - name: POLL_TIMEOUT
-          value: {{  .Values.recommendationService.pollTimeout | quote }}
+        {{- if .Values.globalInfra.mqtt.focusTopic }}
+        - name: FOCUS_TOPIC
+          value: {{  .Values.globalInfra.mqtt.focusTopic | quote }}
         {{- end }}
-        {{- if .Values.recommendationService.pollTimeout }}
-        - name: AUTO_OFFSET_RESET
-          value: {{  .Values.recommendationService.autoOffsetReset | quote }}
+        {{- if .Values.globalInfra.mqtt.couponsTopic }}
+        - name: COUPON_PREDICTION_TOPIC
+          value: {{  .Values.globalInfra.mqtt.couponsTopic | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.sslEnabled }}
+        - name: MQTT_BROKER_CERT_FILE
+          value: /certs/broker_ca.crt
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.authenticationEnabled }}
+        envFrom:
+        - secretRef:
+            name: mqtt-auth-creds
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.sslEnabled }}
+        volumeMounts:
+        - name: broker-cert
+          readOnly: true
+          mountPath: /certs
         {{- end }}
         ports:
         - containerPort: 80
-        redinessProbe:
+        readinessProbe:
           tcpSocket:
             port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 10
+          initialDelaySeconds: 5
+          periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /healthcheck

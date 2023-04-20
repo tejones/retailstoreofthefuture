@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-    name: {{ include "customerSimulation.serviceAccountName" . }}:anyuid
+    name: {{ include "customerSimulation.serviceAccountName" . }}:{{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

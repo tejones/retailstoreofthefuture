@@ -1,0 +1,51 @@
+﻿apiVersion: batch/v1
+kind: Job
+metadata:
+  name: load-cachedb-data
+  labels:
+    job-name: load-cachedb-data
+spec:
+  parallelism: 1
+  completions: 1
+  backoffLimit: 6
+  template:
+    metadata:
+      name: load-cachedb-data
+      labels:
+        job-name: load-cachedb-data
+    spec:
+      containers:
+        - name: cachedb-loader
+          image: image-registry.openshift-image-registry.svc:5000/rsotf/cachedb-loader
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_HST
+              value: postgres-svc
+# TODO: future improvement, allow setting up the port
+#            - name: POSTGRES_PRT
+#              value: value: {{ include "postgres.servicePort" . | toString | quote }}
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-cm
+                  key: POSTGRES_DB
+            - name: POSTGRES_USR
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PW
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+      restartPolicy: Never
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  completionMode: NonIndexed
+  suspend: false

@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "cachedbLoader.name" . }}
+  labels:
+    {{- include "cachedbLoader.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  parallelism: 1
+  completions: 1
+  backoffLimit: 6
+  template:
+    metadata:
+      name: {{ include "cachedbLoader.name" . }}
+      labels:
+        {{- include "cachedbLoader.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccount: {{ include "cachedbLoader.serviceAccountName" . }}
+      containers:
+      - name: cachedb-loader
+        image: {{ tpl .Values.cachedbLoader.image . }}
+        env:
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: {{ include "postgres.configMapName" . }}
+                key: POSTGRES_DB
+          - name: POSTGRES_PW
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "postgres.secretName"  . }}
+                key: POSTGRES_PASSWORD
+          - name: POSTGRES_USR
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "postgres.secretName" . }}
+                key: POSTGRES_USER
+          - name: POSTGRES_HST
+            value: {{ include "postgres.serviceName" . }}
+          - name: DB_PORT
+            value: {{ include "postgres.servicePort" . | toString | quote }}
+        envFrom:
+        - secretRef:
+            name: {{ include "postgres.secretName" . }}
+        - configMapRef:
+            name: {{ include "postgres.configMapName" . }}
+        ports:
+        - containerPort: 5432
+      restartPolicy: Never
+      terminationGracePeriodSeconds: 30

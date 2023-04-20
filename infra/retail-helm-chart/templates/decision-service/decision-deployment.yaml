@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "decision.labels" . | nindent 4 }}
+  name: {{ include "decision.name" . }}
+  
+spec:
+  replicas: {{ .Values.decisionService.replicas }}
+  selector:
+    matchLabels:
+    {{- include "decision.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+      {{- include "decision.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccount: {{ include "decision.serviceAccountName" . }}
+      containers:
+      - name: decision-service
+        image: {{ tpl .Values.decisionService.image . }}
+        env:
+        {{- if and .Values.decisionService.arguments  }}
+        {{- range .Values.decisionService.arguments }}
+        - name: {{ .name }}
+          value: {{ tpl .value $ }}
+        {{- end }}
+        {{- end }}
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /hello
+            port: 8080

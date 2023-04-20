@@ -1,0 +1,14 @@
+{{- if .Values.openshift -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "decision.name" . }}-external
+  labels:
+    {{- include "decision.labels" . | nindent 4 }}
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: {{ include "decision.serviceName" . }}
+{{ end }}
