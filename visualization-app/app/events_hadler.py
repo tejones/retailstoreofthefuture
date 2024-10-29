@@ -1,11 +1,10 @@
 import json
 
-from app.data_models import CustomerDescription, Location
-from app.events_model import CustomerEvent, CustomerEventExtended
-
+from app import logger
 from app.config import CUSTOMER_EXIT_TOPIC, CUSTOMER_MOVE_TOPIC, CUSTOMER_ENTER_TOPIC, CUSTOMER_BROWSING_TOPIC
+from app.data_models import Location
+from app.events_model import CustomerEvent, CustomerEventExtended
 from app.utils import find_customer
-
 
 TOPIC_EVENT_TYPE_MAPPING = {
     f'{CUSTOMER_ENTER_TOPIC}': 'ENTER',
@@ -15,9 +14,10 @@ TOPIC_EVENT_TYPE_MAPPING = {
 }
 
 
-class EventsHendler:
+class EventsHandler:
     @staticmethod
     def handle_event(topic, payload, app_state):
+        logger.debug(f'Handling event: {topic} - {payload}')
         payload = payload if type(payload) == str else payload.decode()
         cme = CustomerEvent.parse_raw(payload)
         customer = find_customer(cme.id, app_state.customers)

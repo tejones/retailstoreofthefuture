@@ -4,7 +4,7 @@ metadata:
   labels:
     {{- include "customerSimulation.labels" . | nindent 4 }}
   name: {{ include "customerSimulation.name" . }}
-  
+
 spec:
   replicas: {{ .Values.customerSimulationService.replicas }}
   selector:
@@ -18,10 +18,14 @@ spec:
       serviceAccount: {{ include "customerSimulation.serviceAccountName" . }}
       containers:
       - name: customer-simulation-service
-        image: {{ .Values.customerSimulationService.image }}
+        image: {{ tpl .Values.customerSimulationService.image . }}
         env:
-        - name: LOG_LEVEL
-          value: {{  .Values.customerSimulationService.storeHeight | default "info" | quote }}
+        {{- if and .Values.customerSimulationService.fastApi  }}
+        {{- range .Values.customerSimulationService.fastApi.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote}}
+        {{- end }}
+        {{- end }}
         {{- if .Values.customerSimulationService.storeHeight }}
         - name: STORE_HEIGHT
           value: {{  .Values.customerSimulationService.storeHeight | quote }}
@@ -75,11 +79,11 @@ spec:
         {{- end }}
         ports:
         - containerPort: 80
-        redinessProbe:
+        readinessProbe:
           tcpSocket:
             port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 10
+          initialDelaySeconds: 5
+          periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /health

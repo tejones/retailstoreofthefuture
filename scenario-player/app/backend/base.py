@@ -1,6 +1,7 @@
+from datetime import datetime
 from typing import List, Tuple
 
-from app.scenario.scenario_model import Scenario, Step
+from app.scenario.scenario_model import Scenario, Step, UtcDatetime
 
 
 class BaseTimelineBackend:
@@ -34,10 +35,16 @@ class BaseTimelineBackend:
         """
         raise NotImplementedError
 
-    async def get_events(self, unix_time: int) -> List[Tuple[str, Step]]:
+    @staticmethod
+    def get_epoch_ms(timestamp: datetime):
+        return int(timestamp.timestamp() * 1000)
+
+    async def get_events(self, for_timestamp: UtcDatetime, from_timestamp: UtcDatetime, batch_size: int) -> List[Tuple[str, Step]]:
         """
 
-        :param unix_time:
+        :param for_timestamp: timezone-aware datetime
+        :param from_timestamp: timezone-aware datetime
+        :param batch_size: number of events to return in one go
         :return: list of tuples (customer_id, step)
         """
         raise NotImplementedError

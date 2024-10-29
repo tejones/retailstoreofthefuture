@@ -17,8 +17,14 @@ spec:
       serviceAccount: {{ include "visualization.serviceAccountName" . }}
       containers:
       - name: gui
-        image: {{ .Values.visualization.image }}
+        image: {{ tpl .Values.visualization.image . }}
         env:
+        {{- if and .Values.visualization.fastApi  }}
+        {{- range .Values.visualization.fastApi.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote}}
+        {{- end }}
+        {{- end }}
         - name: SCENARIO_PLAYER_SCENARIO_ENDPOINT
           value: "http://{{  include "customerSimulation.serviceName" . }}:{{include "customerSimulation.servicePort" . }}/scenario"
         {{- if .Values.globalInfra.mqtt.brokerServer }}
@@ -41,6 +47,14 @@ spec:
         - name: EXIT_TOPIC
           value: {{  .Values.globalInfra.mqtt.exitTopic | quote }}
         {{- end }}
+        {{- if .Values.globalInfra.mqtt.browseTopic }}
+        - name: BROWSING_TOPIC
+          value: {{  .Values.globalInfra.mqtt.browseTopic | quote }}
+        {{- end }}
+        {{- if .Values.globalInfra.mqtt.couponsTopic }}
+        - name: COUPON_PREDICTION_TOPIC
+          value: {{  .Values.globalInfra.mqtt.couponsTopic | quote }}
+        {{- end }}
         {{- if .Values.globalInfra.mqtt.sslEnabled }}
         - name: MQTT_BROKER_CERT_FILE
           value: /certs/broker_ca.crt
@@ -58,11 +72,11 @@ spec:
         {{- end }}
         ports:
         - containerPort: 80
-        redinessProbe:
+        readinessProbe:
           tcpSocket:
             port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 10
+          initialDelaySeconds: 5
+          periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /health

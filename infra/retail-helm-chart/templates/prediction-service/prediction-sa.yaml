@@ -1,4 +1,4 @@
-{{- if .Values.postgres.serviceAccount.create -}}
+{{- if .Values.predictionService.serviceAccount.create -}}
 apiVersion: v1
 kind: ServiceAccount
 metadata:

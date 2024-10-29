@@ -42,7 +42,7 @@ class DataEncoder:
     def _encode_age(cls, age):
         if age < 30:
             age_bracket = 'young'
-        elif age >= 30 and age < 50:
+        elif 30 <= age < 50:
             age_bracket = 'mid'
         else:
             age_bracket = 'old'

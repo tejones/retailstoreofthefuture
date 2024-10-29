@@ -51,7 +51,7 @@ async def mock_entry_event(event: EntryEvent) -> Optional[str]:
     logger.info('mock_entry_event')
     logger.debug(event)
 
-    result = await customer_enters(None, config.ENTRY_EVENT_TOPIC_NAME, event.json().encode(), None, None)
+    result = await customer_enters(None, config.ENTER_TOPIC, event.json(by_alias=True).encode(), None, None)
 
     return PlainTextResponse(str(result))
 
@@ -61,10 +61,10 @@ async def mock_focus_event(event: FocusEvent) -> Optional[str]:
     """
     Test endpoint that simulates arrival of "focus event".
     """
-    logger.info('mock_entry_event')
+    logger.info('mock_focus_event')
     logger.debug(event)
 
-    result = await customer_focuses(None, config.FOCUS_EVENT_TOPIC_NAME, event.json().encode(), None, None)
+    result = await customer_focuses(None, config.FOCUS_TOPIC, event.json(by_alias=True).encode(), None, None)
 
     return PlainTextResponse(str(result))
 
@@ -73,13 +73,13 @@ async def mock_focus_event(event: FocusEvent) -> Optional[str]:
 # mqtt handlers
 
 
-@mqtt.subscribe(config.ENTRY_EVENT_TOPIC_NAME)
+@mqtt.subscribe(config.ENTER_TOPIC)
 async def customer_enters(client, topic, payload, qos, properties):
     logger.warning(f'Received message: {topic}, {payload.decode()}')
     await app.state.entry_event_processor.process(payload.decode())
 
 
-@mqtt.subscribe(config.FOCUS_EVENT_TOPIC_NAME)
+@mqtt.subscribe(config.FOCUS_TOPIC)
 async def customer_focuses(client, topic, payload, qos, properties):
     logger.warning(f'Received message: {topic}, {payload.decode()}')
     await app.state.focus_event_processor.process(payload.decode())

@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 
 from app import logger
 from app.backend.base import BaseTimelineBackend
+from app.config import CONSUME_FREQUENCY, CONSUME_FROM, CONSUME_BATCH_SIZE
 from app.publisher.base import BaseEventPublisher
 from app.scenario.scenario_model import CustomerDescription, CustomerState, Step
 
@@ -28,11 +29,10 @@ class CustomerSimulator:
         logger.info('Starting simulator loop')
         while self.is_running:
             logger.debug('another pass of simulator loop...')
-            tmpstmp = int(datetime.now(timezone.utc).timestamp())
+            now = datetime.now(timezone.utc)
 
             # TODO get_events returns the events and REMOVES them from the queue, maybe change name to consume_events
-            # TODO maybe it should be: get events from the last tick 'till now
-            events_for_users = await self.backend.get_events(tmpstmp)
+            events_for_users = await self.backend.get_events(now, CONSUME_FROM, CONSUME_BATCH_SIZE)
             logger.debug(f'events: {events_for_users}')
 
             customer_states = [self.create_customer_state(efo[0], efo[1]) for efo in events_for_users]
@@ -40,7 +40,8 @@ class CustomerSimulator:
                 await self.event_publisher.publish_state(state)
 
             # remember last tick time
-            self.last_tick_time = tmpstmp
+            self.last_tick_time = now
 
             # go to sleep
-            await asyncio.sleep(1)
+            await asyncio.sleep(CONSUME_FREQUENCY)
+            # TODO consider using a scheduler instead of sleep

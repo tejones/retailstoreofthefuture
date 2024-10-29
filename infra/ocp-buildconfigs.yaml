@@ -6,11 +6,9 @@ metadata:
 spec:
   source:
     type: Git
-    sourceSecret:
-      name: retail-git-ssh-key
     git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: develop-pl
+      uri: 'https://github.com/karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
     contextDir: recommendation-service/
   strategy:
     type: Docker
@@ -34,11 +32,9 @@ metadata:
 spec:
   source:
     type: Git
-    sourceSecret:
-      name: retail-git-ssh-key
     git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: develop-pl
+      uri: 'https://github.com/karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
     contextDir: prediction-service/
   strategy:
     type: Docker
@@ -62,11 +58,9 @@ metadata:
 spec:
   source:
     type: Git
-    sourceSecret:
-      name: retail-git-ssh-key
     git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: develop-pl
+      uri: 'https://github.com/karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
     contextDir: visualization-app/
   strategy:
     type: Docker
@@ -90,11 +84,9 @@ metadata:
 spec:
   source:
     type: Git
-    sourceSecret:
-      name: retail-git-ssh-key
     git:
-      uri: 'git@github.com:pgrabusz/retailstoreofthefuture.git'
-      ref: develop-pl
+      uri: 'https://github.com/karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
     contextDir: scenario-player/
   strategy:
     type: Docker
@@ -110,6 +102,129 @@ metadata:
 spec:
   lookupPolicy:
     local: false
-
 ---
-
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: cachedb-loader
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
+    contextDir: cachedb-load-data/
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'cachedb-loader:latest'
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: cachedb-loader
+spec:
+  lookupPolicy:
+    local: false
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    build: decision-service-build
+  name: decision-service-build
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: decision-service-build:latest
+  source:
+    git:
+      uri: https://github.com/karol-brejna-i/kogito-mqtt-decision-process-kafka.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      env:
+      - name: S2I_ENABLE_INCREMENTAL_BUILDS
+        value: "true"
+      - name: S2I_DELETE_SOURCE
+        value: "false"
+      from:
+        kind: DockerImage
+        name: registry.redhat.io/ubi8/openjdk-11
+    type: Source
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: decision-service-build
+spec:
+  lookupPolicy:
+    local: false
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: image-build
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: decision-service:latest
+  source:
+    images:
+    - from:
+        kind: ImageStreamTag
+        name: decision-service-build:latest
+      paths:
+      - sourcePath: /tmp/src/.
+        destinationDir: "."
+  strategy:
+    dockerStrategy:
+      dockerfilePath: src/main/docker/Dockerfile.jvm
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/ubi8/ubi-minimal:8.7
+  triggers:
+  - imageChange:
+      from:
+        kind: ImageStreamTag
+        name: decision-service-build:latest
+    type: ImageChange
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: decision-service
+spec:
+  lookupPolicy:
+    local: false
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: focus-events-pump
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/karol-brejna-i/retailstoreofthefuture.git'
+      ref: develop
+    contextDir: focus-events-pump/
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'focus-events-pump:latest'
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: focus-events-pump
+spec:
+  lookupPolicy:
+    local: false
+---
