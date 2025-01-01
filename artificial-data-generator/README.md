@@ -11,7 +11,7 @@ It makes a few assumptions for that purpose:
 1. People in the age 61 and above buys products from the 2/3 to the end of the list* more often,
 1. The customer has personal preferences which can change the probability of buying products by up to 40% (20% on average) in 20% of cases.
 
-> *There are actually 3 lists - vendors, departments, and categories. The order in all lists is random but always the same for all generated customers. Every customer has his/her  own list of preferences for all 3 types. All lists are generated the same way and using the same assumptions described above.
+> *There are actually 3 lists - vendors, departments, and categories. The order in all lists is random but always the same for all generated customers. Every customer has their own list of preferences for all 3 types. All lists are generated the same way and using the same assumptions described above.
 
 All numbers and functions described above can be changed using the config.py file.
 

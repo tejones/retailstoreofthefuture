@@ -152,7 +152,7 @@ function assistance_handling() {
     assistance_btn.click(function () {
         assistance_btn.removeClass('btn-outline-primary');
         assistance_btn.addClass('btn-outline-success');
-        assistance_btn.html('<i class="bi bi-check-circle"></i> The assistant is on his/her way');
+        assistance_btn.html('<i class="bi bi-check-circle"></i> The assistant is on their way');
 
         $.get(api_assistance_endpoint, function () {
             console.log('Assistance called.');
