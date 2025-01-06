@@ -100,8 +100,7 @@ function assistance_event(event) {
 
     row.innerHTML = `<b><i class="bi bi-exclamation-triangle"></i> ${t}<br>` +
                     `Customer ${c.customer_id} needs assistance!</b><br>` +
-                    ` ${c.name} (${c.gender}, age ${c.age})<br>` +
-                    `${event.department}`;
+                    ` ${c.name} (${c.gender}, age ${c.age})<br>`;
 
     btn.innerHTML = 'Mark as helped';
 

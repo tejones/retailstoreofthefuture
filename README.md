@@ -26,6 +26,7 @@ could be changed, added, or removed.
   * [Recommendation Service](#recommendation-service)
   * [Customers simulator](#customers-simulator)
   * [Visualization app](#visualization-app)
+* [Running pre-recorded scenarios for demo purposes](#demo-scenario)
 * [Development](#development)
 * [Deployment and production](#deployment-and-production)
 
@@ -74,6 +75,11 @@ Visualization app contains:
 * Store interface (customers preview, alerts)
 * Simulator interface (you can create a new scenario for customers simulator using UI)
 * Mobile app simulation (shows customer's mobile app behavior while moving through the store)
+
+## Running pre-recorded scenarios for demo purposes
+
+If you want to check how the system looks like from the user perspective, or you want to provide demo you
+can use demo-scenario. Check description on how to run it [here](demo-scenario/README.md).
 
 ## Development
 
